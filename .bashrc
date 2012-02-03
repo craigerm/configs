@@ -2,6 +2,22 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+
+if [ "$TERM" == "cygwin" ]; then	
+	# Don't use windows TMP defaults. Can act strangely if left set.
+	TEMP="/tmp"
+	TMP="/tmp"
+	export TEMP
+	export TMP	
+fi
+
+. ~/configs/.bash_functions
+
+# Include any machine specific bashrc
+if [ -f ~/.machine_bashrc ]; then
+	. ~/.machine_bashrc
+fi
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -77,10 +93,22 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+# Color support for LS
+if [ "$TERM" == "cygwin" ]; then		
+	LS_COLORS="di=31;1:ln=36;1:ex=31;1:*~=31;1:*.html=31;1:*.shtml=37;1"
+	export LS_COLORS	
+fi
+
+# Some handy colours
+green=$'\e[1;32m'
+magenta=$'\e[1;35m'
+normal_colours=$'\e[m'
+yellow=$'\e[0;33m' 
+purple=$'\e[1;35m'
+white=$'\e[0;37m'
+
+branchcolor=$white
+
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -98,57 +126,30 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+# This loads RVM into a shell session
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  .
 
-rvm 1.9.2
-
-#PATH=$PATH:/home/craig/Downloads/RubyMine-3.0.1/bin/; export PATH
-
-
-#source .git-completion.sh
-
-export RUBYOPT=/var/lib/gems/1.8/bin
-export JDK_HOME=/usr/lib/jvm/java-6-sun-1.6.0.24
-
-alias tv='cd /home/craig/thinkvita/'
-alias rr='rails console'
-alias torrents='/home/craig/Downloads/vuze/azureus'
-
-# Aliases for GIT
-alias gb='git branch'
-alias gba='git branch -a'
-alias gc='git commit -v'
-alias gd='git diff | gedit'
-alias gl='git pull'
-alias pb='git push origin HEAD'
-alias gst='git status'
-alias gk='git diff $* | kompare -'
-alias cm='git commit -m'
-alias grh='git reset --hard'
-alias grs='git reset --soft'
-alias s='git status --short'
-alias gpb='git push origin HEAD'
-
-alias rmine='/home/craig/software/RubyMine/bin/rubymine.sh'
-
-# Other aliases
-alias cls='clear'
-alias sql='sudo mysql -u root -ptest123'
-
-#cd ~/code/thinkvita
-
-alias x='nautilus .'
-alias reload='source ~/.bashrc'
-alias t='tree'
-alias td='tree -d'
-alias td1='tree -d -L 1'
-alias td2='tree -d -L 2'
-alias td3='tree -d -L 2'
-alias t1='tree -L 1'
-alias t2='tree -L 2'
-alias t3='tree -L 3'
-
-alias seql='~/code/sequelize/bin/sequelize'
-alias cv='vim ~/.vimrc'
+#rvm 1.9.2
 
 
+# TODO: Fix these include paths so that they can be anywhere on the system
+
+# Always include git aliases
+. ~/configs/.git_aliases	
+
+# Include linux aliases
+if [ "$TERM" == "linux" ]; then
+	. ~/configs/.linux_aliases
+fi
+
+# Include cygwin aliases
+if [ "$TERM" == "cygwin" ]; then
+	. ~/configs/.cygwin_aliases
+fi
+
+# Include generic aliases
+. ~/configs/.bash_aliases
+
+# Configure prompts
+PROMPT_COMMAND="find_git_branch; $PROMPT_COMMAND"
+PS1="\[$green\]\w\[$branchcolor\] \$git_branch\[$green\]\\$\[$normal_colours\] "
