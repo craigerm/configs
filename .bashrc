@@ -138,7 +138,7 @@ fi
 . ~/configs/.git_aliases	
 
 # Include linux aliases
-if [ "$TERM" == "linux" ]; then
+if [ "$TERM" == "xterm" ]; then
 	. ~/configs/.linux_aliases
 fi
 
@@ -153,3 +153,4 @@ fi
 # Configure prompts
 PROMPT_COMMAND="find_git_branch; $PROMPT_COMMAND"
 PS1="\[$green\]\w\[$branchcolor\] \$git_branch\[$green\]\\$\[$normal_colours\] "
+
