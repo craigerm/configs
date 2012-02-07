@@ -77,3 +77,7 @@ autocmd FileType javascript set sw=2
 autocmd FileType javascript set ts=2
 autocmd FileType javascript set sts=2
 autocmd FileType javascript set textwidth=79
+
+set backupdir=~/tmp
+set directory=~/tmp
+
