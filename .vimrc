@@ -26,9 +26,15 @@ set filetype=on
 filetype plugin on
 filetype indent on
 
+"Set gui font
+set guifont=Monaco\ 14
+
 "Show line number
 set number
 set hidden
+
+"Change color of line number
+highlight LineNr ctermfg=grey
 
 "Highlight current line only in insert mode
 autocmd InsertLeave * set nocursorline
@@ -38,8 +44,14 @@ autocmd InsertEnter * set cursorline
 "autocmd VimEnter * NERDTree
 "autocmd VimEnter * wincmd p
 
-"map t NERDTreeToggle
+"map NERDTreeToggle to ctrl+n
 nmap <silent> <c-n> :NERDTreeToggle<CR>
+
+"map MAKE to F4
+nmap <F4> :w<CR>:make<CR>:cw<CR>
+
+"map FuzzyFinder to \t
+nmap <silent> <c-t> :FuzzyFinderTextMate<CR>
 
 " This is needed for pathogen
 call pathogen#infect()
