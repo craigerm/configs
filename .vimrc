@@ -50,6 +50,10 @@ nmap <silent> <c-n> :NERDTreeToggle<CR>
 "map MAKE to F4
 nmap <F4> :w<CR>:make<CR>:cw<CR>
 
+"map :W to :w since it happens all the time by mistake!
+cmap W w
+cmap WQ wq
+
 "map FuzzyFinder to \t
 nmap <silent> <c-t> :FuzzyFinderTextMate<CR>
 
