@@ -33,4 +33,5 @@ alias gau='git add --update'
 alias gl='git log --graph --pretty=format":%C(yellow)%h%C(bold magenta)%d%Creset %s %C(white) %an, %ar%Creset"'
 alias gli='gl --all --simplify-by-decoration'
 alias gr='echo "Rebasing $git_branch from origin";git rebase origin/$git_branch' # rebase current branch from origin
-alias gfr='git fetch;gr' # fetch and rebase
+alias gfr='git fetch;gr' # fetch and rebaso
+alias gsb='git branch -a | egrep "release|hotfix"'
