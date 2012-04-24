@@ -50,6 +50,9 @@ nmap <silent> <c-n> :NERDTreeToggle<CR>
 "map MAKE to F4
 nmap <F4> :w<CR>:make<CR>:cw<CR>
 
+"map Tabbar to F8
+nmap <F8> :TagbarToggle<CR>
+
 "map :W to :w since it happens all the time by mistake!
 cmap W w
 cmap WQ wq
@@ -93,6 +96,9 @@ autocmd FileType javascript set sw=2
 autocmd FileType javascript set ts=2
 autocmd FileType javascript set sts=2
 autocmd FileType javascript set textwidth=79
+
+" Treat JSON files as javascript
+au! BufRead,BufNewFile *.json set filetype=javascript 
 
 set backupdir=~/tmp
 set directory=~/tmp
