@@ -57,6 +57,12 @@ nmap <F8> :TagbarToggle<CR>
 cmap W w
 cmap WQ wq
 
+" Easier window navigation
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+
 "map FuzzyFinder to \t
 nmap <silent> <c-t> :FuzzyFinderTextMate<CR>
 
