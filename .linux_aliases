@@ -1,4 +1,4 @@
-alias x='nautilis . &'
+alias x='nautilus . &'
 alias sx='sudo nautilus . &'
 alias t='tree'
 alias td='tree -d'
