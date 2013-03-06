@@ -6,6 +6,12 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="robbyrussell"
+#ZSH_THEME="junkfood"
+
+# Load colors
+autoload -U colors
+colors
+setopt prompt_subst
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -34,13 +40,30 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 #plugins=(git)
 
+. ~/configs/.bash_functions
+
 # Include aliases
 . ~/configs/.linux_aliases
 . ~/configs/.git_aliases
 
 source $ZSH/oh-my-zsh.sh
 
+# Smiley used from peepcode
+local smiley="%(?,%{$fg[green]%}☺%{$reset_color%},%{$fg[red]%}☹%{$reset_color%})"
+
 # This loads RVM into a shell session
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  .
 
+# Customize theme variables
+ZSH_THEME_GIT_PROMPT_PREFIX="("
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_CLEAN=") %{$fg[green]%}✔%{$reset_color%}"
+
+PROMPT='
+%~ %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%}
+ ${smiley} %{$reset_color%} '
+
+ # Right prompt - unicode char for later ➜
+RPROMPT='%{$fg[white]%} $(~/.rvm/bin/rvm-prompt)%{$fg_bold[red]%} ⚡ %{$fg[yellow]%}$(git_hash) %{$reset_color%}'
 

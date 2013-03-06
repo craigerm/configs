@@ -1,3 +1,6 @@
+function git_hash() {
+  echo `git rev-parse --short HEAD 2> /dev/null`
+}
 
 function find_git_branch {
     local dir=. head
