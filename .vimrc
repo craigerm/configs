@@ -1,9 +1,42 @@
 set nocompatible
+
+" Copied from vundle example
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" from github
+Bundle 'gmarik/vundle'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'groenewege/vim-less'
+Bundle 'digitaltoad/vim-jade'
+Bundle 'tpope/vim-rails'
+Bundle 'nono/vim-handlebars'
+Bundle 'majutsushi/tagbar'
+Bundle 'mozilla/doctorjs'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-fugitive'
+Bundle 'wookiehangover/jshint.vim'
+Bundle 'wincent/command-t'
+
+" from vim-scripts"
+Bundle 'bufexplorer.zip'
+Bundle 'JSON.vim'
+
 syntax on
 filetype plugin indent on
+
 :helptags ~/.vim/doc
 :colorscheme vibrantink
-":colorscheme nazca
+
+" Change jshint error styles
+hi clear SpellBad
+hi SpellBad ctermbg=red
+
+" Change command-t highlighted item styels
+hi clear Pmenusel
+hi Pmenusel ctermbg=red
 
 " Most of these settings were take from here. Take a look if you need some
 " reference
@@ -65,9 +98,6 @@ noremap <C-l> <C-w>l
 
 "map FuzzyFinder to \t
 nmap <silent> <c-t> :FuzzyFinderTextMate<CR>
-
-" This is needed for pathogen
-call pathogen#infect()
 
 "Highlight cursor
 "highlight CursorLine ctermbg=8 cterm=NONE
