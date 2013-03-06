@@ -6,7 +6,6 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="robbyrussell"
-#ZSH_THEME="junkfood"
 
 # Load colors
 autoload -U colors
@@ -38,7 +37,7 @@ setopt prompt_subst
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-#plugins=(git)
+plugins=(vi-mode)
 
 . ~/configs/.bash_functions
 
@@ -65,5 +64,5 @@ PROMPT='
  ${smiley} %{$reset_color%} '
 
  # Right prompt - unicode char for later ➜
-RPROMPT='%{$fg[white]%} $(~/.rvm/bin/rvm-prompt)%{$fg_bold[red]%} ⚡ %{$fg[yellow]%}$(git_hash) %{$reset_color%}'
+ RPROMPT='$(vi_mode_prompt_info) %{$fg[white]%} $(~/.rvm/bin/rvm-prompt)%{$fg_bold[red]%} ⚡ %{$fg[yellow]%}$(git_hash) %{$reset_color%}'
 
