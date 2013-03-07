@@ -18,7 +18,7 @@ Bundle 'mozilla/doctorjs'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'wookiehangover/jshint.vim'
-Bundle 'wincent/command-t'
+Bundle 'wincent/Command-T'
 
 " from vim-scripts"
 Bundle 'bufexplorer.zip'
