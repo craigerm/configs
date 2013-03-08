@@ -68,3 +68,6 @@ PROMPT='
 
 RPROMPT='%{$fg_bold[white]%} $(~/.rvm/bin/rvm-prompt)%{$fg_bold[red]%} ⚡ %{$fg[yellow]%}$(git_hash) %{$reset_color%}'
 
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
