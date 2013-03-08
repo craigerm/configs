@@ -44,6 +44,7 @@ plugins=(vi-mode)
 # Include aliases
 . ~/configs/.linux_aliases
 . ~/configs/.git_aliases
+. ~/configs/.bash_aliases
 
 source $ZSH/oh-my-zsh.sh
 
