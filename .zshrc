@@ -69,6 +69,7 @@ PROMPT='
 
 RPROMPT='%{$fg_bold[white]%} $(~/.rvm/bin/rvm-prompt)%{$fg_bold[red]%} ⚡ %{$fg[yellow]%}$(git_hash) %{$reset_color%}'
 
+export EDITOR='vim'
 export TERM=xterm-256color
 
 ### Added by the Heroku Toolbelt
