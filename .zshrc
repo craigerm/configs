@@ -72,5 +72,6 @@ RPROMPT='%{$fg_bold[white]%} $(~/.rvm/bin/rvm-prompt)%{$fg_bold[red]%} ⚡ %{$fg
 export EDITOR='vim'
 export TERM=xterm-256color
 
+export PATH=$PATH:/home/craig/.local/bin
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
