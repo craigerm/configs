@@ -99,6 +99,10 @@ noremap <C-l> <C-w>l
 "map FuzzyFinder to \t
 nmap <silent> <c-t> :FuzzyFinderTextMate<CR>
 
+" for testing out different themes
+map <silent> <F3> :NEXTCOLOR<cr>
+map <silent> <F2> :PREVCOLOR<cr>
+
 "Highlight cursor
 "highlight CursorLine ctermbg=8 cterm=NONE
 
