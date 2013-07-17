@@ -39,7 +39,7 @@ setopt prompt_subst
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(vi-mode)
 
-. ~/configs/.bash_functions
+. ~/.bash_functions
 
 # Include aliases
 . ~/configs/.linux_aliases
