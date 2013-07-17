@@ -16,7 +16,7 @@ for file in .*rc
 do
   echo "Linking rc file ${file}."
   rm "$HOME/${file}" -f
-  ln "$PWD/${file}" "$HOME/${file}"
+  ln -s "$PWD/${file}" "$HOME/${file}"
 done
 
 SPECIAL_FILES=".gitk .gitconfig .bash_functions"
@@ -26,6 +26,6 @@ for file in $SPECIAL_FILES
 do
   echo "Linking special file ${file}."
   rm "$HOME/${file}" -f
-  ln "$PWD/${file}" "$HOME/${file}"
+  ln -s "$PWD/${file}" "$HOME/${file}"
 done
 
