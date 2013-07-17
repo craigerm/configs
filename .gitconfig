@@ -3,3 +3,5 @@
 	name = craigerm
 [color]
 	ui = true
+[core]
+	autocrlf = input
