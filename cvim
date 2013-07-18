@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+# Script from Ivan Tkalin's blog post here:
+# http://www.tkalin.com/blog_posts/using-console-vim-as-vim-protocol-handler-in-ubuntu
+
+require 'uri'
+require 'cgi'
+
+full_path = ARGV[0]
+
+if full_path
+  uri = URI::parse(full_path)
+  vim_params = %Q["#{uri.path}"]
+
+  if uri.query
+    params = CGI::parse(uri.query)
+    line = params["line"][0]
+  end
+  vim_params << " +#{line}" if line
+end
+
+`gnome-terminal -x vim #{vim_params}`
+
+
