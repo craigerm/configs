@@ -79,6 +79,9 @@ autocmd InsertEnter * set cursorline
 "autocmd VimEnter * NERDTree
 "autocmd VimEnter * wincmd p
 
+" Focus NERDTree explorer based on current file
+map <leader>r :NERDTreeFind<cr>
+
 "map NERDTreeToggle to ctrl+n
 nmap <silent> <c-n> :NERDTreeToggle<CR>
 
