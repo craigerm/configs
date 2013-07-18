@@ -1,31 +1,41 @@
 #!/bin/sh
 
+LOCAL_BINS="cvim"
+EXTRA_HOME_FILES=".gitconfig .gitk .bash_functions .rspec"
+
+# Sys link files in our curent folder to
+# their respective locations
+linkfiles(){
+  for file in $1
+  do
+    src="$PWD/${file}"
+    dest="$2/${file}"
+    echo "Linking ${src} to ${dest}"
+
+    rm "$dest" -f
+    ln -s "${src}" "${dest}"
+  done
+}
+
 #Create configs directory
 mkdir ~/configs -p
 
-# Sym link all aliases to here
-for file in .*aliases
-do
-   echo "Linking alias file ${file}."
-   rm "$HOME/configs/${file}" -f
-   ln -s "$PWD/${file}" "$HOME/configs/${file}"
-done
+# Link aliases
+linkfiles ".*aliases" "$HOME/configs"
 
-# Sym link all rc files
-for file in .*rc
-do
-  echo "Linking rc file ${file}."
-  rm "$HOME/${file}" -f
-  ln -s "$PWD/${file}" "$HOME/${file}"
-done
+# Link rc files
+linkfiles ".*rc" "$HOME"
 
-SPECIAL_FILES=".gitk .gitconfig .bash_functions"
+# Link any desktop files
+linkfiles "*.desktop" "/usr/share/applications"
 
-# Sys link any other files
-for file in $SPECIAL_FILES
-do
-  echo "Linking special file ${file}."
-  rm "$HOME/${file}" -f
-  ln -s "$PWD/${file}" "$HOME/${file}"
-done
+# Link and local bin files
+linkfiles "$LOCAL_BINS" "/usr/local/bin"
+
+# Link any extra home files
+linkfiles "$EXTRA_HOME_FILES" "$HOME"
+
+# Run any system commands to refresh this
+update-desktop-database
+chmod a+x /usr/local/bin/cvim
 
