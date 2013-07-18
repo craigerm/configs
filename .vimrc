@@ -28,7 +28,8 @@ Bundle 'JSON.vim'
 syntax on
 filetype plugin indent on
 
-:helptags ~/.vim/doc
+":helptags ~/.vim/doc
+
 :colorscheme vibrantink
 
 " Change jshint error styles
@@ -96,9 +97,6 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
-
-"map FuzzyFinder to \t
-nmap <silent> <c-t> :FuzzyFinderTextMate<CR>
 
 " for testing out different themes
 map <silent> <F3> :NEXTCOLOR<cr>
