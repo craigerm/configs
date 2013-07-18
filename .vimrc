@@ -19,6 +19,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'wookiehangover/jshint.vim'
 Bundle 'wincent/Command-T'
+Bundle 'kchmck/vim-coffee-script'
 
 " from vim-scripts"
 Bundle 'bufexplorer.zip'
