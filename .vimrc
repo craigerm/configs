@@ -101,6 +101,9 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
+" Refresh command-t cache
+map <leader>f :CommandTFlush<CR>
+
 " for testing out different themes
 map <silent> <F3> :NEXTCOLOR<cr>
 map <silent> <F2> :PREVCOLOR<cr>
