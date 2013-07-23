@@ -146,7 +146,7 @@ autocmd FileType javascript set textwidth=79
 au! BufRead,BufNewFile *.json set filetype=javascript 
 
 " Tell Command-T to ignore these files
-:set wildignore+=tmp/cache/**
+:set wildignore+=tmp/**
 
 set backupdir=~/tmp
 set directory=~/tmp
