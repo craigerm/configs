@@ -145,6 +145,9 @@ autocmd FileType javascript set textwidth=79
 " Treat JSON files as javascript
 au! BufRead,BufNewFile *.json set filetype=javascript 
 
+" Tread some extra file types as ruby lang
+au! BufRead,BufNewFile *.rabl set filetype=ruby
+
 " Tell Command-T to ignore these files
 :set wildignore+=tmp/**
 
