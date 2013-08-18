@@ -119,7 +119,7 @@ set ts=2
 set sts=2
 set et
 set sw=2
-set textwidth=79
+"set textwidth=79
 
 " HTML (tab width 2 chr, no wrapping)
 autocmd FileType html set sw=2
