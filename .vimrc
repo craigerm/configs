@@ -28,8 +28,6 @@ Bundle 'JSON.vim'
 syntax on
 filetype plugin indent on
 
-":helptags ~/.vim/doc
-
 :colorscheme vibrantink
 
 " Change jshint error styles
@@ -64,10 +62,6 @@ highlight LineNr ctermfg=grey
 autocmd InsertLeave * set nocursorline
 autocmd InsertEnter * set cursorline
 
-" Start up NERDTree but don't focus
-"autocmd VimEnter * NERDTree
-"autocmd VimEnter * wincmd p
-
 " Focus NERDTree explorer based on current file
 map <leader>r :NERDTreeFind<cr>
 
@@ -79,10 +73,6 @@ nmap <F4> :w<CR>:make<CR>:cw<CR>
 
 "map Tabbar to F8
 nmap <F8> :TagbarToggle<CR>
-
-"map :W to :w since it happens all the time by mistake!
-"cmap W w
-"cmap WQ wq
 
 " Easier window navigation
 noremap <C-h> <C-w>h
@@ -108,7 +98,6 @@ set ts=2
 set sts=2
 set et
 set sw=2
-"set textwidth=79
 
 " HTML (tab width 2 chr, no wrapping)
 autocmd FileType html set sw=2
