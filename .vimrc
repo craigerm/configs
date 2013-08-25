@@ -81,8 +81,8 @@ nmap <F4> :w<CR>:make<CR>:cw<CR>
 nmap <F8> :TagbarToggle<CR>
 
 "map :W to :w since it happens all the time by mistake!
-cmap W w
-cmap WQ wq
+"cmap W w
+"cmap WQ wq
 
 " Easier window navigation
 noremap <C-h> <C-w>h
