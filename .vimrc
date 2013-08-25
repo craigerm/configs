@@ -44,18 +44,7 @@ hi Pmenusel ctermbg=red
 " reference
 "    http://www.brankovukelic.com/post/2091037293/turn-vim-into-powerful-javascript-editor
 "
-"Map NERDTree to \p
-"nmap <silent> <Leader>p :NERDTreeToggle<CR>
-"
-" 2: :put the following in your .vimrc
-    "if $COLORTERM == 'gnome-terminal'
-    "    set term=gnome-256color
-   "     colorscheme railscasts
-  "  else
- "       colorscheme default
-"   endif
 
-"
 "FileType
 set filetype=on
 filetype plugin on
