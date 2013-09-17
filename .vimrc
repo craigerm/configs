@@ -20,6 +20,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'wookiehangover/jshint.vim'
 Bundle 'wincent/Command-T'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'yearofmoo/Vim-Darkmate'
 
 " from vim-scripts"
 Bundle 'bufexplorer.zip'
