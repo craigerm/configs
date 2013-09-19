@@ -12,3 +12,6 @@ alias showallcolors='for code in $(seq -w 0 255); do for attr in 0 1; do printf 
 alias server='python -m SimpleHTTPServer'
 
 alias coffeed='coffee --nodejs --debug'
+
+# Find process
+alias fp='ps aux | grep'
