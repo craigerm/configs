@@ -15,3 +15,6 @@ alias coffeed='coffee --nodejs --debug'
 
 # Find process
 alias fp='ps aux | grep'
+
+# Kill process
+alias kp='kill -9'
