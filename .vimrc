@@ -29,7 +29,8 @@ Bundle 'JSON.vim'
 syntax on
 filetype plugin indent on
 
-:colorscheme vibrantink
+":colorscheme vibrantink
+:colorscheme darkmate
 
 " Change jshint error styles
 hi clear SpellBad
