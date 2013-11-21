@@ -11,6 +11,15 @@ function ruby_flags() {
   export RUBY_GC_MALLOC_LIMIT=79000000
 }
 
+function unset_ruby_flags() {
+  echo "Unsetting ruby HEAP and GC flags."
+  unset RUBY_HEAP_MIN_SLOTS
+  unset RUBY_HEAP_FREE_MIN
+  unset RUBY_HEAP_SLOTS_INCREMENT
+  unset RUBY_HEAP_SLOTS_GROWTH_FACTOR
+  unset RUBY_GC_MALLOC_LIMIT
+}
+
 function find_git_branch {
   local dir=. head
   until [ "$dir" -ef / ]; do
