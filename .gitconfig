@@ -5,3 +5,7 @@
 	ui = true
 [core]
 	autocrlf = input
+[grep]
+	lineNumber = true
+[alias]
+	g = grep --break --heading --line-number
