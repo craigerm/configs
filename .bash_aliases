@@ -18,3 +18,6 @@ alias fp='ps aux | grep'
 
 # Kill process
 alias kp='kill -9'
+
+# Show octal permissions for a file
+alias op='stat -c "%a %n"'
