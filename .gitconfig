@@ -5,6 +5,7 @@
 	ui = true
 [core]
 	autocrlf = input
+  filemode = false
 [grep]
 	lineNumber = true
 [alias]
