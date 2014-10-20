@@ -157,3 +157,5 @@ fi
 PROMPT_COMMAND="find_git_branch; $PROMPT_COMMAND"
 PS1="\[$green\]\w\[$branchcolor\] \$git_branch\[$green\]\\$\[$normal_colours\] "
 
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
