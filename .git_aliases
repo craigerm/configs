@@ -37,3 +37,4 @@ alias gli='gl --all --simplify-by-decoration'
 alias gr='echo "Rebasing $git_branch from origin";git rebase origin/$git_branch' # rebase current branch from origin
 alias gfr='git fetch;gr' # fetch and rebase
 alias gsb='git branch -a | egrep "release|hotfix"'
+alias e='git g -e';
