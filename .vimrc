@@ -78,7 +78,7 @@ nmap <F8> :TagbarToggle<CR>
 
 " Easier window navigation
 noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
+nnoremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
@@ -107,10 +107,10 @@ autocmd FileType html set ts=2
 autocmd FileType html set sts=2
 autocmd FileType html set textwidth=0
 " Python (tab width 4 chr, wrap at 79th char)
-autocmd FileType python set sw=4
-autocmd FileType python set ts=4
-autocmd FileType python set sts=4
-autocmd FileType python set textwidth=79
+autocmd FileType python set sw=2
+autocmd FileType python set ts=2
+autocmd FileType python set sts=2
+autocmd FileType python set textwidth=0
 " CSS (tab width 2 chr, wrap at 79th char)
 autocmd FileType css set sw=2
 autocmd FileType css set ts=2
