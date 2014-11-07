@@ -22,6 +22,8 @@ Bundle 'wincent/Command-T'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'yearofmoo/Vim-Darkmate'
 
+Bundle 'heartsentwined/vim-emblem'
+
 " from vim-scripts"
 Bundle 'bufexplorer.zip'
 Bundle 'JSON.vim'
