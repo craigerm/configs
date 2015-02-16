@@ -21,3 +21,10 @@ alias kp='kill -9'
 
 # Show octal permissions for a file
 alias op='stat -c "%a %n"'
+
+# Search history
+alias r='history | grep'
+
+# Start mongo
+alias startmongo='sudo mongod --fork --logpath /var/log/mongodb/mongodb.log'
+
