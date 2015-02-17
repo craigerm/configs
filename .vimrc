@@ -24,6 +24,9 @@ Bundle 'yearofmoo/Vim-Darkmate'
 
 Bundle 'heartsentwined/vim-emblem'
 
+" Requires compiling after vundle install!
+Bundle 'Valloric/YouCompleteMe'
+
 " from vim-scripts"
 Bundle 'bufexplorer.zip'
 Bundle 'JSON.vim'
