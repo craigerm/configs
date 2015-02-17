@@ -2,6 +2,11 @@ function git_hash() {
   echo `git rev-parse --short HEAD 2> /dev/null`
 }
 
+# cat for json files with pretty print
+function jcat() {
+  cat $1 | pjson
+}
+
 function ruby_flags() {
   echo "Setting ruby HEAP and GC flags."
   export RUBY_HEAP_MIN_SLOTS=800000
