@@ -23,6 +23,8 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'yearofmoo/Vim-Darkmate'
 
 Bundle 'heartsentwined/vim-emblem'
+Bundle 'myhere/vim-nodejs-complete'
+Bundle 'marijnh/tern_for_vim'
 
 " Requires compiling after vundle install!
 Bundle 'Valloric/YouCompleteMe'
@@ -96,6 +98,8 @@ map <silent> <F2> :PREVCOLOR<cr>
 
 "Highlight cursor
 "highlight CursorLine ctermbg=8 cterm=NONE
+
+autocmd BufEnter * set completeopt-=preview
 
 "Incremental search
 set incsearch
