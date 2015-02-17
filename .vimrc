@@ -89,6 +89,10 @@ nnoremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
+" Ctrl+S for saving
+inoremap <C-s> <esc>:w<cr>a
+nnoremap <C-s> :w<cr>a
+
 " Refresh command-t cache
 map <leader>f :CommandTFlush<CR>
 
