@@ -135,6 +135,9 @@ autocmd FileType javascript set ts=2
 autocmd FileType javascript set sts=2
 autocmd FileType javascript set textwidth=79
 
+" EJS files are just html files
+au BufNewFile,BufRead *.ejs set filetype=html
+
 " Treat JSON files as javascript
 au! BufRead,BufNewFile *.json set filetype=javascript 
 
