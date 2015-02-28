@@ -67,7 +67,7 @@ PROMPT='
 %{$fg_bold[white]%}%~ %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} $(vi_mode_prompt_info)
  ${smiley} %{$reset_color%} '
 
-RPROMPT='%{$fg_bold[white]%} $(~/.rvm/bin/rvm-prompt)%{$fg_bold[red]%} ⚡ %{$fg[yellow]%}$(git_hash) %{$reset_color%}'
+ RPROMPT='%{$fg[white]%}(node-`nvm current`)%{$fg[white]%} ($(~/.rvm/bin/rvm-prompt))%{$fg[red]%} ⚡ %{$fg[yellow]%}$(git_hash) %{$reset_color%}'
 
 unsetopt correct_all
 #DISABLE_CORRECTION="true"
