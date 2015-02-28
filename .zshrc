@@ -91,3 +91,6 @@ stty -ixon
 export NVM_DIR="/home/craig/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
+# Load a specific version of node
+nvm use 0.12.0 > /dev/null
+
