@@ -145,7 +145,7 @@ au! BufRead,BufNewFile *.json set filetype=javascript
 au! BufRead,BufNewFile *.rabl set filetype=ruby
 
 " Tell Command-T to ignore these files
-:set wildignore+=tmp/**
+:set wildignore+=tmp/**,node_modules/**,bower_components/**,dist/**
 
 set backupdir=~/tmp
 set directory=~/tmp
