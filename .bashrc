@@ -11,7 +11,7 @@ if [ "$TERM" == "cygwin" ]; then
 	export TMP	
 fi
 
-. ~/configs/.bash_functions
+. ~/.bash_functions
 
 # Include any machine specific bashrc
 if [ -f ~/.machine_bashrc ]; then
