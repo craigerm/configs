@@ -21,6 +21,7 @@ Bundle 'wookiehangover/jshint.vim'
 Bundle 'wincent/Command-T'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'yearofmoo/Vim-Darkmate'
+Bundle 'mileszs/ack.vim'
 
 Bundle 'heartsentwined/vim-emblem'
 Bundle 'myhere/vim-nodejs-complete'
