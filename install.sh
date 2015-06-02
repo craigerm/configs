@@ -1,7 +1,7 @@
 #!/bin/sh
 
 LOCAL_BINS="cvim"
-EXTRA_HOME_FILES=".gitconfig .gitk .bash_functions .rspec"
+EXTRA_HOME_FILES=".gitconfig .gitk .bash_functions .rspec .tmux"
 
 # Sys link files in our curent folder to
 # their respective locations

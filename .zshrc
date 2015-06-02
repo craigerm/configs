@@ -73,7 +73,8 @@ unsetopt correct_all
 #DISABLE_CORRECTION="true"
 
 export EDITOR='vim'
-export TERM=xterm-256color
+
+export TERM=screen-256color
 
 export PATH=$PATH:/home/craig/.local/bin
 ### Added by the Heroku Toolbelt

@@ -38,7 +38,10 @@ syntax on
 filetype plugin indent on
 
 ":colorscheme vibrantink
-:colorscheme darkmate
+":colorscheme darkmate
+":colorscheme wombat256mod
+":colorscheme zenburn
+:colorscheme molokai
 
 " Change jshint error styles
 hi clear SpellBad
