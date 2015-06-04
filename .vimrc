@@ -17,7 +17,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'mozilla/doctorjs'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
-Bundle 'wookiehangover/jshint.vim'
+"Bundle 'wookiehangover/jshint.vim'
 Bundle 'wincent/Command-T'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'yearofmoo/Vim-Darkmate'
@@ -31,7 +31,8 @@ Bundle 'marijnh/tern_for_vim'
 Bundle 'Valloric/YouCompleteMe'
 
 " from vim-scripts"
-Bundle 'bufexplorer.zip'
+"Bundle 'bufexplorer.zip'
+Bundle 'jlanzarotta/bufexplorer'
 Bundle 'JSON.vim'
 
 syntax on
@@ -40,14 +41,14 @@ filetype plugin indent on
 ":colorscheme vibrantink
 ":colorscheme darkmate
 ":colorscheme wombat256mod
-":colorscheme zenburn
-:colorscheme molokai
+:colorscheme zenburn
+":colorscheme molokai
 
 " Change jshint error styles
 hi clear SpellBad
 hi SpellBad ctermbg=red
 
-" Change command-t highlighted item styels
+" Change command-t highlighted item styles
 hi clear Pmenusel
 hi Pmenusel ctermbg=red
 
@@ -68,12 +69,24 @@ set guifont=Monaco\ 14
 set number
 set hidden
 
+set t_Co=256
+
 "Change color of line number
 highlight LineNr ctermfg=grey
 
 "Highlight current line only in insert mode
 autocmd InsertLeave * set nocursorline
 autocmd InsertEnter * set cursorline
+
+" Set the leader key to comma
+let mapleader = ","
+
+" Unmap help, since it happens a lot!
+nmap <F1> <nop>
+imap <F1> <nop>
+
+" unmap ex mode: 'Type visual to go into Normal mode.'
+nnoremap Q <nop>
 
 " Focus NERDTree explorer based on current file
 map <leader>r :NERDTreeFind<cr>
@@ -82,10 +95,13 @@ map <leader>r :NERDTreeFind<cr>
 nmap <silent> <c-n> :NERDTreeToggle<CR>
 
 "map MAKE to F4
-nmap <F4> :w<CR>:make<CR>:cw<CR>
+"nmap <F4> :w<CR>:make<CR>:cw<CR>
 
 "map Tabbar to F8
 nmap <F8> :TagbarToggle<CR>
+
+" BufExplorer should show relative paths by default
+let g:bufExplorerShowRelativePath=1 
 
 " Easier window navigation
 noremap <C-h> <C-w>h
@@ -149,7 +165,7 @@ au! BufRead,BufNewFile *.json set filetype=javascript
 au! BufRead,BufNewFile *.rabl set filetype=ruby
 
 " Tell Command-T to ignore these files
-:set wildignore+=tmp/**,node_modules/**,bower_components/**,dist/**
+:set wildignore+=tmp/**,node_modules/**,bower_components/**,dist/**,public/**
 
 set backupdir=~/tmp
 set directory=~/tmp
