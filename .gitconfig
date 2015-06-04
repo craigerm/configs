@@ -1,12 +1,34 @@
 [user]
 	email = craigerm@gmail.com
 	name = craigerm
+
 [color]
 	ui = true
+
 [core]
   autocrlf = input
   fileMode = false
+
 [grep]
 	lineNumber = true
+
 [alias]
 	g = grep --break --heading --line-number
+
+[color "branch"]
+  current = yellow bold
+  local = 179
+  remote = 46
+
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = 009 bold
+  new = green bold
+  whitespace = red reverse
+
+[color "status"]
+  added = 154
+  changed = 203
+  untracked = 226
+
