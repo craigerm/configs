@@ -74,7 +74,8 @@ unsetopt correct_all
 
 export EDITOR='vim'
 
-export TERM=screen-256color
+#export TERM=screen-256color
+export TERM=xterm-256color
 
 export PATH=$PATH:/home/craig/.local/bin
 ### Added by the Heroku Toolbelt
@@ -95,3 +96,4 @@ export NVM_DIR="/home/craig/.nvm"
 # Load a specific version of node
 nvm use 0.12.0 > /dev/null
 
+cd .
