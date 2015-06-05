@@ -93,6 +93,9 @@ stty -ixon
 export NVM_DIR="/home/craig/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
+# Set the colors (solarized) We'll see if we like it...
+eval `dircolors /home/craig/.dircolors`
+
 # Load a specific version of node
 nvm use 0.12.0 > /dev/null
 
