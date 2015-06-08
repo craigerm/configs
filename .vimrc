@@ -3,6 +3,11 @@ set nocompatible
 " Copied from vundle example
 filetype off
 set rtp+=~/.vim/bundle/vundle/
+set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
+
+" Always show statusline
+set laststatus=2
+"
 call vundle#rc()
 
 " from github
