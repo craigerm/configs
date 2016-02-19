@@ -97,6 +97,6 @@ export NVM_DIR="/home/craig/.nvm"
 eval `dircolors /home/craig/.dircolors`
 
 # Load a specific version of node
-nvm use 0.12.0 > /dev/null
+nvm use 5.2.0 > /dev/null
 
 cd .

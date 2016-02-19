@@ -27,10 +27,14 @@ Bundle 'wincent/Command-T'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'yearofmoo/Vim-Darkmate'
 Bundle 'mileszs/ack.vim'
+Bundle 'lukaszkorecki/CoffeeTags'
 
 Bundle 'heartsentwined/vim-emblem'
 Bundle 'myhere/vim-nodejs-complete'
 Bundle 'marijnh/tern_for_vim'
+Bundle 'szw/vim-tags'
+Bundle 'mxw/vim-jsx'
+Bundle 'pangloss/vim-javascript'
 
 " Requires compiling after vundle install!
 Bundle 'Valloric/YouCompleteMe'
@@ -108,6 +112,9 @@ nmap <F8> :TagbarToggle<CR>
 " BufExplorer should show relative paths by default
 let g:bufExplorerShowRelativePath=1 
 
+" Treat JS as JSX files
+let g:jsx_ext_required = 0
+
 " Easier window navigation
 noremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -155,10 +162,10 @@ autocmd FileType css set ts=2
 autocmd FileType css set sts=2
 autocmd FileType css set textwidth=79
 " JavaScript (tab width 4 chr, wrap at 79th)
-autocmd FileType javascript set sw=2
-autocmd FileType javascript set ts=2
-autocmd FileType javascript set sts=2
-autocmd FileType javascript set textwidth=79
+"autocmd FileType javascript set sw=2
+"autocmd FileType javascript set ts=2
+"autocmd FileType javascript set sts=2
+"autocmd FileType javascript set textwidth=79
 
 " EJS files are just html files
 au BufNewFile,BufRead *.ejs set filetype=html
@@ -170,7 +177,7 @@ au! BufRead,BufNewFile *.json set filetype=javascript
 au! BufRead,BufNewFile *.rabl set filetype=ruby
 
 " Tell Command-T to ignore these files
-:set wildignore+=tmp/**,node_modules/**,bower_components/**,dist/**,public/**
+:set wildignore+=tmp/**,client/node_modules/**,node_modules/**,bower_components/**,dist/**,public/**
 
 set backupdir=~/tmp
 set directory=~/tmp
