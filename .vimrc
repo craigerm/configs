@@ -128,6 +128,20 @@ noremap <C-l> <C-w>l
 inoremap <C-s> <esc>:w<cr>a
 nnoremap <C-s> :w<cr>
 
+" Rebuild tags
+
+" Index ctags from any project, including those outside Rails
+function! ReindexCtags()
+  "let l:ctags_hook = '$(git rev-parse --show-toplevel)/.git/hooks/ctags'
+  "if exists(l:ctags_hook)
+  "  exec '!'. l:ctags_hook
+  "else
+  exec "!ctags ."
+  "endif
+endfunction
+
+nmap <Leader>ct :call ReindexCtags()<CR>
+
 " Refresh command-t cache
 map <leader>f :CommandTFlush<CR>
 

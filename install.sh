@@ -1,7 +1,7 @@
 #!/bin/sh
 
 LOCAL_BINS="cvim diff-highlight"
-EXTRA_HOME_FILES=".gitconfig .gitk .bash_functions .rspec .tmux.conf"
+EXTRA_HOME_FILES=".gitconfig .gitk .bash_functions .rspec .tmux.conf .ctags"
 
 # Sys link files in our curent folder to
 # their respective locations
