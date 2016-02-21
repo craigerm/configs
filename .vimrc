@@ -35,7 +35,7 @@ Bundle 'mxw/vim-jsx'
 Bundle 'pangloss/vim-javascript'
 Bundle 'thoughtbot/vim-rspec'
 
-" Requires compiling after vundle install!
+" Requires compiling after vundle install
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'jlanzarotta/bufexplorer'
 Bundle 'JSON.vim'
@@ -107,10 +107,10 @@ nmap <F8> :TagbarToggle<CR>
 
 " RSpec.vim mappings
 let g:rspec_command = "!spring rspec {spec}"
-map <Leader>S :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
+map <Leader>s <esc>:w<cr>:call RunCurrentSpecFile()<CR>
+map <Leader>S <esc>:w<cr>:call RunNearestSpec()<CR>
+map <Leader>l <esc>:w<cr>:call RunLastSpec()<CR>
+map <Leader>a <esc>:w<cr>:call RunAllSpecs()<CR>
 
 " BufExplorer should show relative paths by default
 let g:bufExplorerShowRelativePath=1 
@@ -126,7 +126,7 @@ noremap <C-l> <C-w>l
 
 " Ctrl+S for saving
 inoremap <C-s> <esc>:w<cr>a
-nnoremap <C-s> :w<cr>a
+nnoremap <C-s> :w<cr>
 
 " Refresh command-t cache
 map <leader>f :CommandTFlush<CR>
