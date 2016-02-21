@@ -28,3 +28,5 @@ alias r='history | grep'
 # Start mongo
 alias startmongo='sudo mongod --fork --logpath /var/log/mongodb/mongodb.log'
 
+# Copy to clipboard. Example: cat somefile.txt | cb # Then ctrl+v elsewhere
+alias cb='xclip -selection clipboard '

@@ -179,6 +179,8 @@ au! BufRead,BufNewFile *.rabl set filetype=ruby
 " Tell Command-T to ignore these files
 :set wildignore+=tmp/**,client/node_modules/**,node_modules/**,bower_components/**,dist/**,public/**
 
+set clipboard=unnamed
+
 set backupdir=~/tmp
 set directory=~/tmp
 
