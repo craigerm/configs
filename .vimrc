@@ -7,7 +7,7 @@ set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 
 " Always show statusline
 set laststatus=2
-"
+
 call vundle#rc()
 
 " from github
@@ -22,25 +22,21 @@ Bundle 'majutsushi/tagbar'
 Bundle 'mozilla/doctorjs'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
-"Bundle 'wookiehangover/jshint.vim'
 Bundle 'wincent/Command-T'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'yearofmoo/Vim-Darkmate'
 Bundle 'mileszs/ack.vim'
 Bundle 'lukaszkorecki/CoffeeTags'
-
 Bundle 'heartsentwined/vim-emblem'
 Bundle 'myhere/vim-nodejs-complete'
 Bundle 'marijnh/tern_for_vim'
 Bundle 'szw/vim-tags'
 Bundle 'mxw/vim-jsx'
 Bundle 'pangloss/vim-javascript'
+Bundle 'thoughtbot/vim-rspec'
 
 " Requires compiling after vundle install!
 Bundle 'Valloric/YouCompleteMe'
-
-" from vim-scripts"
-"Bundle 'bufexplorer.zip'
 Bundle 'jlanzarotta/bufexplorer'
 Bundle 'JSON.vim'
 
@@ -108,6 +104,13 @@ nmap <silent> <c-n> :NERDTreeToggle<CR>
 
 "map Tabbar to F8
 nmap <F8> :TagbarToggle<CR>
+
+" RSpec.vim mappings
+let g:rspec_command = "!spring rspec {spec}"
+map <Leader>S :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
 
 " BufExplorer should show relative paths by default
 let g:bufExplorerShowRelativePath=1 
