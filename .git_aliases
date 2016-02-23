@@ -39,3 +39,4 @@ alias gfr='git fetch;gr' # fetch and rebase
 alias gsb='git branch -a | egrep "release|hotfix"'
 alias e='git g -e';
 alias ca='git commit --amend --no-edit'
+alias ap='git add -p'
