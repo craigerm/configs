@@ -6,6 +6,7 @@
 --exclude=log
 --exclude=node_modules
 --exclude=client/node_modules
+--exclude=*.min.js
 
 --langdef=JSX
 --langmap=jsx:.jsx
