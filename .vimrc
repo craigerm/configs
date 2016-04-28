@@ -201,6 +201,6 @@ au! BufRead,BufNewFile *.rabl set filetype=ruby
 
 set clipboard=unnamed
 
-set backupdir=~/tmp
-set directory=~/tmp
-
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
+set undodir=~/.vim/undo//
