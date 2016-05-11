@@ -34,6 +34,7 @@ Bundle 'szw/vim-tags'
 Bundle 'mxw/vim-jsx'
 Bundle 'pangloss/vim-javascript'
 Bundle 'thoughtbot/vim-rspec'
+Bundle 'editorconfig/editorconfig-vim'
 
 " Requires cd ~/.vim/bundle/vim-jsbeautify && git submodule update --init --recursive
 Bundle 'maksimr/vim-jsbeautify'
