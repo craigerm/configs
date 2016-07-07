@@ -35,6 +35,9 @@ Bundle 'mxw/vim-jsx'
 Bundle 'pangloss/vim-javascript'
 Bundle 'thoughtbot/vim-rspec'
 Bundle 'editorconfig/editorconfig-vim'
+" Bundle 'lambdatoast/elm.vim'
+Bundle 'ElmCast/elm-vim'
+Bundle 'elixir-lang/vim-elixir'
 
 " Requires cd ~/.vim/bundle/vim-jsbeautify && git submodule update --init --recursive
 Bundle 'maksimr/vim-jsbeautify'
@@ -50,7 +53,8 @@ filetype plugin indent on
 ":colorscheme vibrantink
 ":colorscheme darkmate
 ":colorscheme wombat256mod
-:colorscheme zenburn
+":colorscheme zenburn
+:colorscheme inkpot
 ":colorscheme molokai
 
 " Change jshint error styles
@@ -109,8 +113,12 @@ nmap <silent> <c-n> :NERDTreeToggle<CR>
 "map Tabbar to F8
 nmap <F8> :TagbarToggle<CR>
 
+" elm-vim: Disable auto mappings
+let g:elm_setup_keybindings = 0
+
 " RSpec.vim mappings
 let g:rspec_command = "!spring rspec {spec}"
+
 map <Leader>s <esc>:w<cr>:call RunCurrentSpecFile()<CR>
 map <Leader>S <esc>:w<cr>:call RunNearestSpec()<CR>
 map <Leader>l <esc>:w<cr>:call RunLastSpec()<CR>
@@ -118,6 +126,7 @@ map <Leader>a <esc>:w<cr>:call RunAllSpecs()<CR>
 
 " BufExplorer should show relative paths by default
 let g:bufExplorerShowRelativePath=1 
+"let g:bufExplorerShowDirectories=0 
 
 " Treat JS as JSX files
 let g:jsx_ext_required = 0
@@ -198,7 +207,7 @@ au! BufRead,BufNewFile *.json set filetype=javascript
 au! BufRead,BufNewFile *.rabl set filetype=ruby
 
 " Tell Command-T to ignore these files
-:set wildignore+=tmp/**,client/node_modules/**,node_modules/**,bower_components/**,dist/**,public/**
+:set wildignore+=tmp/**,client/node_modules/**,node_modules/**,bower_components/**,dist/**,public/**,_build/**,deps/**
 
 set clipboard=unnamed
 

@@ -98,5 +98,6 @@ eval `dircolors /home/craig/.dircolors`
 
 # Load a specific version of node
 nvm use 5.2.0 > /dev/null
+#rvm use 2.1.4
 
 cd .
