@@ -2,51 +2,54 @@ set nocompatible
 
 " Copied from vundle example
 filetype off
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim
 set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 
 " Always show statusline
 set laststatus=2
 
-call vundle#rc()
+call vundle#begin()
+"call vundle#rc()
 
 " from github
-Bundle 'gmarik/vundle'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'groenewege/vim-less'
-Bundle 'digitaltoad/vim-jade'
-Bundle 'tpope/vim-rails'
-Bundle 'nono/vim-handlebars'
-Bundle 'majutsushi/tagbar'
-Bundle 'mozilla/doctorjs'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-fugitive'
-Bundle 'wincent/Command-T'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'yearofmoo/Vim-Darkmate'
-Bundle 'mileszs/ack.vim'
-Bundle 'lukaszkorecki/CoffeeTags'
-Bundle 'heartsentwined/vim-emblem'
-Bundle 'myhere/vim-nodejs-complete'
-Bundle 'marijnh/tern_for_vim'
-Bundle 'szw/vim-tags'
-Bundle 'mxw/vim-jsx'
-Bundle 'pangloss/vim-javascript'
-Bundle 'thoughtbot/vim-rspec'
-Bundle 'editorconfig/editorconfig-vim'
-" Bundle 'lambdatoast/elm.vim'
-Bundle 'ElmCast/elm-vim'
-Bundle 'elixir-lang/vim-elixir'
+Plugin 'gmarik/vundle'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'groenewege/vim-less'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'tpope/vim-rails'
+Plugin 'nono/vim-handlebars'
+Plugin 'majutsushi/tagbar'
+Plugin 'mozilla/doctorjs'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
+Plugin 'wincent/Command-T'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'yearofmoo/Vim-Darkmate'
+Plugin 'mileszs/ack.vim'
+Plugin 'lukaszkorecki/CoffeeTags'
+Plugin 'heartsentwined/vim-emblem'
+Plugin 'myhere/vim-nodejs-complete'
+"Plugin 'marijnh/tern_for_vim'
+Plugin 'szw/vim-tags'
+Plugin 'mxw/vim-jsx'
+Plugin 'pangloss/vim-javascript'
+Plugin 'thoughtbot/vim-rspec'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'lambdatoast/elm.vim'
+Plugin 'ElmCast/elm-vim'
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'flazz/vim-colorschemes'
 
 " Requires cd ~/.vim/bundle/vim-jsbeautify && git submodule update --init --recursive
-Bundle 'maksimr/vim-jsbeautify'
+Plugin 'maksimr/vim-jsbeautify'
 
 " Requires compiling after vundle install
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'jlanzarotta/bufexplorer'
-Bundle 'JSON.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'JSON.vim'
 
+call  vundle#end()
 syntax on
 filetype plugin indent on
 
