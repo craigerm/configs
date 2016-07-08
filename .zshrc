@@ -82,9 +82,8 @@ export PATH=$PATH:/home/craig/.local/bin
 export PATH="/usr/local/heroku/bin:$PATH"
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-PATH="$HOME/.rbenv/bin:$PATH"
-
-eval "$(rbenv init -)"
+#PATH="$HOME/.rbenv/bin:$PATH"
+#eval "$(rbenv init -)"
 
 stty -ixon
 
