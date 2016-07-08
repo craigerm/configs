@@ -15,3 +15,9 @@ laptop explodes.
 sudo ./install.sh
 ```
 
+# TODO
+- Install monaco font
+- Create vim backup/swap directories
+- install pip
+- pip install powerline-status
+
