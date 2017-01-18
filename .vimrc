@@ -8,8 +8,10 @@ set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 " Always show statusline
 set laststatus=2
 
+" We rely on this for now
+" npm install -g git+https://github.com/ramitos/jsctags.git
+
 call vundle#begin()
-"call vundle#rc()
 
 " from github
 Plugin 'gmarik/vundle'
@@ -40,6 +42,13 @@ Plugin 'lambdatoast/elm.vim'
 Plugin 'ElmCast/elm-vim'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'vim-scripts/CycleColor'
+Plugin 'maxbane/vim-asm_ca65'
+Plugin 'cohama/lexima.vim'
+Plugin 'vim-scripts/closetag.vim'
+Plugin 'vim-scripts/matchit.zip'
+
+"Plugin 'jimmyhchan/dustjs'
 
 " Requires cd ~/.vim/bundle/vim-jsbeautify && git submodule update --init --recursive
 Plugin 'maksimr/vim-jsbeautify'
@@ -53,11 +62,12 @@ call  vundle#end()
 syntax on
 filetype plugin indent on
 
-":colorscheme vibrantink
+" This could be useful: http://vimawesome.com/plugin/colorswatch-vim
+":colorscheme vibrantik
 ":colorscheme darkmate
 ":colorscheme wombat256mod
 ":colorscheme zenburn
-:colorscheme inkpot
+:colorscheme inkpot_new
 ":colorscheme molokai
 
 " Change jshint error styles
@@ -116,11 +126,22 @@ nmap <silent> <c-n> :NERDTreeToggle<CR>
 "map Tabbar to F8
 nmap <F8> :TagbarToggle<CR>
 
+" Tern mappings
+nmap <F5> :TernDef<CR>
+nmap <F2> :TernRename<CR>
+
 " elm-vim: Disable auto mappings
 let g:elm_setup_keybindings = 0
 
+" Needed for
+"let g:ycm_path_to_python_interpreter="/usr/bin/python"
+
 " RSpec.vim mappings
 let g:rspec_command = "!spring rspec {spec}"
+
+" MISC
+let g:closetag_html_style=1
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 map <Leader>s <esc>:w<cr>:call RunCurrentSpecFile()<CR>
 map <Leader>S <esc>:w<cr>:call RunNearestSpec()<CR>
@@ -128,8 +149,8 @@ map <Leader>l <esc>:w<cr>:call RunLastSpec()<CR>
 map <Leader>a <esc>:w<cr>:call RunAllSpecs()<CR>
 
 " BufExplorer should show relative paths by default
-let g:bufExplorerShowRelativePath=1 
-"let g:bufExplorerShowDirectories=0 
+let g:bufExplorerShowRelativePath=1
+"let g:bufExplorerShowDirectories=0
 
 " Treat JS as JSX files
 let g:jsx_ext_required = 0
@@ -144,16 +165,13 @@ noremap <C-l> <C-w>l
 inoremap <C-s> <esc>:w<cr>a
 nnoremap <C-s> :w<cr>
 
-" Rebuild tags
-
-" Index ctags from any project, including those outside Rails
+" Rebuild tags (uses jsctags)
 function! ReindexCtags()
-  "let l:ctags_hook = '$(git rev-parse --show-toplevel)/.git/hooks/ctags'
-  "if exists(l:ctags_hook)
-  "  exec '!'. l:ctags_hook
-  "else
-  exec "!ctags ."
-  "endif
+  find . -type f -iregex ".*\.js$" \
+    -not -path "./release/*" \
+    -not -path "./build/*" \
+    -not -path "./node_modules/*" \
+    -exec jsctags {} -f \; | sed '/^$/d' | sort > tags
 endfunction
 
 nmap <Leader>ct :call ReindexCtags()<CR>
@@ -162,8 +180,10 @@ nmap <Leader>ct :call ReindexCtags()<CR>
 map <leader>f :CommandTFlush<CR>
 
 " for testing out different themes
-map <silent> <F3> :NEXTCOLOR<cr>
-map <silent> <F2> :PREVCOLOR<cr>
+"map <silent> <F3> :NEXTCOLOR<cr>
+"map <silent> <F2> :PREVCOLOR<cr>
+"map <silent> <F2> :CycleColorPrev<cr>
+"map <silent> <F3> :CycleColorNext<cr>
 
 "Highlight cursor
 "highlight CursorLine ctermbg=8 cterm=NONE
@@ -194,6 +214,7 @@ autocmd FileType css set sw=2
 autocmd FileType css set ts=2
 autocmd FileType css set sts=2
 autocmd FileType css set textwidth=79
+
 " JavaScript (tab width 4 chr, wrap at 79th)
 "autocmd FileType javascript set sw=2
 "autocmd FileType javascript set ts=2
@@ -202,9 +223,12 @@ autocmd FileType css set textwidth=79
 
 " EJS files are just html files
 au BufNewFile,BufRead *.ejs set filetype=html
+au BufNewFile,BufRead *.dust set filetype=html
+
+au BufNewFile,BufRead *.asm, set ft=asm_ca65
 
 " Treat JSON files as javascript
-au! BufRead,BufNewFile *.json set filetype=javascript 
+au! BufRead,BufNewFile *.json set filetype=javascript
 
 " Tread some extra file types as ruby lang
 au! BufRead,BufNewFile *.rabl set filetype=ruby
