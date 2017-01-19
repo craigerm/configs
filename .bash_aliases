@@ -2,6 +2,7 @@
 alias cls='clear'
 #alias reload='source ~/.bashrc'
 alias cv='vim ~/.vimrc'
+alias v='nvim'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
