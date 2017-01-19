@@ -47,8 +47,18 @@ Plugin 'maxbane/vim-asm_ca65'
 Plugin 'cohama/lexima.vim'
 Plugin 'vim-scripts/closetag.vim'
 Plugin 'vim-scripts/matchit.zip'
+Plugin 'othree/html5.vim'
+"Plugin 'ryanoasis/vim-devicons'
 
-"Plugin 'jimmyhchan/dustjs'
+if has('nvim')
+  Plugin 'neomake/neomake'
+end
+
+" Other colors
+"Plugin 'morhetz/gruvbox'
+Plugin 'mhartington/oceanic-next'
+
+Plugin 'jimmyhchan/dustjs'
 
 " Requires cd ~/.vim/bundle/vim-jsbeautify && git submodule update --init --recursive
 Plugin 'maksimr/vim-jsbeautify'
@@ -62,21 +72,34 @@ call  vundle#end()
 syntax on
 filetype plugin indent on
 
+if has('nvim')
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+else
+  set t_Co=256
+endif
+
+" For vim 8/nvim
+if (has("termguicolors"))
+  set termguicolors
+endif
+
 " This could be useful: http://vimawesome.com/plugin/colorswatch-vim
 ":colorscheme vibrantik
 ":colorscheme darkmate
 ":colorscheme wombat256mod
 ":colorscheme zenburn
-:colorscheme inkpot_new
 ":colorscheme molokai
+":colorscheme inkpot_new
+":colorscheme lucid
+:colorscheme wombat256mod
 
 " Change jshint error styles
 hi clear SpellBad
 hi SpellBad ctermbg=red
 
 " Change command-t highlighted item styles
-hi clear Pmenusel
-hi Pmenusel ctermbg=red
+"hi clear Pmenusel
+"hi Pmenusel ctermbg=red
 
 " Most of these settings were take from here. Take a look if you need some
 " reference
@@ -95,7 +118,6 @@ set guifont=Monaco\ 14
 set number
 set hidden
 
-set t_Co=256
 
 "Change color of line number
 highlight LineNr ctermfg=grey
@@ -125,10 +147,12 @@ nmap <silent> <c-n> :NERDTreeToggle<CR>
 
 "map Tabbar to F8
 nmap <F8> :TagbarToggle<CR>
-
 " Tern mappings
 nmap <F5> :TernDef<CR>
 nmap <F2> :TernRename<CR>
+nmap <leader>g :TernDef<CR>
+nmap <leader>e :TernRefs<CR>
+nmap <leader>h :TernType<CR>
 
 " elm-vim: Disable auto mappings
 let g:elm_setup_keybindings = 0
