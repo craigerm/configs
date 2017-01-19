@@ -233,6 +233,12 @@ au! BufRead,BufNewFile *.json set filetype=javascript
 " Tread some extra file types as ruby lang
 au! BufRead,BufNewFile *.rabl set filetype=ruby
 
+" Highlight end of line whitespace
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+\%#\@<!$/
+au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+au InsertLeave * match ExtraWhitespace /\s\+$/
+
 " Tell Command-T to ignore these files
 :set wildignore+=tmp/**,client/node_modules/**,node_modules/**,bower_components/**,dist/**,public/**,_build/**,deps/**
 
