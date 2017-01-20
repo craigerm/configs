@@ -3,7 +3,13 @@ set nocompatible
 " Copied from vundle example
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
-set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
+
+if !has('nvim')
+  set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
+endif
+
+""TODO: Get powerline working with neovim
+"set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 
 " Always show statusline
 set laststatus=2
@@ -35,7 +41,12 @@ Plugin 'myhere/vim-nodejs-complete'
 Plugin 'ternjs/tern_for_vim'
 Plugin 'szw/vim-tags'
 Plugin 'mxw/vim-jsx'
-Plugin 'pangloss/vim-javascript'
+" Hmm which one to use?
+"Plugin 'pangloss/vim-javascript'
+Plugin 'othree/es.next.syntax.vim'
+Plugin 'othree/yajs.vim'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'ap/vim-css-color'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'lambdatoast/elm.vim'
@@ -50,29 +61,46 @@ Plugin 'vim-scripts/matchit.zip'
 Plugin 'othree/html5.vim'
 "Plugin 'ryanoasis/vim-devicons'
 
-if has('nvim')
-  Plugin 'neomake/neomake'
-end
-
 " Other colors
-"Plugin 'morhetz/gruvbox'
 Plugin 'mhartington/oceanic-next'
-
 Plugin 'jimmyhchan/dustjs'
 
 " Requires cd ~/.vim/bundle/vim-jsbeautify && git submodule update --init --recursive
 Plugin 'maksimr/vim-jsbeautify'
 
 " Requires compiling after vundle install
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'JSON.vim'
 
+if has('nvim')
+  "Plugin 'vim-airline/vim-airline'
+  Plugin 'neomake/neomake'
+  Plugin 'Shougo/deoplete.nvim'
+  Plugin 'carlitux/deoplete-ternjs'
+  Plugin 'ervandew/supertab'
+  " Deocomplete sources
+  Plugin 'awetzel/elixir.nvim'
+  Plugin 'fishbullet/deoplete-ruby'
+else
+  Plugin 'Valloric/YouCompleteMe'
+end
+
 call  vundle#end()
-syntax on
+
+syntax enable
 filetype plugin indent on
 
 if has('nvim')
+  let g:deoplete#enable_at_startup = 1
+
+  " Configure tern
+  let g:tern#command = ["tern"]
+  let g:tern_show_signature_in_pum = 1
+  let g:tern_request_timeout = 3
+  let g:tern#arguments = ["--persistent"]
+
+  " TAB in completion window goes from top to bottom
+  let g:SuperTabDefaultCompletionType = "<c-n>"
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 else
   set t_Co=256
@@ -101,11 +129,6 @@ hi SpellBad ctermbg=red
 "hi clear Pmenusel
 "hi Pmenusel ctermbg=red
 
-" Most of these settings were take from here. Take a look if you need some
-" reference
-"    http://www.brankovukelic.com/post/2091037293/turn-vim-into-powerful-javascript-editor
-"
-
 "FileType
 set filetype=on
 filetype plugin on
@@ -114,13 +137,19 @@ filetype indent on
 "Set gui font
 set guifont=Monaco\ 14
 
-"Show line number
+"Show line number + relative lines
+set relativenumber
 set number
 set hidden
-
+set numberwidth=2
 
 "Change color of line number
 highlight LineNr ctermfg=grey
+
+if has('nvim')
+  " Run neokmake on every write
+  autocmd! BufWritePost * Neomake
+endif
 
 "Highlight current line only in insert mode
 autocmd InsertLeave * set nocursorline
@@ -142,31 +171,79 @@ map <leader>r :NERDTreeFind<cr>
 "map NERDTreeToggle to ctrl+n
 nmap <silent> <c-n> :NERDTreeToggle<CR>
 
-"map MAKE to F4
-"nmap <F4> :w<CR>:make<CR>:cw<CR>
-
 "map Tabbar to F8
 nmap <F8> :TagbarToggle<CR>
+
+" Clipboard
+map <C-c> "+y
+map <leader>p "+p
+map <leader>P "+P
+
+" Generic goto tags (similar to tern commands below but used tags)
+nmap <F5> <C-]>
+nmap <leader>g <C-]>
+
+" Poor man's find all references in file with quickfix window
+nmap <leader>e :let @/=expand("<cword>")<CR>:vim // %<CR>:copen<CR>
+nmap <leader>E <leader>e<CR> " So this works for all files
+
+" Quick fix open (better open and close)
+autocmd FileType qf nmap o <CR>
+autocmd FileType qf nnoremap <buffer> O <CR>:copen<CR>
+autocmd FileType qf nnoremap <buffer> t <CR>:cclose<CR>
+
 " Tern mappings
-nmap <F5> :TernDef<CR>
-nmap <F2> :TernRename<CR>
-nmap <leader>g :TernDef<CR>
-nmap <leader>e :TernRefs<CR>
-nmap <leader>h :TernType<CR>
+autocmd FileType javascript nmap <F5> :TernDef<CR>
+autocmd FileType javascript nmap <F2> :TernRename<CR>
+autocmd FileType javascript nmap <leader>g :TernDef<CR>
+autocmd FileType javascript nmap <leader>e :TernRefs<CR>
+autocmd FileType javascript nmap <leader>h :TernType<CR>
+
+" neomake
+nmap <leader><space>o :lopen<CR> " open location window
+nmap <leader><space>c :lclose<CR> " close location window
+nmap <leader><space>, :ll<CR> " go to current error/warning
+nmap <leader><space>n :lnext<CR> " go to next error/warning
+nmap <leader><space>p :lprev<CR> " go to prev error/warning
+
+" Clears search
+nmap <leader><space><space> :noh
 
 " elm-vim: Disable auto mappings
 let g:elm_setup_keybindings = 0
 
-" Needed for
-"let g:ycm_path_to_python_interpreter="/usr/bin/python"
-
 " RSpec.vim mappings
 let g:rspec_command = "!spring rspec {spec}"
+
+" Misc vim system color overrides
+hi clear Directory
+hi clear EndOfBuffer
+hi Directory ctermfg=173 guifg=#e5786d
+hi EndOfBuffer ctermfg=248 ctermbg=232
+
+" Neomake color config
+hi clear SignColumn
+hi clear NeomakeWarningDefault
+hi clear NeomakeErrorSign
+hi clear NeomakeErrorSignDefault
+hi clear NeomakeError
+
+hi SignColumn ctermfg=248 ctermbg=232 guifg=#857b6f guibg=#080808 " Matches line number from theme"
+hi NeomakeWarning ctermfg=11 ctermbg=232 guibg=#080808 cterm=bold guifg=Yellow
+hi NeomakeError ctermfg=Blue ctermbg=Green guifg=#CC0000 guibg=#080808
+
+let g:neomake_error_sign = {'text': '✖', 'texthl': 'NeomakeErrorSign'}
+let g:neomake_error_sign = {'text': '✖', 'texthl': 'NeomakeErrorSign'}
+let g:neomake_error = {'texthl': 'NeomakeError'}
+let g:neomake_warning_sign = { 'text': "⚠", 'texthl': 'NeomakeWarning' }
 
 " MISC
 let g:closetag_html_style=1
 let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:netrw_browsex_viewer = 1
 
+" RSpec
 map <Leader>s <esc>:w<cr>:call RunCurrentSpecFile()<CR>
 map <Leader>S <esc>:w<cr>:call RunNearestSpec()<CR>
 map <Leader>l <esc>:w<cr>:call RunLastSpec()<CR>
@@ -174,7 +251,6 @@ map <Leader>a <esc>:w<cr>:call RunAllSpecs()<CR>
 
 " BufExplorer should show relative paths by default
 let g:bufExplorerShowRelativePath=1
-"let g:bufExplorerShowDirectories=0
 
 " Treat JS as JSX files
 let g:jsx_ext_required = 0
@@ -189,13 +265,19 @@ noremap <C-l> <C-w>l
 inoremap <C-s> <esc>:w<cr>a
 nnoremap <C-s> :w<cr>
 
-" Rebuild tags (uses jsctags)
+" Rebuild tags (not sure what we should use here exactly)
 function! ReindexCtags()
-  find . -type f -iregex ".*\.js$" \
-    -not -path "./release/*" \
-    -not -path "./build/*" \
-    -not -path "./node_modules/*" \
-    -exec jsctags {} -f \; | sed '/^$/d' | sort > tags
+  let l:ctags_hook = '$(git rev-parse --show-toplevel)/.git/hooks/ctags'
+  if exists(l:ctags_hook)
+    exec '!'. l:ctags_hook
+  else
+    exec "!ctags ."
+  endif
+  "find . -type f -iregex ".*\.js$" \
+  "  -not -path "./release/*" \
+  "  -not -path "./build/*" \
+  "  -not -path "./node_modules/*" \
+  "  -exec jsctags {} -f \; | sed '/^$/d' | sort > tags
 endfunction
 
 nmap <Leader>ct :call ReindexCtags()<CR>
@@ -203,16 +285,17 @@ nmap <Leader>ct :call ReindexCtags()<CR>
 " Refresh command-t cache
 map <leader>f :CommandTFlush<CR>
 
-" for testing out different themes
-"map <silent> <F3> :NEXTCOLOR<cr>
-"map <silent> <F2> :PREVCOLOR<cr>
-"map <silent> <F2> :CycleColorPrev<cr>
-"map <silent> <F3> :CycleColorNext<cr>
+" Cancel search - remove highlighting
+nmap <leader>n :noh<CR>
 
 "Highlight cursor
 "highlight CursorLine ctermbg=8 cterm=NONE
 
 autocmd BufEnter * set completeopt-=preview
+
+" Smart casing for searching
+set ignorecase
+set smartcase
 
 "Incremental search
 set incsearch
@@ -238,6 +321,7 @@ autocmd FileType css set sw=2
 autocmd FileType css set ts=2
 autocmd FileType css set sts=2
 autocmd FileType css set textwidth=79
+
 
 " JavaScript (tab width 4 chr, wrap at 79th)
 "autocmd FileType javascript set sw=2
