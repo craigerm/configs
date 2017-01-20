@@ -37,3 +37,5 @@ alias tm='RAILS_ENV=test rake db:migrate'
 alias tr='RAILS_ENV=test rake db:rollback'
 alias t='spring rspec'
 
+# Copy global tern settings to local project but don't overwrite it if it exists
+alias tern-create='cp ~/.tern-config ./.tern-project -n && echo "Created .tern-project file."'
