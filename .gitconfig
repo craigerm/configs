@@ -11,7 +11,6 @@
   excludesfile = ~/.gitignore
   ; Require npm install -g diff-so-fancy
   pager = diff-so-fancy | less --tabs=4 -RFX
-  ;pager = bash -lc 'diff-highlight | strip_diff_leading_symbols | less -r' -
 
 [grep]
 	lineNumber = true
@@ -26,10 +25,10 @@
 
 [color "diff"]
   meta = yellow bold
-  frag = magenta bold
-  old = 009 bold
   new = green bold
+  frag = magenta bold
   whitespace = red reverse
+;  old = 009 bold
 
 [color "diff-highlight"]
   oldNormal = "red bold"

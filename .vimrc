@@ -31,7 +31,6 @@ Plugin 'majutsushi/tagbar'
 Plugin 'mozilla/doctorjs'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
-Plugin 'wincent/Command-T'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'yearofmoo/Vim-Darkmate'
 Plugin 'mileszs/ack.vim'
@@ -41,6 +40,9 @@ Plugin 'myhere/vim-nodejs-complete'
 Plugin 'ternjs/tern_for_vim'
 Plugin 'szw/vim-tags'
 Plugin 'mxw/vim-jsx'
+Plugin 'tpope/vim-projectionist'
+Plugin 'c-brenn/phoenix.vim'
+
 " Hmm which one to use?
 "Plugin 'pangloss/vim-javascript'
 Plugin 'othree/es.next.syntax.vim'
@@ -69,7 +71,9 @@ Plugin 'jimmyhchan/dustjs'
 Plugin 'maksimr/vim-jsbeautify'
 
 " Requires compiling after vundle install
-Plugin 'jlanzarotta/bufexplorer'
+Plugin 'junegunn/fzf' " ./install --all
+Plugin 'junegunn/fzf.vim'
+"Plugin 'jlanzarotta/bufexplorer'
 Plugin 'JSON.vim'
 
 if has('nvim')
@@ -99,9 +103,16 @@ if has('nvim')
   let g:tern_request_timeout = 3
   let g:tern#arguments = ["--persistent"]
 
+  " Ruby completion (https://github.com/osyo-manga/vim-monster)
+  let g:monster#completion#rcodetools#backend = "async_rct_complete"
+  let g:deoplete#sources#omni#input_patterns = {
+  \    "ruby" : '[^. *\t]\.\w*\|\h\w*::',
+  \}
+
   " TAB in completion window goes from top to bottom
   let g:SuperTabDefaultCompletionType = "<c-n>"
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
+  let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
 else
   set t_Co=256
 endif
@@ -124,10 +135,6 @@ endif
 " Change jshint error styles
 hi clear SpellBad
 hi SpellBad ctermbg=red
-
-" Change command-t highlighted item styles
-"hi clear Pmenusel
-"hi Pmenusel ctermbg=red
 
 "FileType
 set filetype=on
@@ -265,6 +272,12 @@ noremap <C-l> <C-w>l
 inoremap <C-s> <esc>:w<cr>a
 nnoremap <C-s> :w<cr>
 
+" Searches matching file names (not working correctly in qf)
+nmap <F10> :Ack -g <cword><CR>
+
+" Searching all files in project
+nmap <F9> :Ack<cword><CR>
+
 " Rebuild tags (not sure what we should use here exactly)
 function! ReindexCtags()
   let l:ctags_hook = '$(git rev-parse --show-toplevel)/.git/hooks/ctags'
@@ -282,9 +295,6 @@ endfunction
 
 nmap <Leader>ct :call ReindexCtags()<CR>
 
-" Refresh command-t cache
-map <leader>f :CommandTFlush<CR>
-
 " Cancel search - remove highlighting
 nmap <leader>n :noh<CR>
 
@@ -296,6 +306,8 @@ autocmd BufEnter * set completeopt-=preview
 " Smart casing for searching
 set ignorecase
 set smartcase
+set nohlsearch
+"nnoremap <F3> :set hlsearch!<CR> " TOGGLE SEARCH
 
 "Incremental search
 set incsearch
@@ -306,21 +318,27 @@ set sts=2
 set et
 set sw=2
 
+"if has("autocmd")
+"  au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+"  au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+"  au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+"endif
+
 " HTML (tab width 2 chr, no wrapping)
-autocmd FileType html set sw=2
-autocmd FileType html set ts=2
-autocmd FileType html set sts=2
-autocmd FileType html set textwidth=0
-" Python (tab width 4 chr, wrap at 79th char)
-autocmd FileType python set sw=2
-autocmd FileType python set ts=2
-autocmd FileType python set sts=2
-autocmd FileType python set textwidth=0
-" CSS (tab width 2 chr, wrap at 79th char)
-autocmd FileType css set sw=2
-autocmd FileType css set ts=2
-autocmd FileType css set sts=2
-autocmd FileType css set textwidth=79
+"autocmd FileType html set sw=2
+"autocmd FileType html set ts=2
+"autocmd FileType html set sts=2
+"autocmd FileType html set textwidth=0
+"" Python (tab width 4 chr, wrap at 79th char)
+"autocmd FileType python set sw=2
+"autocmd FileType python set ts=2
+"autocmd FileType python set sts=2
+"autocmd FileType python set textwidth=0
+"" CSS (tab width 2 chr, wrap at 79th char)
+"autocmd FileType css set sw=2
+"autocmd FileType css set ts=2
+"autocmd FileType css set sts=2
+"autocmd FileType css set textwidth=79
 
 
 " JavaScript (tab width 4 chr, wrap at 79th)
@@ -347,11 +365,7 @@ match ExtraWhitespace /\s\+\%#\@<!$/
 au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 
-" Tell Command-T to ignore these files
-:set wildignore+=tmp/**,client/node_modules/**,node_modules/**,bower_components/**,dist/**,public/**,_build/**,deps/**
-
 set clipboard=unnamed
-
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
 set undodir=~/.vim/undo//

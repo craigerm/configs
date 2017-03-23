@@ -100,3 +100,10 @@ nvm use 5.6.0 > /dev/null
 #rvm use 2.1.4
 
 cd .
+
+# FZF will show dotfiles except for .git/. It will still obey the .gitignore folder though
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore=".git/*" -g ""'
+#export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
