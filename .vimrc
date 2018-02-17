@@ -2,20 +2,19 @@ set nocompatible
 
 " Copied from vundle example
 filetype off
+
 set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.fzf
 
 if !has('nvim')
   set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 endif
 
 ""TODO: Get powerline working with neovim
-"set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
+set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 
 " Always show statusline
 set laststatus=2
-
-" We rely on this for now
-" npm install -g git+https://github.com/ramitos/jsctags.git
 
 call vundle#begin()
 
@@ -42,6 +41,7 @@ Plugin 'szw/vim-tags'
 Plugin 'mxw/vim-jsx'
 Plugin 'tpope/vim-projectionist'
 Plugin 'c-brenn/phoenix.vim'
+Plugin 'vim-scripts/php.vim-html-enhanced' " Better PHP indenting
 
 " Hmm which one to use?
 "Plugin 'pangloss/vim-javascript'
@@ -61,11 +61,17 @@ Plugin 'cohama/lexima.vim'
 Plugin 'vim-scripts/closetag.vim'
 Plugin 'vim-scripts/matchit.zip'
 Plugin 'othree/html5.vim'
+Plugin 'junegunn/gv.vim'
+Plugin 'vim-scripts/AnsiEsc.vim'
+Plugin 'powerman/vim-plugin-AnsiEsc'
+Plugin 'vim-maximizer'
+Plugin 'slashmili/alchemist.vim' " Elixir integration
 "Plugin 'ryanoasis/vim-devicons'
 
 " Other colors
 Plugin 'mhartington/oceanic-next'
 Plugin 'jimmyhchan/dustjs'
+Plugin 'hexchain/vim-openresty'
 
 " Requires cd ~/.vim/bundle/vim-jsbeautify && git submodule update --init --recursive
 Plugin 'maksimr/vim-jsbeautify'
@@ -75,16 +81,20 @@ Plugin 'junegunn/fzf' " ./install --all
 Plugin 'junegunn/fzf.vim'
 "Plugin 'jlanzarotta/bufexplorer'
 Plugin 'JSON.vim'
+Plugin 'ludovicchabant/vim-gutentags'
 
 if has('nvim')
-  "Plugin 'vim-airline/vim-airline'
+  Plugin 'vim-airline/vim-airline'
+  Plugin 'vim-airline/vim-airline-themes'
   Plugin 'neomake/neomake'
   Plugin 'Shougo/deoplete.nvim'
+  Plugin 'pbogut/deoplete-elm'
   Plugin 'carlitux/deoplete-ternjs'
   Plugin 'ervandew/supertab'
   " Deocomplete sources
   Plugin 'awetzel/elixir.nvim'
   Plugin 'fishbullet/deoplete-ruby'
+  Plugin 'osyo-manga/vim-monster'
 else
   Plugin 'Valloric/YouCompleteMe'
 end
@@ -94,8 +104,12 @@ call  vundle#end()
 syntax enable
 filetype plugin indent on
 
+let g:gutentags_cache_dir = '~/.tags_cache'
+
 if has('nvim')
   let g:deoplete#enable_at_startup = 1
+
+  set encoding=utf-8
 
   " Configure tern
   let g:tern#command = ["tern"]
@@ -112,7 +126,7 @@ if has('nvim')
   " TAB in completion window goes from top to bottom
   let g:SuperTabDefaultCompletionType = "<c-n>"
   let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
-  let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
+  set guicursor=
 else
   set t_Co=256
 endif
@@ -158,6 +172,10 @@ if has('nvim')
   autocmd! BufWritePost * Neomake
 endif
 
+" Configure neovim markers
+"let g:neomake_elixir_enabled_makers = ['mix', 'credo']
+let g:neomake_elixir_enabled_makers = []
+
 "Highlight current line only in insert mode
 autocmd InsertLeave * set nocursorline
 autocmd InsertEnter * set cursorline
@@ -186,24 +204,33 @@ map <C-c> "+y
 map <leader>p "+p
 map <leader>P "+P
 
+" Easier embedded terminal navigation
+tnoremap <A-h> <C-\><C-n><C-w>h
+tnoremap <A-j> <C-\><C-n><C-w>j
+tnoremap <A-k> <C-\><C-n><C-w>k
+tnoremap <A-l> <C-\><C-n><C-w>l
+
 " Generic goto tags (similar to tern commands below but used tags)
 nmap <F5> <C-]>
 nmap <leader>g <C-]>
 
+" Seach project for word under cursor
+nmap <F9> :Ack<cword><CR>
+
 " Poor man's find all references in file with quickfix window
-nmap <leader>e :let @/=expand("<cword>")<CR>:vim // %<CR>:copen<CR>
-nmap <leader>E <leader>e<CR> " So this works for all files
+"nmap <leader>e :let @/=expand("<cword>")<CR>:vim // %<CR>:copen<CR>
+"nmap <leader>E <leader>e<CR> " So this works for all files
 
 " Quick fix open (better open and close)
-autocmd FileType qf nmap o <CR>
-autocmd FileType qf nnoremap <buffer> O <CR>:copen<CR>
-autocmd FileType qf nnoremap <buffer> t <CR>:cclose<CR>
+autocmd FileType qf nnoremap <buffer> o <CR>
+autocmd FileType qf nnoremap <buffer> O <CR>:copen<CR>:noh<CR>
+autocmd FileType qf nnoremap <buffer> t <CR>:cclose<CR>:noh<CR>
 
 " Tern mappings
 autocmd FileType javascript nmap <F5> :TernDef<CR>
 autocmd FileType javascript nmap <F2> :TernRename<CR>
 autocmd FileType javascript nmap <leader>g :TernDef<CR>
-autocmd FileType javascript nmap <leader>e :TernRefs<CR>
+"autocmd FileType javascript nmap <leader>e :TernRefs<CR>
 autocmd FileType javascript nmap <leader>h :TernType<CR>
 
 " neomake
@@ -213,8 +240,31 @@ nmap <leader><space>, :ll<CR> " go to current error/warning
 nmap <leader><space>n :lnext<CR> " go to next error/warning
 nmap <leader><space>p :lprev<CR> " go to prev error/warning
 
-" Clears search
-nmap <leader><space><space> :noh
+" FZF
+let g:fzf_layout = { 'down': '100%' }
+let g:fzf_nvim_statusline = 0
+nmap <leader>t :FZF<CR>
+nmap <leader>b :Buffers<CR>
+nmap <leader>e :Lines<CR>
+
+" FZF extra key bindings
+let g:fzf_action = {
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit'}
+
+" F12 acts as enter. Hacky
+"imap <F12> <CR>
+
+" Windows (:only command might be useful)
+nmap <silent><leader>w :MaximizerToggle<CR>
+
+" Git stuff
+"nmap <F1> :Git! diff --color \| diff-so-fancy<CR>:AnsiEsc<CR>
+nmap <F1> :Git! diff<CR>
+nmap <leader><F1> :Git! diff --cached<CR>
+"nmap <leader><F1> :Git! diff --color \| diff-so-fancy<CR>
+"nmap <leader>m :Gstatus<CR>:MaximizerToggle<CR>
+nmap <leader>m :Gstatus<CR>
 
 " elm-vim: Disable auto mappings
 let g:elm_setup_keybindings = 0
@@ -352,6 +402,20 @@ au BufNewFile,BufRead *.ejs set filetype=html
 au BufNewFile,BufRead *.dust set filetype=html
 
 au BufNewFile,BufRead *.asm, set ft=asm_ca65
+
+au BufNewFile,BufRead *.phtml set filetype=php
+au BufNewFile,BufRead elm-package.json set filetype=elm
+
+autocmd FileType php set sw=2
+autocmd FileType php set ts=2
+autocmd FileType php set sts=2
+autocmd FileType phtml set sw=2
+autocmd FileType phtml set ts=2
+autocmd FileType phtml set sts=2
+
+autocmd FileType elm set sw=4
+autocmd FileType elm set ts=4
+autocmd FileType elm set sts=4
 
 " Treat JSON files as javascript
 au! BufRead,BufNewFile *.json set filetype=javascript

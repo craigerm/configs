@@ -70,9 +70,8 @@ PROMPT='
 RPROMPT='%{$fg[white]%}(node-`nvm current`)%{$fg[white]%} ($(~/.rvm/bin/rvm-prompt))%{$fg[red]%} ⚡ %{$fg[yellow]%}$(git_hash) %{$reset_color%}'
 
 unsetopt correct_all
-#DISABLE_CORRECTION="true"
 
-export EDITOR='vim'
+export EDITOR='nvim'
 
 #export TERM=screen-256color
 export TERM=xterm-256color
@@ -88,16 +87,43 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 stty -ixon
 
 # Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
 export NVM_DIR="/home/craig/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+#[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
 
 # Set the colors (solarized) We'll see if we like it...
 eval `dircolors /home/craig/.dircolors`
 
 # Load a specific version of node
-nvm use 5.6.0 > /dev/null
+#nvm use 5.6.0 > /dev/null
 #rvm use 2.1.4
+
+#DISABLE_CORRECTION="true"
+#
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local node_version="$(nvm version)"
+  local nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      nvm use
+    fi
+  elif [ "$node_version" != "$(nvm version default)" ]; then
+    #echo "Reverting to nvm default version"
+    #nvm use default
+  fi
+}
+
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
 
 cd .
 
