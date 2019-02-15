@@ -18,14 +18,18 @@ set laststatus=2
 
 call vundle#begin()
 
+" Old plugings (keep around for legacy projects as needed)
+"Plugin 'digitaltoad/vim-jade'
+"Plugin 'lukaszkorecki/CoffeeTags'
+"Plugin 'heartsentwined/vim-emblem'
+
 " from github
 Plugin 'gmarik/vundle'
+Plugin 'nono/vim-handlebars'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'groenewege/vim-less'
-Plugin 'digitaltoad/vim-jade'
 Plugin 'tpope/vim-rails'
-Plugin 'nono/vim-handlebars'
 Plugin 'majutsushi/tagbar'
 Plugin 'mozilla/doctorjs'
 Plugin 'tpope/vim-surround'
@@ -33,8 +37,6 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'yearofmoo/Vim-Darkmate'
 Plugin 'mileszs/ack.vim'
-Plugin 'lukaszkorecki/CoffeeTags'
-Plugin 'heartsentwined/vim-emblem'
 Plugin 'myhere/vim-nodejs-complete'
 Plugin 'ternjs/tern_for_vim'
 Plugin 'szw/vim-tags'
@@ -44,19 +46,19 @@ Plugin 'c-brenn/phoenix.vim'
 Plugin 'vim-scripts/php.vim-html-enhanced' " Better PHP indenting
 
 " Hmm which one to use?
-"Plugin 'pangloss/vim-javascript'
-Plugin 'othree/es.next.syntax.vim'
 Plugin 'othree/yajs.vim'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'ap/vim-css-color'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'lambdatoast/elm.vim'
+"Plugin 'lambdatoast/elm.vim'
 Plugin 'ElmCast/elm-vim'
-Plugin 'elixir-lang/vim-elixir'
+Plugin 'elixir-editors/vim-elixir'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'vim-scripts/CycleColor'
 Plugin 'maxbane/vim-asm_ca65'
+
+" Auto closing strings, etc.
 Plugin 'cohama/lexima.vim'
 Plugin 'vim-scripts/closetag.vim'
 Plugin 'vim-scripts/matchit.zip'
@@ -66,6 +68,7 @@ Plugin 'vim-scripts/AnsiEsc.vim'
 Plugin 'powerman/vim-plugin-AnsiEsc'
 Plugin 'vim-maximizer'
 Plugin 'slashmili/alchemist.vim' " Elixir integration
+Plugin 'sbdchd/neoformat' " Code formatter
 "Plugin 'ryanoasis/vim-devicons'
 
 " Other colors
@@ -82,6 +85,18 @@ Plugin 'junegunn/fzf.vim'
 "Plugin 'jlanzarotta/bufexplorer'
 Plugin 'JSON.vim'
 Plugin 'ludovicchabant/vim-gutentags'
+
+Plugin 'jparise/vim-graphql'
+
+" Typescript
+"Plugin 'peitalin/vim-jsx-typescript'
+"Plugin 'leafgarland/typescript-vim'
+"Plugin 'mhartington/nvim-typescript'
+"Plugin 'HerringtonDarkholme/yats.vim'
+"Plugin 'Quramy/tsuquyomi'
+
+" Styled components
+"Plugin 'styled-components/vim-styled-components'
 
 if has('nvim')
   Plugin 'vim-airline/vim-airline'
@@ -135,6 +150,7 @@ endif
 if (has("termguicolors"))
   set termguicolors
 endif
+
 
 " This could be useful: http://vimawesome.com/plugin/colorswatch-vim
 ":colorscheme vibrantik
@@ -245,12 +261,15 @@ let g:fzf_layout = { 'down': '100%' }
 let g:fzf_nvim_statusline = 0
 nmap <leader>t :FZF<CR>
 nmap <leader>b :Buffers<CR>
-nmap <leader>e :Lines<CR>
+nmap <leader>e :BLines<CR>
+nmap <leader>d :Lines<CR>
 
 " FZF extra key bindings
 let g:fzf_action = {
   \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit'}
+  \ 'ctrl-r': 'split',
+  \ 'ctrl-v': 'vsplit',
+  \ 'ctrl-f': 'e'}
 
 " F12 acts as enter. Hacky
 "imap <F12> <CR>
@@ -301,10 +320,10 @@ let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:netrw_browsex_viewer = 1
 
 " RSpec
-map <Leader>s <esc>:w<cr>:call RunCurrentSpecFile()<CR>
-map <Leader>S <esc>:w<cr>:call RunNearestSpec()<CR>
-map <Leader>l <esc>:w<cr>:call RunLastSpec()<CR>
-map <Leader>a <esc>:w<cr>:call RunAllSpecs()<CR>
+"map <Leader>s <esc>:w<cr>:call RunCurrentSpecFile()<CR>
+"map <Leader>S <esc>:w<cr>:call RunNearestSpec()<CR>
+"map <Leader>l <esc>:w<cr>:call RunLastSpec()<CR>
+"map <Leader>a <esc>:w<cr>:call RunAllSpecs()<CR>
 
 " BufExplorer should show relative paths by default
 let g:bufExplorerShowRelativePath=1

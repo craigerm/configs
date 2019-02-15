@@ -41,12 +41,12 @@ plugins=(vi-mode)
 
 . ~/.bash_functions
 
-# Include aliases
+source $ZSH/oh-my-zsh.sh
+
+# Include aliases after zsh so we can override any default aliases
 . ~/configs/.linux_aliases
 . ~/configs/.git_aliases
 . ~/configs/.bash_aliases
-
-source $ZSH/oh-my-zsh.sh
 
 # Misc unicode chars
 # ✈ ➜
@@ -73,14 +73,25 @@ unsetopt correct_all
 
 export EDITOR='nvim'
 
+# Make sure ctrl-d doesn't exit, unless you press it 42 times
+#export IGNOREEOF=42
+
 #export TERM=screen-256color
 export TERM=xterm-256color
 
-export PATH=$PATH:/home/craig/.local/bin
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+# For android/java
+#export JAVA_HOME=/usr/lib/jvm/default-java
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export ANDROID_HOME=$HOME/Android/Sdk
+
+STANDARD_PATH=$PATH:/home/craig/.local/bin
+ANDROID_PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools
+HEROKU_PATH=/usr/local/heroku/bin
+LINUXBREW_PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin
+export PATH=$ANDROID_PATH:$HEROKU_PATH:$STANDARD_PATH:$LINUXBREW_PATH
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
 #PATH="$HOME/.rbenv/bin:$PATH"
 #eval "$(rbenv init -)"
 
@@ -133,3 +144,8 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore=".git/*" -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#fpath=($fpath "/home/craig/.zfunctions")
+
+## Set Spaceship ZSH as a prompt
+#autoload -U promptinit; promptinit
+#prompt spaceship
