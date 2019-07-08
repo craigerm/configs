@@ -33,5 +33,14 @@ alias tm='RAILS_ENV=test rake db:migrate'
 alias tr='RAILS_ENV=test rake db:rollback'
 alias t='spring rspec'
 
+# Elixir/Phoenix
+alias dp='iex -S mix phx.server'
+alias d='iex -S mix'
+alias p='mix phx.server'
+
+# Helper to show language/framework specific aliases
+alias arails='alias | egrep -i "ruby|rails|rake|spring|rspec"'
+alias aphx='alias | egrep -i "mix|iex"
+
 # Copy global tern settings to local project but don't overwrite it if it exists
 alias tern-create='cp ~/.tern-config ./.tern-project -n && echo "Created .tern-project file."'

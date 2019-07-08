@@ -6,9 +6,9 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 set rtp+=~/.fzf
 
-if !has('nvim')
-  set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
-endif
+"if !has('nvim')
+"  set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
+"endif
 
 ""TODO: Get powerline working with neovim
 set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
@@ -41,12 +41,14 @@ Plugin 'myhere/vim-nodejs-complete'
 Plugin 'ternjs/tern_for_vim'
 Plugin 'szw/vim-tags'
 Plugin 'mxw/vim-jsx'
-Plugin 'tpope/vim-projectionist'
+"Plugin 'tpope/vim-projectionist'
 Plugin 'c-brenn/phoenix.vim'
 Plugin 'vim-scripts/php.vim-html-enhanced' " Better PHP indenting
+Plugin 'cespare/vim-toml' " Syntax highlitening used by Hugo
 
 " Hmm which one to use?
 Plugin 'othree/yajs.vim'
+Plugin 'othree/es.next.syntax.vim'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'ap/vim-css-color'
 Plugin 'thoughtbot/vim-rspec'
@@ -60,7 +62,12 @@ Plugin 'maxbane/vim-asm_ca65'
 
 " Auto closing strings, etc.
 Plugin 'cohama/lexima.vim'
-Plugin 'vim-scripts/closetag.vim'
+Plugin 'jiangmiao/auto-pairs'
+
+" Auto closing html tags
+Plugin 'alvan/vim-closetag'
+
+"Plugin 'vim-scripts/closetag.vim'
 Plugin 'vim-scripts/matchit.zip'
 Plugin 'othree/html5.vim'
 Plugin 'junegunn/gv.vim'
@@ -77,7 +84,7 @@ Plugin 'jimmyhchan/dustjs'
 Plugin 'hexchain/vim-openresty'
 
 " Requires cd ~/.vim/bundle/vim-jsbeautify && git submodule update --init --recursive
-Plugin 'maksimr/vim-jsbeautify'
+"Plugin 'maksimr/vim-jsbeautify'
 
 " Requires compiling after vundle install
 Plugin 'junegunn/fzf' " ./install --all
@@ -88,12 +95,24 @@ Plugin 'ludovicchabant/vim-gutentags'
 
 Plugin 'jparise/vim-graphql'
 
-" Typescript
-"Plugin 'peitalin/vim-jsx-typescript'
+" Vue + Typescript
+Plugin 'Shougo/vimproc.vim'
+Plugin 'posva/vim-vue'
+"Plugin 'HerringtonDarkholme/vue-ts-plugin'
+Plugin 'Quramy/tsuquyomi'
+"Plugin 'Quramy/tsuquyomi-vue'
 "Plugin 'leafgarland/typescript-vim'
+"Plugin 'HerringtonDarkholme/vue-ts-plugin'
 "Plugin 'mhartington/nvim-typescript'
 "Plugin 'HerringtonDarkholme/yats.vim'
-"Plugin 'Quramy/tsuquyomi'
+
+" Ale typescript stuff
+"Plugin 'w0rp/ale'
+Plugin 'leafgarland/typescript-vim' " Syntax highlighting
+
+" Typescript
+"Plugin 'peitalin/vim-jsx-typescript'
+"Plugin 'HerringtonDarkholme/yats.vim'
 
 " Styled components
 "Plugin 'styled-components/vim-styled-components'
@@ -160,7 +179,12 @@ endif
 ":colorscheme molokai
 ":colorscheme inkpot_new
 ":colorscheme lucid
-:colorscheme wombat256mod
+":colorscheme wombat256mod
+:colorscheme custom_wombat256
+":colorscheme custom_znake
+
+"let g:airline_theme='laedron'
+let g:airline_theme='lucius'
 
 " Change jshint error styles
 hi clear SpellBad
@@ -186,6 +210,13 @@ highlight LineNr ctermfg=grey
 if has('nvim')
   " Run neokmake on every write
   autocmd! BufWritePost * Neomake
+
+  " Code formatters on save
+  "autocmd BufWritePre *.js Neoformat
+  "autocmd BufWritePre *.scss Neoformat
+  "autocmd BufWritePre *.json Neoformat
+  "autocmd BufWritePre *.ex Neoformat
+  "autocmd BufWritePre *.rb Neoformat
 endif
 
 " Configure neovim markers
@@ -424,6 +455,8 @@ au BufNewFile,BufRead *.asm, set ft=asm_ca65
 
 au BufNewFile,BufRead *.phtml set filetype=php
 au BufNewFile,BufRead elm-package.json set filetype=elm
+"au BufNewFile,BufRead *.vue set filetype=vue
+au BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.typescript.css
 
 autocmd FileType php set sw=2
 autocmd FileType php set ts=2
