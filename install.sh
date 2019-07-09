@@ -21,7 +21,7 @@ mkdir -p ~/configs
 
 linkfiles "home-files" "$HOME"
 linkfiles "aliases" "$HOME/configs"
-linkfiles "colors" "$HOME/.vim/bundle/vim-colorschemes"
+linkfiles "colors" "$HOME/.vim/bundle/vim-colorschemes/colors"
 linkfiles "bins" "/usr/local/bin"
 
 ## Link any desktop files
