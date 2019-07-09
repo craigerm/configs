@@ -12,11 +12,12 @@ linkfile(){
 }
 
 linkfiles(){
+  mkdir -p "$2"
   find "$1" -type f | while read file; do linkfile $file $2; done
 }
 
 #Create configs directory
-mkdir ~/configs -p
+mkdir -p ~/configs
 
 linkfiles "home-files" "$HOME"
 linkfiles "aliases" "$HOME/configs"

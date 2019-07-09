@@ -100,13 +100,15 @@ stty -ixon
 # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
-export NVM_DIR="/home/craig/.nvm"
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 #[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
 
-# Set the colors (solarized) We'll see if we like it...
-eval `dircolors /home/craig/.dircolors`
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  # Set the colors (solarized) We'll see if we like it...
+  eval `dircolors /home/craig/.dircolors`
+fi
 
 # Load a specific version of node
 #nvm use 5.6.0 > /dev/null
