@@ -179,8 +179,8 @@ endif
 ":colorscheme molokai
 ":colorscheme inkpot_new
 ":colorscheme lucid
-":colorscheme wombat256mod
-:colorscheme custom_wombat256
+:colorscheme wombat256mod
+":colorscheme custom_wombat256
 ":colorscheme custom_znake
 
 "let g:airline_theme='laedron'

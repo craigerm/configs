@@ -6,7 +6,7 @@
 	ui = true
 
 [core]
-  autocrlf = input
+  autocrlf = true
   fileMode = false
   excludesfile = ~/.gitignore
   ; Require npm install -g diff-so-fancy
