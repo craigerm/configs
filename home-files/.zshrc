@@ -39,23 +39,30 @@ setopt prompt_subst
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(vi-mode)
 
+log "function:start"
 . ~/.bash_functions
+log "function:end"
 
+log "zshsource:start"
 source $ZSH/oh-my-zsh.sh
+log "zshsource:end"
 
+log "aliases:start"
 # Include aliases after zsh so we can override any default aliases
 . ~/configs/.linux_aliases
 . ~/configs/.git_aliases
 . ~/configs/.bash_aliases
+log "aliases:end"
 
 # Misc unicode chars
-# ✈ ➜
+# ✈ ➜ ☺
 
-# Smiley used from peepcode
-local smiley="%(?,%{$fg[green]%}☺%{$reset_color%},%{$fg[red]%}☹%{$reset_color%})"
+local mainIcon="%(?,%{$fg[green]%}>%{$reset_color%},%{$fg[red]%}X%{$reset_color%})"
 
+log "rvmsession:start"
 # This loads RVM into a shell session
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  .
+log "rvmsession:end"
 
 # Customize theme variables
 ZSH_THEME_GIT_PROMPT_PREFIX="("
@@ -65,7 +72,7 @@ ZSH_THEME_GIT_PROMPT_CLEAN=") %{$fg[green]%}✔%{$reset_color%}"
 
 PROMPT='
 %{$fg_bold[white]%}%~ %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} $(vi_mode_prompt_info)
- ${smiley} %{$reset_color%} '
+ ${mainIcon}%{$reset_color%} '
 
 RPROMPT='%{$fg[white]%}(node-`nvm current`)%{$fg[white]%} ($(~/.rvm/bin/rvm-prompt))%{$fg[red]%} ⚡ %{$fg[yellow]%}$(git_hash) %{$reset_color%}'
 
@@ -77,18 +84,16 @@ export EDITOR='nvim'
 #export IGNOREEOF=42
 
 #export TERM=screen-256color
-export TERM=xterm-256color
-
-# For android/java
-#export JAVA_HOME=/usr/lib/jvm/default-java
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-export ANDROID_HOME=$HOME/Android/Sdk
+#export TERM=xterm-256color
 
 STANDARD_PATH=$PATH:/home/craig/.local/bin
 ANDROID_PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools
 HEROKU_PATH=/usr/local/heroku/bin
 LINUXBREW_PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin
-export PATH=$ANDROID_PATH:$HEROKU_PATH:$STANDARD_PATH:$LINUXBREW_PATH
+EB_PATH=$HOME/.ebcli-virtual-env/executables
+FLUTTER_PATH=$HOME/code/libs/flutter/bin
+
+export PATH=$HEROKU_PATH:$STANDARD_PATH:$LINUXBREW_PATH:$EB_PATH:$FLUTTER_PATH
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
@@ -107,8 +112,12 @@ export NVM_DIR="$HOME/.nvm"
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   # Set the colors (solarized) We'll see if we like it...
-  eval `dircolors /home/craig/.dircolors`
+  eval `dircolors $HOME/.dircolors`
 fi
+
+export TERM=xterm-256color
+#set termguicolors
+#set termguicolors
 
 # Load a specific version of node
 #nvm use 5.6.0 > /dev/null

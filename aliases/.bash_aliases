@@ -40,7 +40,6 @@ alias p='mix phx.server'
 
 # Helper to show language/framework specific aliases
 alias arails='alias | egrep -i "ruby|rails|rake|spring|rspec"'
-alias aphx='alias | egrep -i "mix|iex"
+alias aphx='alias | egrep -i "mix|iex"'
 
-# Copy global tern settings to local project but don't overwrite it if it exists
-alias tern-create='cp ~/.tern-config ./.tern-project -n && echo "Created .tern-project file."'
+alias notify="osascript -e 'display notification \"You are notified!\"'"
