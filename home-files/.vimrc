@@ -25,17 +25,44 @@ Plug 'stephenway/postcss.vim'
 "Plug 'alexlafroscia/postcss-syntax.vim'
 Plug 'keith/rspec.vim'
 Plug 'elixir-editors/vim-elixir'
+Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
+Plug 'iamcco/coc-tailwindcss'
 "Plug 'styled-components/vim-styled-components'
 "Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-liquid'
+Plug 'vim-test/vim-test'
+
+
+" Markdown
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+
+"" Snippets
+Plug 'neoclide/coc-snippets'
+Plug 'honza/vim-snippets'
+Plug 'mlaursen/vim-react-snippets'
+
 "Plug 'jiangmiao/auto-pairs' " Allow changing strings, etc.
+
+
+Plug 'andys8/vim-elm-syntax'
+Plug 'elmcast/elm-vim' " Only used for manually elm-format
+Plug 'mustache/vim-mustache-handlebars'
+
+" Dart and flutter specific
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'iamcco/coc-flutter'
 
 " Themes
 Plug 'tomasiser/vim-code-dark'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 call plug#end()
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
 " Always show statusline
@@ -114,10 +141,10 @@ let g:coc_global_extensions = [
       \ 'coc-pairs',
       \ 'coc-eslint',
       \ 'coc-solargraph',
-      \ 'coc-prettier'
+      \ 'coc-prettier',
+      \ 'coc-snippets',
+      \ 'coc-flutter'
       \ ]
-
-"\ 'coc-styled-components',
 
 " TextEdit might fail if hidden is not set.
 set hidden
@@ -140,22 +167,48 @@ set shortmess+=c
 set signcolumn=yes
 
 " Use tab for trigger completion with characters ahead and navigate.
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
 inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 " Tab and shift+tab for navigating autocomplete
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+" Cmd + space to show autocomplete
+inoremap <silent><expr> <c-space> coc#refresh()
+
 " Shift + space to show autocomplete
-"inoremap <silent><expr> <S-tab> coc#refresh()
+noremap <silent><expr> <S-tab> coc#refresh()
+noremap <silent><expr> <C-b> coc#refresh()
+
+"
+" CocList Mappings
+"
+
+" Find symbol of current document.
+nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+
+" Show all diagnostics.
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+
+" Show commands.
+nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+
+" Search workspace symbols.
+nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+
+" Resume latest coc list.
+nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+"inoremap <C-s> <esc>:w<cr>a
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
@@ -175,6 +228,7 @@ nmap <silent> <leader>g <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <F12> <Plug>(coc-rename)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -190,8 +244,7 @@ endfunction
 " Highlight the symbol and its references when holding the cursor.
 "autocmd CursorHold * silent call CocActionAsync('highlight')
 
-"  Remap for rename current word
-nmap <F12> <Plug>(coc-rename)
+
 
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
@@ -204,6 +257,73 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
 
+" Remap <C-f> and <C-b> for scroll float windows/popups.
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+
+  " Terminal window, exit insert mode (To enable scrolling)
+  tmap <C-o> <C-\><C-n>
+endif
+
+" A hack for now, so we can force close any floating windows
+"nmap <F7>call coc#float#close_all()<CR>
+nmap <F7>coc#float#close_all()<CR>
+
+"hi default CocErrorSign    ctermfg=White guifg=#ff0000
+hi default CocErrorFloat ctermfg=White
+"higlight CocCodeLens guifg=White
+":hi CocCodeLens ctermfg=White
+":hi Error ctermfg=Red guifg=Red
+
+" So coc-css recognizes scss variables
+autocmd FileType scss setl iskeyword+=@-@
+autocmd FileType scss setl iskeyword+=$-$
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Coc-Flutter  + Dart config
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:dart_format_on_save = 0
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Coc-Snippets (and related snippet plugins) config
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" Use <leader>x for convert visual selected code to snippet
+xmap <leader>x  <Plug>(coc-convert-snippet)
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim test config
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>c :TestNearest<cr>
+map <leader>l :TestLast<cr>
+map <leader>L :TestFile<cr>
+map <leader>m :TestSuite<cr>
+map <leader>v :TestVisit<cr>
+
+" For scrolling, but not really part of vim-test
+"if has('nvim')
+"  "tmap <C-o> <C-\><C-n>
+"endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " Nerdtree config
@@ -247,6 +367,12 @@ let g:fzf_nvim_statusline = 0
 
 nmap <leader>t :FZF<CR>
 nmap <leader>b :Buffers<CR>
+
+ " Let's try this out for a bit
+nmap <leader>q :Buffers<CR>
+nmap <leader>a :FZF<CR>
+nmap <leader>f :FZF<CR>
+nmap <leader>s :Buffers<CR>
 nmap <leader>e :BLines<CR>
 nmap <leader>d :Lines<CR>
 
@@ -256,6 +382,8 @@ let g:fzf_action = {
   \ 'ctrl-r': 'split',
   \ 'ctrl-v': 'vsplit',
   \ 'ctrl-f': 'e'}
+
+nmap <F9> :Ag<CR>
 
 " Always enable preview window on the right with 60% width
 let g:fzf_preview_window = 'right:36%'
@@ -269,7 +397,13 @@ let g:fzf_preview_window = 'right:36%'
 "nmap <leader><F1> :Git! diff --color \| diff-so-fancy<CR>
 "nmap <leader>m :Gstatus<CR>:MaximizerToggle<CR>
 "nmap <leader>m :Gstatus<CR>
+"
+nmap <F1> :Gdiff<CR>
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Markdown
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:vim_markdown_folding_disabled = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " Misc.
@@ -277,7 +411,6 @@ let g:fzf_preview_window = 'right:36%'
 let g:closetag_html_style=1 "????
 let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:netrw_browsex_viewer = 1
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin global settings
@@ -299,7 +432,6 @@ map <leader>P "+P
 nnoremap Q <nop>
 
 " Unmap help, since it happens a lot!
-nmap <F1> <nop>
 imap <F1> <nop>
 
 " Easier window navigation
@@ -319,13 +451,7 @@ nmap <leader>n :noh<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Custom tool bindings
 """"""""""""""""""""""""""""""""""""""""""""""""""
-
-" Searches matching file names (not working correctly in qf)
-nmap <F10> :Ack -g <cword><CR>
-
-" Searching all files in project
-nmap <F9> :Ack<cword><CR>
-
+" WIP
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Generic config
@@ -363,6 +489,7 @@ autocmd BufNewFile,BufRead *.asm, set ft=asm_ca65
 autocmd BufNewFile,BufRead elm-package.json set filetype=elm
 autocmd BufNewFile,BufRead *.vue setlocal filetype=vue.html.javascript.typescript.css
 autocmd BufNewFile,BufRead *.css setlocal filetype=less.postcss
+autocmd BufNewFile,BufRead *.rb setlocal filetype=ruby
 
 autocmd FileType json syntax match Comment +\/\/.\+$+
 autocmd FileType php set sw=2
