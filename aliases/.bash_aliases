@@ -1,8 +1,6 @@
 alias v='nvim'
 alias vim='nvim'
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+alias l='ls -lAh'
 alias reload='source ~/.zshrc'
 
 alias showcolors='for code in {000..255}; do print -P -- "$code: %F{$code}Test%f"; done'
