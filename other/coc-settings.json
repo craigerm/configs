@@ -1,20 +1,40 @@
 {
-  "suggest.noselect": false,
-  "suggest.maxCompleteItemCount": 20,
+  "languageserver": {
+    "elmLS": {
+      "command": "elm-language-server",
+      "filetypes": ["elm"],
+      "rootPatterns": ["elm.json"],
+      "initializationOptions": {
+        "elmAnalyseTrigger": "never"
+      }
+    }
+  },
+  "coc.preferences.enableFloatHighlight": true,
+  "coc.preferences.extensionUpdateCheck": "daily",
+  "coc.preferences.floatActions": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
     "typescript",
     "typescriptreact",
+    "elixir",
     "json",
     "javascriptreact",
     "typescript.tsx",
     "scss",
-    "ruby"
+    "ruby",
+    "rb",
+    "dart"
   ],
+  "codeLens.enable": true,
+  "flutter.provider.enableSnippet": true,
+  "flutter.provider.hot-reload": true,
+  "suggest.enablePreview": false,
+  "suggest.noselect": false,
+  "suggest.maxCompleteItemCount": 20,
   "solargraph.promptDownload": true,
+  "solargraph.commandPath": "/Users/craig/.rvm/gems/ruby-2.6.6@slayt/wrappers/solargraph",
   "solargraph.useBundler": false,
-  "solargraph.commandPath": "/Users/craig/.rvm/gems/ruby-2.6.5@sloth/wrappers/solargraph",
-  "solargraph.autoformat": true,
+  "solargraph.autoformat": false,
   "solargraph.formatting": true,
   "solargraph.diagnostics": true,
   "solargraph.completion": true,
