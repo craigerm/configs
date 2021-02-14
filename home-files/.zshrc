@@ -59,11 +59,6 @@ log "aliases:end"
 
 local mainIcon="%(?,%{$fg[green]%}>%{$reset_color%},%{$fg[red]%}X%{$reset_color%})"
 
-log "rvmsession:start"
-# This loads RVM into a shell session
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  .
-log "rvmsession:end"
-
 # Customize theme variables
 ZSH_THEME_GIT_PROMPT_PREFIX="("
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
@@ -74,7 +69,7 @@ PROMPT='
 %{$fg_bold[white]%}%~ %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} $(vi_mode_prompt_info)
  ${mainIcon}%{$reset_color%} '
 
-RPROMPT='%{$fg[white]%}(node-`nvm current`)%{$fg[white]%} ($(~/.rvm/bin/rvm-prompt))%{$fg[red]%} ⚡ %{$fg[yellow]%}$(git_hash) %{$reset_color%}'
+RPROMPT='%{$fg[white]%}(node-`node --version`)%{$fg[white]%} ($RUBY_VERSION)%{$fg[red]%} ⚡ %{$fg[yellow]%}$(git_hash) %{$reset_color%}'
 
 unsetopt correct_all
 
@@ -86,29 +81,22 @@ export EDITOR='nvim'
 #export TERM=screen-256color
 #export TERM=xterm-256color
 
-STANDARD_PATH=$PATH:/home/craig/.local/bin
+STANDARD_PATH=$PATH:/$HOME/.local/bin
+
+# Android stuff
+ANDROID_HOME=$HOME/Library/Android/sdk
+ANDROID_SDK_ROOT=$ANDROID_HOME
 ANDROID_PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools
+
 HEROKU_PATH=/usr/local/heroku/bin
 LINUXBREW_PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin
 EB_PATH=$HOME/.ebcli-virtual-env/executables
 FLUTTER_PATH=$HOME/code/libs/flutter/bin
+PG_BIN_PATH=/Applications/Postgres.app/Contents/Versions/latest/bin
 
-export PATH=$HEROKU_PATH:$STANDARD_PATH:$LINUXBREW_PATH:$EB_PATH:$FLUTTER_PATH
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-#PATH="$HOME/.rbenv/bin:$PATH"
-#eval "$(rbenv init -)"
+export PATH=$HEROKU_PATH:$STANDARD_PATH:$LINUXBREW_PATH:$EB_PATH:$FLUTTER_PATH:$PG_BIN_PATH:$ANDROID_PATH
 
 stty -ixon
-
-# Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-#[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   # Set the colors (solarized) We'll see if we like it...
@@ -119,35 +107,8 @@ export TERM=xterm-256color
 #set termguicolors
 #set termguicolors
 
-# Load a specific version of node
-#nvm use 5.6.0 > /dev/null
-#rvm use 2.1.4
-
 #DISABLE_CORRECTION="true"
-#
 autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    #echo "Reverting to nvm default version"
-    #nvm use default
-  fi
-}
-
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
-
-cd .
 
 # FZF will show dotfiles except for .git/. It will still obey the .gitignore folder though
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore=".git/*" -g ""'
@@ -155,8 +116,13 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore=".git/*" -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-#fpath=($fpath "/home/craig/.zfunctions")
 
 ## Set Spaceship ZSH as a prompt
 #autoload -U promptinit; promptinit
 #prompt spaceship
+#echo "Terminal loaded"
+
+echo -e "\n. $(brew --prefix asdf)/asdf.sh" >> ~/.bash_profile
+
+# Added by serverless binary installer
+export PATH="$HOME/.serverless/bin:$PATH"

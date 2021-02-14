@@ -20,21 +20,15 @@ alias op='stat -c "%a %n"'
 # Search history
 alias r='history | grep'
 
-# Start mongo
-alias startmongo='sudo mongod --fork --logpath /var/log/mongodb/mongodb.log'
-
 # Copy to clipboard. Example: cat somefile.txt | cb # Then ctrl+v elsewhere
 alias cb='xclip -selection clipboard '
 
-# Rails specific
-alias tm='RAILS_ENV=test rake db:migrate'
-alias tr='RAILS_ENV=test rake db:rollback'
-alias t='spring rspec'
-
 # Elixir/Phoenix
 alias dp='iex -S mix phx.server'
+alias dt='iex -S mix test --trace'
 alias d='iex -S mix'
 alias p='mix phx.server'
+alias t='mix test'
 
 # Helper to show language/framework specific aliases
 alias arails='alias | egrep -i "ruby|rails|rake|spring|rspec"'
