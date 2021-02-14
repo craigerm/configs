@@ -35,7 +35,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-liquid'
 Plug 'vim-test/vim-test'
 
-
 " Markdown
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
@@ -46,8 +45,6 @@ Plug 'honza/vim-snippets'
 Plug 'mlaursen/vim-react-snippets'
 
 "Plug 'jiangmiao/auto-pairs' " Allow changing strings, etc.
-
-
 Plug 'andys8/vim-elm-syntax'
 Plug 'elmcast/elm-vim' " Only used for manually elm-format
 Plug 'mustache/vim-mustache-handlebars'
@@ -58,6 +55,9 @@ Plug 'iamcco/coc-flutter'
 
 " Themes
 Plug 'tomasiser/vim-code-dark'
+Plug 'morhetz/gruvbox'
+"Plug 'dracula/vim'
+
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 call plug#end()
@@ -68,13 +68,16 @@ call plug#end()
 " Always show statusline
 set laststatus=2
 
+" Packs
+set packpath=~/.vim
+packadd! dracula_pro
+
 syntax enable
 filetype plugin indent on
 set encoding=utf-8
 
 " TAB in completion window goes from top to bottom
 "let g:SuperTabDefaultCompletionType = "<c-n>"
-let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 set guicursor=
 
 " For vim 8/nvim
@@ -85,7 +88,6 @@ endif
 " Change jshint error styles
 hi clear SpellBad
 hi SpellBad ctermbg=red
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " Airline
@@ -101,20 +103,52 @@ hi SpellBad ctermbg=red
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " Theme
+"
+" Any colour settings, even if specific to a plugin
+" should be placed here.
 """"""""""""""""""""""""""""""""""""""""""""""""""""
-
 set guifont=Monaco\ 14
-colorscheme codedark
+set background=dark
 
-"let g:airline_theme='gruvbox'
-"colorscheme gruvbox
+" Make sure to install dracula pro locally (since of course not in .git)
+"let g:dracula_colorterm = 0
+
+" NOTE Copy "vim" folder from "dracula.zip" ~/.vim/pack/themes/opt/dracula_pro
+
+"colorscheme dracula_pro_buffy
+"colorscheme dracula_pro_morbius
+"colorscheme dracula_pro_blade
+"colorscheme dracula_pro_van_helsing
+"colorscheme dracula
+colorscheme dracula_pro
 
 " Misc vim system color overrides
-hi clear Directory
-hi clear EndOfBuffer
-hi Directory ctermfg=173 guifg=#e5786d
-hi EndOfBuffer ctermfg=248 ctermbg=232
+"hi clear Directory
+"hi clear EndOfBuffer
+"hi Directory ctermfg=173 guifg=#e5786d
+"hi EndOfBuffer ctermfg=248 ctermbg=232
 
+"Change color of line number
+"highlight LineNr ctermfg=grey
+
+"hi default CocErrorFloat ctermfg=White
+
+" Random colours
+let s:pinkish = "ffa3a3"
+let s:lightPurple = "d899ff"
+let s:red = "f31037"
+let s:rubyColour = s:red
+
+" Nerdtree colours
+let g:NERDTreeExtensionHighlightColor = {}
+let g:NERDTreeExtensionHighlightColor['rb'] = s:rubyColour
+let g:NERDTreeExtensionHighlightColor['sh'] = s:lightPurple
+
+"" FZF colours
+"let g:fzf_colors = {
+"  \ 'fg': ['fg', 'Normal'],
+"  \ 'bg': ['bg', 'Normal']
+"  \ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " Line numbers
@@ -124,8 +158,6 @@ set number
 set hidden
 set numberwidth=2
 
-"Change color of line number
-highlight LineNr ctermfg=grey
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
@@ -171,6 +203,7 @@ inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
+
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
@@ -268,17 +301,11 @@ if has('nvim-0.4.0') || has('patch-8.2.0750')
 
   " Terminal window, exit insert mode (To enable scrolling)
   tmap <C-o> <C-\><C-n>
+
 endif
 
 " A hack for now, so we can force close any floating windows
-"nmap <F7>call coc#float#close_all()<CR>
-nmap <F7>coc#float#close_all()<CR>
-
-"hi default CocErrorSign    ctermfg=White guifg=#ff0000
-hi default CocErrorFloat ctermfg=White
-"higlight CocCodeLens guifg=White
-":hi CocCodeLens ctermfg=White
-":hi Error ctermfg=Red guifg=Red
+nmap <F7>call coc#float#close_all()<CR>
 
 " So coc-css recognizes scss variables
 autocmd FileType scss setl iskeyword+=@-@
@@ -346,16 +373,6 @@ let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
 
-" Decent colours
-let s:pinkish = "ffa3a3"
-let s:lightPurple = "d899ff"
-"let s:red = "ea0027"
-let s:red = "f31037"
-let s:rubyColour = s:red
-
-let g:NERDTreeExtensionHighlightColor = {}
-let g:NERDTreeExtensionHighlightColor['rb'] = s:rubyColour
-let g:NERDTreeExtensionHighlightColor['sh'] = s:lightPurple
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " FZF (Fuzzy finder)
