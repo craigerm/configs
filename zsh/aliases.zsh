@@ -22,6 +22,9 @@ alias notify="osascript -e 'display notification \"You are notified!\"'"
 alias fp='ps aux | grep'
 alias kp='kill -9'
 
+# Git misc
+alias g='lazygit'
+
 # Git commits
 alias pb='git push origin HEAD'
 alias ca='git commit --amend --no-edit'
@@ -40,7 +43,7 @@ alias b='git branch'
 alias ba='git branch -a'
 alias co='git checkout'
 
-# GIt logs
+# Git logs
 alias gl='git log --graph --pretty=format":%C(yellow)%h%C(bold magenta)%d%Creset %s %C(white) %an, %ar%Creset"'
 alias lg='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold magenta)<%an>%Creset" --abbrev-commit --date=relative'
 alias l='git log --pretty=format:"%C(yellow)%h%Creset - %s %C(magenta bold)(%cr by %an)"'
