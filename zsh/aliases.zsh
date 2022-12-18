@@ -4,6 +4,7 @@
 alias l='ls -lAh'
 alias reload='source ~/.zshrc'
 alias c='clear'
+alias xx='exit'
 
 # Editor aliases
 alias v='nvim'
