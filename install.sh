@@ -20,17 +20,24 @@ linkfiles(){
 mkdir -p ~/configs
 
 linkfiles "home-files" "$HOME"
-linkfiles "aliases" "$HOME/configs"
+linkfiles "zsh" "$HOME/configs"
 linkfiles "colors" "$HOME/.vim/bundle/vim-colorschemes/colors"
 linkfiles "bins" "/usr/local/bin"
 
+#linkfile "other/coc-settings.json" "$HOME/.config/nvim"
+
 ## Link any desktop files
 ##linkfiles "*.desktop" "/usr/share/applications"
-#linkfile "gtk.css" "$HOME/.config/gtk-3.0"
 
 # Run any system commands to refresh this
 #update-desktop-database
 #chmod a+x /usr/local/bin/cvim
 
+#
+# Simple check for required eibs
+#
+#brew install the_silver_searcher
+#apt-get install silversearcher-ag
+#which ag
 
 echo "\nConfiguration installed!"
