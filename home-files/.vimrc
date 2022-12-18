@@ -26,7 +26,7 @@ Plug 'stephenway/postcss.vim'
 Plug 'keith/rspec.vim'
 Plug 'elixir-editors/vim-elixir'
 Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
-Plug 'iamcco/coc-tailwindcss'
+"Plug 'iamcco/coc-tailwindcss'
 "Plug 'styled-components/vim-styled-components'
 "Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-rails'
@@ -34,6 +34,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-liquid'
 Plug 'vim-test/vim-test'
+"Plug 'github/copilot.vim'
+Plug 'neoclide/coc-highlight'
 
 " Markdown
 Plug 'godlygeek/tabular'
@@ -44,21 +46,27 @@ Plug 'neoclide/coc-snippets'
 Plug 'honza/vim-snippets'
 Plug 'mlaursen/vim-react-snippets'
 
+" Code intellisense / autocompletion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Prisma syntax highlighting
+Plug 'pantharshit00/vim-prisma'
+
 "Plug 'jiangmiao/auto-pairs' " Allow changing strings, etc.
-Plug 'andys8/vim-elm-syntax'
-Plug 'elmcast/elm-vim' " Only used for manually elm-format
+"Plug 'andys8/vim-elm-syntax'
+"Plug 'elmcast/elm-vim' " Only used for manually elm-format
 Plug 'mustache/vim-mustache-handlebars'
 
 " Dart and flutter specific
-Plug 'dart-lang/dart-vim-plugin'
-Plug 'iamcco/coc-flutter'
+"Plug 'dart-lang/dart-vim-plugin'
+"Plug 'iamcco/coc-flutter'
 
 " Themes
 Plug 'tomasiser/vim-code-dark'
 Plug 'morhetz/gruvbox'
 "Plug 'dracula/vim'
 
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+"Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 call plug#end()
 
@@ -102,6 +110,17 @@ hi SpellBad ctermbg=red
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
+" Neovim providers
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:python_host_prog = '~/.asdf/installs/python/2.7.13/bin/python'
+let g:python3_host_prog = '~/.asdf/installs/python/3.6.9/bin/python'
+let g:ruby_host_prog = '~/.asdf/installs/ruby/2.7.2/bin/neovim-ruby-host'
+let g:loaded_perl_provider = 0
+"let g:ruby_host_prog = '~/.asdf/installs/ruby/2.7.2/bin/ruby'
+"let g:ruby_host_prog = '/usr/bin/ruby'
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Theme
 "
 " Any colour settings, even if specific to a plugin
@@ -112,6 +131,9 @@ set background=dark
 
 " Make sure to install dracula pro locally (since of course not in .git)
 "let g:dracula_colorterm = 0
+let g:dracula_italic = 0
+let g:dracula_underline = 0
+let g:dracula_undercurl = 0
 
 " NOTE Copy "vim" folder from "dracula.zip" ~/.vim/pack/themes/opt/dracula_pro
 
@@ -131,7 +153,7 @@ colorscheme dracula_pro
 "Change color of line number
 "highlight LineNr ctermfg=grey
 
-"hi default CocErrorFloat ctermfg=White
+
 
 " Random colours
 let s:pinkish = "ffa3a3"
@@ -139,10 +161,95 @@ let s:lightPurple = "d899ff"
 let s:red = "f31037"
 let s:rubyColour = s:red
 
+"hi default CocErrorFloat ctermfg=White
+"hi CocErrorFloat ctermbg=Grey
+"hi CocErrorFloat guibg=Grey
+"hi CocCodeLense 
+"ctermfg=248 guifg=#999999
+
+"hi CocErrorFloat ctermbg=248 guibg=#454158
+"hi Pmenu ctermbg=red ctermfg=blue guibg=#454158
+"hi Pmenu guibg=#7970A9
+"hi Pmenu guibg=#22212C
+"hi Pmenu guibg=#2E2B3B
+
+" TIP: Use ":hi <keyword> or <tab>" to find what values are set
+" Example: ":hi Coc" and then tab shows al Coc colour configurations
+"
+" General floating menu
+hi Pmenu guibg=#393649
+
+hi CocWarningFloat guifg=#E1D9F2
+hi CocWarningFloat guifg=#ff5522
+hi CocErrorSign guifg=#FD9696
+hi CocFloatingMenu guibg=#ff2222
+hi CocMenuSel guibg=#c4c2a9
+"hi CocMenuSel guibg=#676714
+hi CocMenuSel guibg=#203577
+hi CocMenuSel guibg=#293F84
+
+"hi CocWarningVirtualText guifg=#ff2222
+"hi CocCodeLens ctermbg=248 guibg=#454158
+"hi default CocErrorFloat ctermbg=White
+"hi default CocFloating ctermbg = s:pink
+"hi Pmenu ctermbg = s:lightPurple
+"hi Pmenu guibg = s:purple
+"hi Pmenu guibg=DraculaBgDark
+
+" Misc js config
+hi def link jsFunction Function
+
+" Comments
+"hi def link Comment DraculaComment
+hi def link Comment CocCodeLens
+
+" TSX Html tag names
+"hi def link tsxTagName htmlStatement
+hi def link tsxTagName DraculaPink
+hi def link tsxCloseTagName tsxTagName
+
+" TSX Component names
+hi def link tsxComponentName DraculaPurple
+hi def link tsxCloseComponentName tsxComponentName
+hi def link tsxAttributeBraces DraculaPurple
+
+" TSX Attributes
+"hi def link tsxAttrib DraculaPurple
+"hi tsxAttrib guifg=#F8BD7F cterm=italic
+
+"hi tsxComponentName guifg=#E06C75
+"hi tsxCloseComponentName guifg=#E06C75
+"hi tsxTagName guifg=htmlStatement
+"hi tsxCloseTag guifg=Statement
+"hi tsxCloseTagName guifg=Statement
+
+"hi def link tsxTagName htmlStatement
+"hi def link tsxCloseTag htmlStatement
+"hi def link tsxCloseTagName htmlStatement
+
+"" dark red
+"hi tsxTagName guifg=#E06C75
+"hi tsxComponentName guifg=#E06C75
+"hi tsxCloseComponentName guifg=#E06C75
+"hi tsxCloseTag guifg=#E06C75
+"hi tsxCloseTagName guifg=#E06C75
+
+" orange
+"hi tsxCloseString guifg=#F99575
+"hi tsxCloseTag guifg=#F99575
+"hi tsxCloseTagName guifg=#F9957
+"hi tsxAttributeBraces guifg=#F99575
+"hi tsxEqual guifg=#F99575
+
+" yellow
+"hi tsxAttrib guifg=#F8BD7F cterm=italic
+
 " Nerdtree colours
 let g:NERDTreeExtensionHighlightColor = {}
 let g:NERDTreeExtensionHighlightColor['rb'] = s:rubyColour
 let g:NERDTreeExtensionHighlightColor['sh'] = s:lightPurple
+let g:NERDTreeExtensionHighlightColor['ex'] = s:lightPurple
+let g:NERDTreeExtensionHighlightColor['exs'] = s:lightPurple
 
 "" FZF colours
 "let g:fzf_colors = {
@@ -158,26 +265,38 @@ set number
 set hidden
 set numberwidth=2
 
-
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " Coc config
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Install extensions
+"let g:coc_global_extensions = [
+"      \ 'coc-tsserver',
+"      \ 'coc-json',
+"      \ 'coc-html',
+"      \ 'coc-css',
+"      \ 'coc-pairs',
+"      \ 'coc-eslint',
+"      \ 'coc-solargraph',
+"      \ 'coc-prettier',
+"      \ 'coc-snippets',
+"      \ 'coc-flutter',
+"      \ ]
 let g:coc_global_extensions = [
       \ 'coc-tsserver',
       \ 'coc-json',
       \ 'coc-html',
       \ 'coc-css',
-      \ 'coc-pairs',
       \ 'coc-eslint',
       \ 'coc-solargraph',
-      \ 'coc-prettier',
       \ 'coc-snippets',
-      \ 'coc-flutter'
+      \ 'coc-flutter',
+      \ 'coc-highlight',
+      \ 'coc-prisma'
       \ ]
 
+"\ 'coc-tailwindcss'
+"
 " TextEdit might fail if hidden is not set.
 set hidden
 
@@ -198,29 +317,55 @@ set shortmess+=c
 " diagnostics appear/become resolved.
 set signcolumn=yes
 
-" Use tab for trigger completion with characters ahead and navigate.
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1):
+      \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
 
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+"inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-function! s:check_back_space() abort
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <tab> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Use tab for trigger completion with characters ahead and navigate.
+"inoremap <silent><expr> <TAB>
+"      \ pumvisible() ? "\<C-n>" :
+"      \ <SID>check_back_space() ? "\<Tab>" :
+"      \ coc#refresh()
+
+"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+"function! s:check_back_space() abort
+"  let col = col('.') - 1
+"  return !col || getline('.')[col - 1]  =~# '\s'
+"endfunction
+
 " Tab and shift+tab for navigating autocomplete
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+"inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+"inoremap <expr> <S-Tab> pumvisible() ? "\<C-b>" : "\<S-Tab>"
 
 " Cmd + space to show autocomplete
-inoremap <silent><expr> <c-space> coc#refresh()
+"inoremap <silent><expr> <c-space> coc#refresh()
+"inoremap <silent><expr> <c-space> coc#refresh()
 
 " Shift + space to show autocomplete
-noremap <silent><expr> <S-tab> coc#refresh()
-noremap <silent><expr> <C-b> coc#refresh()
+"inoremap <silent><expr> <S-tab> coc#refresh()
+" #inoremap <silent><expr> <C-b> coc#refresh()
+
+"command! -nargs=0 Format :call CocAction('format')
 
 "
 " CocList Mappings
@@ -261,23 +406,22 @@ nmap <silent> <leader>g <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+"nmap <leader>fa  <Plug>(coc-codelens-action)
 nmap <F12> <Plug>(coc-rename)
 
 " Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> K :call ShowDocumentation()<CR>
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
   else
-    call CocAction('doHover')
+    call feedkeys('K', 'in')
   endif
 endfunction
 
 " Highlight the symbol and its references when holding the cursor.
-"autocmd CursorHold * silent call CocActionAsync('highlight')
-
-
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
@@ -305,7 +449,7 @@ if has('nvim-0.4.0') || has('patch-8.2.0750')
 endif
 
 " A hack for now, so we can force close any floating windows
-nmap <F7>call coc#float#close_all()<CR>
+nmap <silent> <F10> :call coc#float#close_all()<CR>
 
 " So coc-css recognizes scss variables
 autocmd FileType scss setl iskeyword+=@-@
@@ -341,7 +485,9 @@ xmap <leader>x  <Plug>(coc-convert-snippet)
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim test config
 """"""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>c :TestNearest<cr>
+" leader+c is used by commenter, so delay when single key stroke
+"map <leader>c :TestNearest<cr>
+map <leader>. :TestNearest<cr>
 map <leader>l :TestLast<cr>
 map <leader>L :TestFile<cr>
 map <leader>m :TestSuite<cr>
@@ -382,16 +528,24 @@ set rtp+=/usr/local/opt/fzf
 let g:fzf_layout = { 'down': '100%' }
 let g:fzf_nvim_statusline = 0
 
-nmap <leader>t :FZF<CR>
-nmap <leader>b :Buffers<CR>
-
- " Let's try this out for a bit
-nmap <leader>q :Buffers<CR>
-nmap <leader>a :FZF<CR>
-nmap <leader>f :FZF<CR>
+" FZF Standard mappings
+"nmap <leader>t :FZF<CR>
+nmap <leader>d :FZF<CR>
 nmap <leader>s :Buffers<CR>
 nmap <leader>e :BLines<CR>
-nmap <leader>d :Lines<CR>
+nmap <leader>f :Lines<CR>
+
+" Lets stops using this mapping. Cold turkey.
+"nmap <leader>b :Buffers<CR>
+
+ " Let's try this out for a bit
+"nmap <leader>q :Buffers<CR>
+"nmap <leader>a :FZF<CR>
+"nmap <leader>f :FZF<CR>
+"nmap <leader>s :Buffers<CR>
+nmap <leader>e :BLines<CR>
+"nmap <leader>d :Lines<CR>
+"nmap <leader>d :Lines<CR>
 
 " FZF extra key bindings
 let g:fzf_action = {
@@ -434,7 +588,7 @@ let g:netrw_browsex_viewer = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Treat JS as JSX files
-let g:jsx_ext_required = 0
+let g:jsx_ext_required = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Generic Vim bindings
@@ -505,8 +659,12 @@ autocmd BufNewFile,BufRead *.ejs set filetype=html
 autocmd BufNewFile,BufRead *.asm, set ft=asm_ca65
 autocmd BufNewFile,BufRead elm-package.json set filetype=elm
 autocmd BufNewFile,BufRead *.vue setlocal filetype=vue.html.javascript.typescript.css
-autocmd BufNewFile,BufRead *.css setlocal filetype=less.postcss
+"autocmd BufNewFile,BufRead *.css setlocal filetype=less.postcss
+autocmd BufNewFile,BufRead *.css setlocal filetype=scss
 autocmd BufNewFile,BufRead *.rb setlocal filetype=ruby
+
+" set filetypes as typescriptreact
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
 
 autocmd FileType json syntax match Comment +\/\/.\+$+
 autocmd FileType php set sw=2
@@ -529,3 +687,6 @@ set clipboard=unnamed
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
 set undodir=~/.vim/undo//
+
+" Temp fix for: https://github.com/elixir-editors/vim-elixir/issues/562
+au BufRead,BufNewFile *.eex,*.heex,*.leex,*.sface,*.lexs set filetype=eelixir
