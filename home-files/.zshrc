@@ -16,8 +16,9 @@ source "$HOME/configs/exports.zsh"
 
 source $ZSH/oh-my-zsh.sh
 
-PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
-PROMPT+=' %{$fg[blue]%}%~%{$reset_color%} $(git_prompt_info)'
+local text_prompt="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}❌)"
+PROMPT='%{$fg_bold[blue]%}%~%{$reset_color%} $(git_prompt_info)
+ ${text_prompt}%{$reset_color%} '
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}(%{$fg[red]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
