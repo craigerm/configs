@@ -5,9 +5,11 @@ require'fzf-lua'.setup {
   winopts = {
     fullscreen = true
   },
+  -- This appears to override eveything
   actions = {
     files = {
-      ["ctrl-f"] = actions.file_edit_or_qf
+      ["default"] = actions.file_edit,
+      ["ctrl-f"] = actions.file_edit
     }
   }
 }

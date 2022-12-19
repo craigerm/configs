@@ -13,5 +13,13 @@ return require('packer').startup(function(use)
     requires = { 'nvim-tree/nvim-web-devicons' }
   }
 
-  use = { 'junegunn/fzf', run = './install --bin' }
+  use { 'junegunn/fzf', run = './install --bin' }
+
+  -- Purchased theme
+  use '~/.vim/pack/themes/opt/dracula_pro'
+
+  -- Color themes
+  use "EdenEast/nightfox.nvim"
+  use 'Mofiqul/dracula.nvim'
 end)
+

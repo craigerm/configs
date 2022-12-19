@@ -1,3 +1,5 @@
+local map = vim.api.nvim_set_keymap
+
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
   view = {
@@ -14,10 +16,11 @@ require("nvim-tree").setup({
       git_placement = "after",
     },
   },
+  git = {
+    ignore = false
+  }
 })
 
 -- Mappings
-local map = vim.api.nvim_set_keymap
-
 map('n', '<c-n>', ':NvimTreeToggle<cr>', {})
 map('n', '<leader>r', ':NvimTreeFindFile<cr>', {})
