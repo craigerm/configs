@@ -31,4 +31,4 @@ opt.splitright = true
 opt.splitbelow = true
 
 -- Virtual lines
-vim.opt.breakindent = true
+opt.breakindent = true

@@ -6,33 +6,22 @@ vim.g.localleader = "\\"
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
---  Imports
+-- Set color scheme
+-- vim.cmd[[colorscheme dracula]]
+
+-- Imports
 require('vars')
 require('opts')
 require('keys')
 require('plug')
+require('whitespace')
 
 -- Plugin config specific
 require('config-nvim-tree')
 require('config-fzf-lua')
 
--- Show trailing whitespace
-vim.cmd([[highlight ExtraWhitespace ctermbg=red guibg=red]])
-vim.cmd([[match ExtraWhitespace /\s\+\%#\@<!$/]])
+vim.cmd[[colorscheme dracula]]
 
-vim.api.nvim_create_autocmd({ 'InsertEnter '}, {
-
-  pattern = { "*" },
-  command = [[match ExtraWhitespace /\s\+\%#\@<!$/]]
-})
-
-vim.api.nvim_create_autocmd({ 'InsertLeave'}, {
-  pattern = { "*" },
-  command = [[match ExtraWhitespace /\s\+$/]]
-})
-
---
---
 -- Nice to have for later
 -- nearest test runners (vim test)
 -- snippets
