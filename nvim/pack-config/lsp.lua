@@ -94,6 +94,29 @@ nvim_lsp.html.setup {
   capabilities = capabilities,
 }
 
+-- Lua
+nvim_lsp.sumneko_lua.setup {
+  on_attach = on_attach,
+  settings = {
+    Lua = {
+      runtime = {
+        version = 'LuaJIT'
+      },
+      diagnostics = {
+        globals = { 'vim' }
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file('', true),
+        checkThirdParty = false,
+      },
+      telemetry = {
+        enable = false
+      }
+    }
+  }
+}
+
 -- Shopify (Theme Check)
 nvim_lsp.theme_check.setup { on_attach = on_attach }
 
