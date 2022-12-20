@@ -1,6 +1,7 @@
 #!/bin/sh
 
 export EDITOR='nvim'
+export XDG_CONFIG_HOME="$HOME/.config"
 
 STANDARD_PATH=$HOME/.local/bin:$PATH
 

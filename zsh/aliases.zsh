@@ -32,6 +32,7 @@ alias ca='git commit --amend --no-edit'
 alias cm='git commit -m'
 
 # Git changes
+alias f='git fetch'
 alias s='git status --short'
 alias gst='git status'
 alias gs='git status'

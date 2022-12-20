@@ -5,7 +5,6 @@ require'fzf-lua'.setup {
   winopts = {
     fullscreen = true
   },
-  -- This appears to override eveything
   actions = {
     files = {
       ["default"] = actions.file_edit,
@@ -24,3 +23,4 @@ map('n',
 map('n', '<leader>s', "<cmd>lua require('fzf-lua').buffers()<CR>", { noremap = true, silent = true})
 map('n', '<leader>e', "<cmd>lua require('fzf-lua').blines()<CR>", { noremap = true, silent = true})
 map('n', '<leader>f', "<cmd>lua require('fzf-lua').lines()<CR>", { noremap = true, silent = true})
+map('n', '<F12>', "<cmd>lua require('fzf-lua').highlights()<CR>", { noremap = true, silent = true})

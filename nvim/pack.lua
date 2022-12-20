@@ -1,13 +1,16 @@
 return require('packer').startup(function(use)
+
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  -- File explorer
   use { 'nvim-tree/nvim-tree.lua',
     requires = { 'nvim-tree/nvim-web-devicons' },
     -- optional, updated every week. (see issue #1193)
     tag = 'nightly'
   }
 
+  -- Fuzzy finder
   use { 'ibhagwan/fzf-lua',
     -- optional for icon support
     requires = { 'nvim-tree/nvim-web-devicons' }
@@ -15,11 +18,47 @@ return require('packer').startup(function(use)
 
   use { 'junegunn/fzf', run = './install --bin' }
 
-  -- Purchased theme
-  use '~/.vim/pack/themes/opt/dracula_pro'
-
   -- Color themes
+  use '~/.vim/pack/themes/opt/dracula_pro' -- Purchased
   use "EdenEast/nightfox.nvim"
   use 'Mofiqul/dracula.nvim'
-end)
+  use 'folke/tokyonight.nvim'
 
+  -- Misc Utils
+  use 'folke/zen-mode.nvim'
+  -- use 'tpope/vim-surround'
+  use { 'kylechui/nvim-surround', tag = "*" }
+  use 'windwp/nvim-autopairs'
+  use 'tpope/vim-fugitive'
+
+  -- Comments
+  use 'terrortylor/nvim-comment'
+
+  -- Lua Snippets
+  use 'L3MON4D3/LuaSnip'
+  use 'saadparwaiz1/cmp_luasnip'
+
+  -- Language server config
+  use 'neovim/nvim-lspconfig'
+
+  -- Syntax highlighting
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use { 'nvim-treesitter/playground', run = ':TSInstall query' }
+
+  -- Auto complete
+  use 'onsails/lspkind-nvim' -- Pictograms
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/nvim-cmp'
+  use 'glepnir/lspsaga.nvim' -- Nicer UIs
+
+  -- Formatting, etc.
+  use 'nvim-lua/plenary.nvim'
+  use 'jose-elias-alvarez/null-ls.nvim'
+  use 'MunifTanjim/prettier.nvim'
+
+  -- Manages lsp, etc.
+  use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
+end)

@@ -7,6 +7,9 @@ require("nvim-tree").setup({
     mappings = {
       list = {
         { key = "u", action = "dir_up" },
+        { key = "o", action = "edit_no_picker" },
+        { key = "O", action = "edit" },
+        { key = "i", action = "split" }
       },
     },
   },
@@ -14,6 +17,14 @@ require("nvim-tree").setup({
     group_empty = true,
     icons = {
       git_placement = "after",
+      glyphs = {
+        git = {
+          staged = '●',
+          unstaged = '●',
+          untracked = '●',
+          ignored = '●',
+        }
+      }
     },
   },
   git = {

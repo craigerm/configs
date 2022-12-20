@@ -1,0 +1,7 @@
+disableStartupPopups: true
+os:
+  editCommand: 'nvim'
+git:
+  paging:
+    colorArgs: always
+    pager: delta --dark --paging=never
