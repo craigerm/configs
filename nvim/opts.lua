@@ -8,6 +8,8 @@ opt.number = true
 opt.relativenumber = true
 opt.scrolloff = 4
 opt.signcolumn = 'yes'
+opt.cursorline = true
+opt.cursorlineopt = 'screenline'
 
 -- Encodings
 opt.encoding = 'utf8'

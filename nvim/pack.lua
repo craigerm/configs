@@ -20,16 +20,27 @@ return require('packer').startup(function(use)
 
   -- Color themes
   use '~/.vim/pack/themes/opt/dracula_pro' -- Purchased
-  use "EdenEast/nightfox.nvim"
+  use 'EdenEast/nightfox.nvim'
   use 'Mofiqul/dracula.nvim'
   use 'folke/tokyonight.nvim'
 
+ -- Status line
+  use { 'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
+
   -- Misc Utils
   use 'folke/zen-mode.nvim'
-  -- use 'tpope/vim-surround'
-  use { 'kylechui/nvim-surround', tag = "*" }
+  use { 'kylechui/nvim-surround', tag = '*' }
   use 'windwp/nvim-autopairs'
   use 'tpope/vim-fugitive'
+
+  -- Markdown preview
+  use { 'iamcco/markdown-preview.nvim',
+    run = 'cd app && npm install',
+    setup = function() vim.g.mkdp_filetypes = { 'markdown' } end,
+    ft = { 'markdown' }
+  }
 
   -- Comments
   use 'terrortylor/nvim-comment'

@@ -4,9 +4,6 @@ local colors = dracula.colors()
 local s = 10
 
 dracula.setup({
-  colors = {
-    gutter_fg = "#FF3322",
-  },
   lualine_bg_color = "#44475a",
   overrides = {
 
@@ -32,5 +29,28 @@ dracula.setup({
 
     -- Diagnostics Virtual
     DiagnosticVirtualTextHint = { fg = colors.comment },
+
+    -- Status line
+    StatusLine = { fg = colors.white , bg = colors.black, bold = true},
+    StatusLineNC = { fg = colors.comment, bg = colors.menu, bold = true},
+
+    -- Current line
+    CursorLine = { bg = "#2f334d" },
+
+    -- Misc HTML, JS without TS
+    htmlTag = { fg = colors.purple },
+    htmlTagN = { fg = colors.purple },
+    htmlTagName = { fg = colors.bright_blue },
+    htmlEndTag = { fg = colors.purple },
+    PreProc = { fg = colors.orange },
+    javaScriptGlobal = { fg = colors.pink },
+    Special = { fg = colors.green },
+    liquidExpression = { fg = colors.bright_red },
+    htmlSpecialTagName =  {fg = colors.purple },
+
+    -- Treesitter
+    ["@property"] = { fg = colors.purple },
+    ["@type"] = { fg = colors.green },
+    ["@punctuation.bracket"] = { fg = colors.fg },
   }
 })

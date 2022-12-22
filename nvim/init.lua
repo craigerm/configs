@@ -28,6 +28,7 @@ require('pack-config/nvm-cmp')
 require('pack-config/treesitter')
 require('pack-config/lsp-saga')
 require('pack-config/null-ls')
+require('pack-config/lualine')
 
 -- Set color scheme
 vim.cmd([[colorscheme dracula]])
