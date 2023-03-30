@@ -18,7 +18,7 @@ map('', '<leader>ca', '<cmd>Lspsaga code_action<CR>', opts)
 map('n', '<F2>', '<cmd>Lspsaga rename<CR>', opts)
 map('n', 'gd', '<cmd>Lspsaga peek_definition<CR>', opts)
 
-map('n', '<leader>cd', '<cmd>Lspsaga show_line_diagnostics<CR>', opts)
+map('n', '<leader>cf', '<cmd>Lspsaga show_line_diagnostics<CR>', opts)
 map('n', '<leader>cd', '<cmd>Lspsaga show_cursor_diagnostics<CR>', opts)
 map('n', '[e', '<cmd>Lspsaga diagnostic_jump_prev<CR>', opts)
 map('n', ']e', '<cmd>Lspsaga diagnostic_jump_next<CR>', opts)

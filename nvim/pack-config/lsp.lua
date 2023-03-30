@@ -18,15 +18,13 @@ end
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 local on_attach = function(client, bufnr)
-  -- if client.supports_method("textDocument/formatting") then
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = augroup,
-      buffer = bufnr,
-      callback = function()
-        lsp_formatting(bufnr)
-      end,
-    })
-  -- end
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    group = augroup,
+    buffer = bufnr,
+    callback = function()
+      lsp_formatting(bufnr)
+    end,
+  })
 end
 
 --Enable (broadcasting) snippet capability for completion
@@ -121,7 +119,10 @@ nvim_lsp.lua_ls.setup {
 nvim_lsp.theme_check.setup { on_attach = on_attach }
 
 -- Code navigation
- map('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+map('n', '<space>t', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+map('n', '<space>D', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+map('n', '<space>d', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
 
 -- Diagnostics
 map('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)

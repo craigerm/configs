@@ -72,4 +72,9 @@ return require('packer').startup(function(use)
   -- Manages lsp, etc.
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
+
+  -- Shows error diagnostics
+  use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }
+
+  use 'gpanders/editorconfig.nvim'
 end)
