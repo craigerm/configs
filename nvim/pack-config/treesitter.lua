@@ -20,6 +20,9 @@ ts.setup {
     "javascript",
     "json",
     "lua",
+    -- Both markdown packages are needed by lspsaga+treesitter to work
+    "markdown",
+    "markdown_inline",
     "prisma",
     "scss",
     "toml",

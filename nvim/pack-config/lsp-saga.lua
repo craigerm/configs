@@ -1,11 +1,13 @@
 local saga = require('lspsaga')
 local map = vim.api.nvim_set_keymap
 
-saga.init_lsp_saga {
-  server_filetype_map = {
-    typescript = 'typescript'
-  }
-}
+saga.setup({})
+
+-- saga.init_lsp_saga {
+--   server_filetype_map = {
+--     typescript = 'typescript'
+--   }
+-- }
 
 local opts = { silent = true }
 

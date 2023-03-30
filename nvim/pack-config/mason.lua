@@ -6,9 +6,9 @@ require("mason-lspconfig").setup({
     "eslint",
     "html",
     "jsonls",
-    "marksman",
+    -- "marksman",
     "prismals",
-    "sumneko_lua",
+    "lua_ls",
     "theme_check",
     "tsserver",
     "yamlls"
