@@ -1,2 +1,2 @@
 local map = vim.api.nvim_set_keymap
-map('n', '<F1>', ':ZenMode<cr>', {})
+map('n', '<F9>', ':ZenMode<cr>', {})
