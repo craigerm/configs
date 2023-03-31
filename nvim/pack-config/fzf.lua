@@ -3,14 +3,24 @@ local map = vim.api.nvim_set_keymap
 
 require'fzf-lua'.setup {
   winopts = {
-    fullscreen = true
+    fullscreen = false,
+    width = 1.0,
+    height = 0.5,
+    preview = {
+      horizontal = "right:45%",
+      delay = 300
+    },
   },
   actions = {
     files = {
       ["default"] = actions.file_edit,
       ["ctrl-f"] = actions.file_edit
-    }
-  }
+    },
+    buffers = {
+      ["default"] = actions.buf_edit,
+      ["ctrl-f"] = actions.buf_edit,
+    },
+  },
 }
 
 -- We use a different binary for the search

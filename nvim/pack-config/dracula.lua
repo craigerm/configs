@@ -36,6 +36,7 @@ dracula.setup({
 
     -- Current line
     CursorLine = { bg = "#2f334d" },
+    Cursor = { bg = "#ff0000"},
 
     -- Misc HTML, JS without TS
     htmlTag = { fg = colors.purple },
