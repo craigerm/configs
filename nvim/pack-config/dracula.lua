@@ -1,8 +1,6 @@
 local dracula = require('dracula')
 local colors = dracula.colors()
 
-local s = 10
-
 dracula.setup({
   lualine_bg_color = "#44475a",
   overrides = {

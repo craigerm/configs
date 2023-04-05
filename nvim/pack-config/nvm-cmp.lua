@@ -27,9 +27,9 @@ cmp.setup({
     { name = 'buffer' },
   }),
 
- formatting = {
-   format = lspkind.cmp_format({ with_text = false, max_width = 50 })
- }
+  formatting = {
+    format = lspkind.cmp_format({ with_text = false, max_width = 50 })
+  }
 })
 
 cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
