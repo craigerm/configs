@@ -11,6 +11,15 @@ linkfile(){
   ln -s "${src}" "${dest}"
 }
 
+linkfile_rename (){
+  echo "Linking files in $1 to $2"
+  filename=$(basename $1)
+  src="$(pwd)/$1"
+  dest="$2"
+  rm -f "$dest"
+  ln -s "${src}" "${dest}"
+}
+
 linkfiles(){
   mkdir -p "$2"
   find "$1" -type f | while read file; do linkfile $file $2; done
