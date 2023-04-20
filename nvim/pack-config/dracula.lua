@@ -14,6 +14,8 @@ dracula.setup({
     NvimTreeGitUnstaged = { fg = colors.comment },
     NvimTreeGitNew = { fg = colors.gutter_fg },
 
+    FzfLuaCursorLine = { fg = "#0000ff", bg = colors.green },
+
     VertSplit = { fg = colors.comment },
 
     -- NullLs Popup
