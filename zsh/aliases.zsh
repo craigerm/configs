@@ -12,6 +12,10 @@ alias v='nvim'
 alias vi='nvim'
 alias vim='nvim'
 
+# Node/etc
+alias npm='pnpm'
+alias pp='pnpm'
+
 # Elixir/Phoenix
 alias dp='iex -S mix phx.server'
 alias dt='iex -S mix test --trace'
