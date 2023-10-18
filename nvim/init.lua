@@ -11,7 +11,6 @@ require('vars')
 require('opts')
 require('keys')
 require('pack')
-require('whitespace')
 
 -- Plugin config specific
 require('pack-config/autopairs')
@@ -25,6 +24,7 @@ require('pack-config/mason')
 require('pack-config/lsp')
 require('pack-config/nvm-cmp')
 require('pack-config/treesitter')
+require('pack-config/treesitter-context')
 require('pack-config/lsp-saga')
 require('pack-config/null-ls')
 require('pack-config/lualine')
@@ -32,7 +32,6 @@ require('pack-config/trouble')
 require('pack-config/luasnip')
 
 -- Set color scheme
-vim.cmd([[colorscheme dracula]])
+-- vim.cmd([[colorscheme dracula]])
+vim.cmd([[colorscheme nightfly]])
 
--- vim.cmd([[colorscheme tokyonight-moon]])
--- vim.cmd([[colorscheme nightfox]])

@@ -3,6 +3,9 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  -- Show status of file on first line
+  use 'nvim-treesitter/nvim-treesitter-context'
+
   -- File explorer
   use { 'nvim-tree/nvim-tree.lua',
     requires = { 'nvim-tree/nvim-web-devicons' },
@@ -67,7 +70,7 @@ return require('packer').startup(function(use)
   -- Formatting, etc.
   use 'nvim-lua/plenary.nvim'
   use 'jose-elias-alvarez/null-ls.nvim'
-  use 'MunifTanjim/prettier.nvim'
+  -- use 'MunifTanjim/prettier.nvim'
 
   -- Manages lsp, etc.
   use 'williamboman/mason.nvim'
@@ -77,4 +80,7 @@ return require('packer').startup(function(use)
   use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }
 
   use 'gpanders/editorconfig.nvim'
+
+  -- New color theme
+  use 'bluz71/vim-nightfly-colors'
 end)

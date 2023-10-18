@@ -28,8 +28,11 @@ cmp.setup({
   }),
 
   formatting = {
-    format = lspkind.cmp_format({ with_text = false, max_width = 50 })
-  }
+    format = lspkind.cmp_format({
+      mode = 'symbol',
+      max_width = 50
+    })
+  },
 })
 
 cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())

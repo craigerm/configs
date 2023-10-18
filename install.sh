@@ -27,7 +27,8 @@ linkfiles(){
 
 #Create configs directory
 mkdir -p "$HOME/configs"
-mkdir -p "$HOME/.config/nvim/lua"
+mkdir -p "$HOME/.config/nvim/lua/pack-config"
+mkdir -p "$HOME/.config/lazygit"
 
 #linkfiles "home-files" "$HOME"
 #linkfiles "zsh" "$HOME/configs"

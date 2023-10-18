@@ -6,7 +6,7 @@ vim.opt.clipboard:append { 'unnamedplus' }
 -- Context
 opt.number = true
 opt.relativenumber = true
-opt.scrolloff = 4
+opt.scrolloff = 2
 opt.signcolumn = 'yes'
 opt.cursorline = true
 opt.cursorlineopt = 'screenline'
@@ -37,3 +37,7 @@ opt.splitbelow = true
 
 -- Virtual lines
 opt.breakindent = true
+
+if vim.fn.has("nvim-0.10") == 1 then
+  opt.smoothscroll = true
+end

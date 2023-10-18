@@ -23,6 +23,8 @@ require'fzf-lua'.setup {
   },
 }
 
+local opts = { noremap = true, silent = true}
+
 -- We use a different binary for the search
 map('n',
   '<leader>d',
@@ -34,3 +36,10 @@ map('n', '<leader>s', "<cmd>lua require('fzf-lua').buffers()<CR>", { noremap = t
 map('n', '<leader>e', "<cmd>lua require('fzf-lua').blines()<CR>", { noremap = true, silent = true})
 map('n', '<leader>f', "<cmd>lua require('fzf-lua').lines()<CR>", { noremap = true, silent = true})
 map('n', '<F12>', "<cmd>lua require('fzf-lua').highlights()<CR>", { noremap = true, silent = true})
+
+map('n',
+  '<F4>',
+  "<cmd>lua require('fzf-lua').live_grep({ cmd = 'git grep --line-number --column --color=always' })<CR>", {
+    noremap = true,
+    silent = true
+})
