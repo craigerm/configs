@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -9,12 +16,13 @@ autoload -U colors
 colors
 setopt prompt_subst
 
-plugins=(vi-mode)
 
 source "$HOME/configs/aliases.zsh"
 source "$HOME/configs/exports.zsh"
-
 source $ZSH/oh-my-zsh.sh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+plugins=(vi-mode zsh-autosuggestions)
 
 local text_prompt="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}❌)"
 PROMPT='%{$fg_bold[blue]%}%~%{$reset_color%} $(git_prompt_info)
@@ -27,10 +35,26 @@ ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
 
 unsetopt correct_all
 
-stty -ixon
+# stty -ixon
 
 set termguicolors
 autoload -U add-zsh-hook
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 . /usr/local/opt/asdf/libexec/asdf.sh
+
+# pnpm
+export PNPM_HOME="/Users/craig/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+#
+# Testing new theme
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
