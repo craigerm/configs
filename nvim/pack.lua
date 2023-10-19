@@ -24,23 +24,28 @@ return require('packer').startup(function(use)
   -- Color themes
   use 'EdenEast/nightfox.nvim'
 
- -- Status line
+  -- Status line
   use { 'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
 
   -- Misc Utils
   use 'folke/zen-mode.nvim'
-  use { 'kylechui/nvim-surround', tag = '*' }
+  -- use { 'kylechui/nvim-surround', tag = '*' }
+  use 'echasnovski/mini.surround'
   use 'windwp/nvim-autopairs'
+  use 'echasnovski/mini.pairs'
   use 'tpope/vim-fugitive'
 
   -- Comments
   use 'terrortylor/nvim-comment'
 
   -- Lua Snippets
-  use 'L3MON4D3/LuaSnip'
-  use 'saadparwaiz1/cmp_luasnip'
+  use { 'L3MON4D3/LuaSnip',
+    tag = "v2.*",
+    requires = "rafamadriz/friendly-snippets",
+    run = "make install_jsregexp"
+  }
 
   -- Language server config
   use 'neovim/nvim-lspconfig'
@@ -50,11 +55,12 @@ return require('packer').startup(function(use)
   use { 'nvim-treesitter/playground', run = ':TSInstall query' }
 
   -- Auto complete
+  use 'hrsh7th/nvim-cmp'
   use 'onsails/lspkind-nvim' -- Pictograms
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
-  use 'hrsh7th/nvim-cmp'
+  use 'saadparwaiz1/cmp_luasnip'
   use 'glepnir/lspsaga.nvim' -- Nicer UIs
 
   -- Formatting, etc.
