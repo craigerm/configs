@@ -1,13 +1,20 @@
 local saga = require('lspsaga')
 local map = vim.api.nvim_set_keymap
 
-saga.setup({})
+saga.setup({
+  lightbulb = {
+    virtual_text = false
+  }
+})
 
--- saga.init_lsp_saga {
---   server_filetype_map = {
---     typescript = 'typescript'
---   }
--- }
+-- Diagnostic symbols in gutter
+-- local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+local signs = { Error = "", Warn = "", Hint = "󰠠 ", Info = " " }
+
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
 
 local opts = { silent = true }
 
