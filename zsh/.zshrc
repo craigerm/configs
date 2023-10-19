@@ -41,7 +41,8 @@ set termguicolors
 autoload -U add-zsh-hook
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-. /usr/local/opt/asdf/libexec/asdf.sh
+# . /usr/local/opt/asdf/libexec/asdf.sh
+. $(brew --prefix asdf)/libexec/asdf.sh
 
 # pnpm
 export PNPM_HOME="/Users/craig/Library/pnpm"
