@@ -30,11 +30,10 @@ mkdir -p "$HOME/configs"
 mkdir -p "$HOME/.config/nvim/lua/pack-config"
 mkdir -p "$HOME/.config/lazygit"
 
-#linkfiles "home-files" "$HOME"
-#linkfiles "zsh" "$HOME/configs"
-#linkfiles "colors" "$HOME/.vim/bundle/vim-colorschemes/colors"
+linkfiles "home-files" "$HOME"
+linkfiles "zsh" "$HOME"
+
 #linkfiles "bins" "/usr/local/bin"
-#
 #linkfiles "nvim" "$HOME/.config/nvim"
 
 # Link manually
@@ -42,24 +41,9 @@ linkfile "nvim/init.lua" "$HOME/.config/nvim"
 linkfile "nvim/vars.lua" "$HOME/.config/nvim/lua"
 linkfile "nvim/opts.lua" "$HOME/.config/nvim/lua"
 linkfile "nvim/keys.lua" "$HOME/.config/nvim/lua"
-linkfile "nvim/plug.lua" "$HOME/.config/nvim/lua"
-linkfile "nvim/config-nvim-tree.lua" "$HOME/.config/nvim/lua"
-linkfile "nvim/config-fzf-lua.lua" "$HOME/.config/nvim/lua"
+linkfile "nvim/pack.lua" "$HOME/.config/nvim/lua"
+linkfile "nvim/cmds.lua" "$HOME/.config/nvim/lua"
 
-#linkfile "other/coc-settings.json" "$HOME/.config/nvim"
+# Link all pack config files
+linkfiles "nvim/pack-config" "$HOME/.config/nvim/lua/pack-config"
 
-## Link any desktop files
-##linkfiles "*.desktop" "/usr/share/applications"
-
-# Run any system commands to refresh this
-#update-desktop-database
-#chmod a+x /usr/local/bin/cvim
-
-#
-# Simple check for required eibs
-#
-#brew install the_silver_searcher
-#apt-get install silversearcher-ag
-#which ag
-
-echo "\nConfiguration installed!"

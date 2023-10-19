@@ -8,21 +8,21 @@ fi
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
-#ZSH_THEME="dracula-pro"
-#ZSH_THEME="robbyrussell"
-
 # Load colors
 autoload -U colors
 colors
 setopt prompt_subst
 
-
-source "$HOME/configs/aliases.zsh"
-source "$HOME/configs/exports.zsh"
-source $ZSH/oh-my-zsh.sh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-plugins=(vi-mode zsh-autosuggestions)
+source "$HOME/.zsh-aliases.zsh"
+source "$HOME/.zsh-exports.zsh"
+
+plugins+=(zsh-vi-mode)
+
+source $ZSH/oh-my-zsh.sh
+
+plugins+=(zsh-autosuggestions)
 
 local text_prompt="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}❌)"
 PROMPT='%{$fg_bold[blue]%}%~%{$reset_color%} $(git_prompt_info)
@@ -56,5 +56,3 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-
