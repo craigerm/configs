@@ -24,12 +24,14 @@ opt.ignorecase = true
 opt.smartcase = true
 opt.incsearch = true
 opt.hlsearch = false
+opt.colorcolumn = "80"
 
 -- Spaces
 opt.expandtab = true
 opt.shiftwidth = 2
 opt.softtabstop = 2
 opt.tabstop = 2
+opt.smartindent = true
 
 -- Splits
 opt.splitright = true

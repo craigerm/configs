@@ -22,10 +22,7 @@ return require('packer').startup(function(use)
   use { 'junegunn/fzf', run = './install --bin' }
 
   -- Color themes
-  use '~/.vim/pack/themes/opt/dracula_pro' -- Purchased
   use 'EdenEast/nightfox.nvim'
-  use 'Mofiqul/dracula.nvim'
-  use 'folke/tokyonight.nvim'
 
  -- Status line
   use { 'nvim-lualine/lualine.nvim',
@@ -37,13 +34,6 @@ return require('packer').startup(function(use)
   use { 'kylechui/nvim-surround', tag = '*' }
   use 'windwp/nvim-autopairs'
   use 'tpope/vim-fugitive'
-
-  -- Markdown preview
-  -- use { 'iamcco/markdown-preview.nvim',
-  --   run = 'cd app && npm install',
-  --   setup = function() vim.g.mkdp_filetypes = { 'markdown' } end,
-  --   ft = { 'markdown' }
-  -- }
 
   -- Comments
   use 'terrortylor/nvim-comment'
