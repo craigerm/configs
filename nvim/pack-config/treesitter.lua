@@ -4,14 +4,8 @@ if (not status) then return end
 local map = vim.api.nvim_set_keymap
 
 ts.setup {
-  highlight = {
-    enable = true,
-    disable = {},
-  },
-  indent = {
-    enable = true,
-    disable = {},
-  },
+  highlight = { enable = true },
+  indent = { enable = true },
   ensure_installed = {
     "bash",
     "css",
@@ -28,7 +22,6 @@ ts.setup {
     "toml",
     "tsx",
     "yaml",
-
   },
   autoinstall = true,
   autotag = {

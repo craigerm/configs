@@ -3,6 +3,8 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  use 'nvim-lua/plenary.nvim'
+
   -- Show status of file on first line
   use 'nvim-treesitter/nvim-treesitter-context'
 
@@ -31,7 +33,7 @@ return require('packer').startup(function(use)
 
   -- Misc Utils
   use 'folke/zen-mode.nvim'
-  -- use { 'kylechui/nvim-surround', tag = '*' }
+  use { 'kylechui/nvim-surround', tag = '*' }
   use 'echasnovski/mini.surround'
   use 'windwp/nvim-autopairs'
   use 'echasnovski/mini.pairs'
@@ -63,9 +65,11 @@ return require('packer').startup(function(use)
   use 'saadparwaiz1/cmp_luasnip'
   use 'glepnir/lspsaga.nvim' -- Nicer UIs
 
-  -- Formatting, etc.
-  use 'nvim-lua/plenary.nvim'
-  use 'jose-elias-alvarez/null-ls.nvim'
+  -- Formatting, linting, etc.
+  use 'stevearc/conform.nvim'
+  use 'mfussenegger/nvim-lint'
+
+  -- use 'jose-elias-alvarez/null-ls.nvim'
   -- use 'MunifTanjim/prettier.nvim'
 
   -- Manages lsp, etc.
