@@ -1,9 +1,9 @@
 [user]
   email = craigerm@gmail.com
-	name = Craig MacGregor
+  name = Craig MacGregor
 
 [init]
-	defaultBranch = main
+  defaultBranch = main
 
 [core]
 	autocrlf = input
