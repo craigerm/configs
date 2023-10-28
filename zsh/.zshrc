@@ -40,8 +40,6 @@ unsetopt correct_all
 set termguicolors
 autoload -U add-zsh-hook
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# . /usr/local/opt/asdf/libexec/asdf.sh
 . $(brew --prefix asdf)/libexec/asdf.sh
 
 # pnpm
@@ -51,9 +49,13 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-#
+
 # Testing new theme
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Zsh built-in key bindings get applied after our .zshrc so this
+# allows the zsh key bindings to run after that so they work as expected.
+zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
