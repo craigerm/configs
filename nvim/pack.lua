@@ -1,5 +1,4 @@
 return require('packer').startup(function(use)
-
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
@@ -55,6 +54,9 @@ return require('packer').startup(function(use)
   -- Syntax highlighting
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use { 'nvim-treesitter/playground', run = ':TSInstall query' }
+
+  -- Highlight and remove trailing whitespace
+  use 'johnfrankmorgan/whitespace.nvim'
 
   -- Auto complete
   use 'hrsh7th/nvim-cmp'

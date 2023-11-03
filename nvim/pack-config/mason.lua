@@ -6,6 +6,7 @@ require("mason-lspconfig").setup({
     "eslint",
     "html",
     "jsonls",
+    "cssls",
     -- "marksman",
     "prismals",
     "lua_ls",

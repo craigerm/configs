@@ -16,4 +16,4 @@ vim.keymap.set('i',
 )
 
 vim.keymap.set('s', '<tab>', function() return require('luasnip').jump(1) end, {})
-vim.keymap.set({'i', 's'}, '<s-tab>', function() return require('luasnip').jump(-1) end, {})
+vim.keymap.set({ 'i', 's' }, '<s-tab>', function() return require('luasnip').jump(-1) end, {})

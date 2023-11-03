@@ -2,7 +2,7 @@ local nvim_lsp = require("lspconfig")
 local windows = require('lspconfig.ui.windows')
 
 local map = vim.api.nvim_set_keymap
-local opts = { noremap=true, silent=true }
+local opts = { noremap = true, silent = true }
 
 windows.default_options.border = 'single'
 
@@ -57,22 +57,22 @@ nvim_lsp.jsonls.setup {
         },
         {
           description = 'TypeScript compiler configuration file',
-          fileMatch = {'tsconfig.json', 'tsconfig.*.json'},
+          fileMatch = { 'tsconfig.json', 'tsconfig.*.json' },
           url = 'http://json.schemastore.org/tsconfig'
         },
         {
           description = 'Babel configuration',
-          fileMatch = {'.babelrc.json', '.babelrc', 'babel.config.json'},
+          fileMatch = { '.babelrc.json', '.babelrc', 'babel.config.json' },
           url = 'http://json.schemastore.org/lerna'
         },
         {
           description = 'ESLint config',
-          fileMatch = {'.eslintrc.json', '.eslintrc'},
+          fileMatch = { '.eslintrc.json', '.eslintrc' },
           url = 'http://json.schemastore.org/eslintrc'
         },
         {
           description = 'Prettier config',
-          fileMatch = {'.prettierrc', '.prettierrc.json', 'prettier.config.json'},
+          fileMatch = { '.prettierrc', '.prettierrc.json', 'prettier.config.json' },
           url = 'http://json.schemastore.org/prettierrc'
         },
       }
@@ -86,7 +86,7 @@ nvim_lsp.cssls.setup {
   capabilities = capabilities,
 }
 
--- CSS
+-- HTML
 nvim_lsp.html.setup {
   on_attach = on_attach,
   capabilities = capabilities,
@@ -116,7 +116,9 @@ nvim_lsp.lua_ls.setup {
 }
 
 -- Shopify (Theme Check)
-nvim_lsp.theme_check.setup { on_attach = on_attach }
+nvim_lsp.theme_check.setup {
+  on_attach = on_attach
+}
 
 -- Code navigation
 map('n', '<space>t', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
