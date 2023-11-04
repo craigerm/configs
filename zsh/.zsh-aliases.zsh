@@ -14,6 +14,7 @@ alias vim='nvim'
 
 # Node/etc
 alias npm='pnpm'
+alias n='pnpm'
 alias pp='pnpm'
 
 # Elixir/Phoenix
