@@ -13,14 +13,13 @@
   pager = delta
 
 [color]
-	ui = true
-
-[interactive]
-  diffFilter = delta --color-only
+  ui = true
 
 [delta]
-  navigate = true
   light = false
+  navigate = true
+  side-by-side = true
+  features = "custom-theme"
 
 [merge]
   conflictstyle = diff3
@@ -36,7 +35,10 @@
   local = 179
   remote = 46
 
-[color "status"]
-  added = 154
-  changed = 203
-  untracked = 226
+[delta "custom-theme"]
+  hunk-header-decoration-style = "#00b494" box ul
+  file-decoration-style = "#FF0000"
+  hunk-header-line-number-style = bold "#03a4ff"
+  hunk-header-file-style = "#999999"
+  hunk-header-style = file line-number syntax
+  file-style = brightwhite
