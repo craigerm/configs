@@ -26,6 +26,7 @@
 
 [diff]
   colorMoved = default
+  wsErrorHighlight = all
 
 [grep]
 	lineNumber = true
