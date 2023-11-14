@@ -71,9 +71,6 @@ return require('packer').startup(function(use)
   use 'stevearc/conform.nvim'
   use 'mfussenegger/nvim-lint'
 
-  -- use 'jose-elias-alvarez/null-ls.nvim'
-  -- use 'MunifTanjim/prettier.nvim'
-
   -- Manages lsp, etc.
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
