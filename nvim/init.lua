@@ -34,6 +34,7 @@ require('pack-config/trouble')
 require('pack-config/luasnip')
 require('pack-config/mini-pairs')
 require('pack-config/whitespace')
+require('pack-config/nvim-colorizer')
 
 -- Set color scheme
 vim.cmd([[colorscheme nightfly]])
