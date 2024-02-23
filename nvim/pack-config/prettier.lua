@@ -9,6 +9,7 @@ prettier.setup {
     "javascript",
     "javascriptreact",
     "json",
+    "astro",
     -- "markdown",
     "scss",
     "typescript",

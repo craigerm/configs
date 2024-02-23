@@ -80,6 +80,18 @@ nvim_lsp.jsonls.setup {
   }
 }
 
+-- Astro
+nvim_lsp.astro.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+});
+
+vim.filetype.add({
+  extension = {
+    astro = "astro"
+  }
+})
+
 -- CSS
 nvim_lsp.cssls.setup {
   on_attach = on_attach,

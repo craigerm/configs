@@ -17,6 +17,7 @@ ts.setup {
     -- Both markdown packages are needed by lspsaga+treesitter to work
     "markdown",
     "markdown_inline",
+    "jsdoc",
     "prisma",
     "scss",
     "toml",
