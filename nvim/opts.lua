@@ -24,7 +24,7 @@ opt.ignorecase = true
 opt.smartcase = true
 opt.incsearch = true
 opt.hlsearch = false
-opt.colorcolumn = "80"
+opt.colorcolumn = "100"
 
 -- Spaces
 opt.expandtab = true
