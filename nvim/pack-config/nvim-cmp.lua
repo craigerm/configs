@@ -4,6 +4,7 @@ local cmp = require('cmp')
 -- local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 local lspkind = require 'lspkind'
 local defaults = require("cmp.config.default")()
+local format_kinds = lspkind.cmp_format({ mode = 'symbol', max_width = 50 })
 
 cmp.setup({
   completion = {
@@ -47,10 +48,10 @@ cmp.setup({
   }),
 
   formatting = {
-    format = lspkind.cmp_format({
-      mode = 'symbol',
-      max_width = 50
-    })
+    format = function(entry, item)
+      format_kinds(entry, item)
+      return require("tailwindcss-colorizer-cmp").formatter(entry, item)
+    end
   },
 
   sorting = defaults.sorting

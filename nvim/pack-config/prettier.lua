@@ -1,4 +1,4 @@
-local  prettier = require("prettier")
+local prettier = require("prettier")
 
 prettier.setup {
   bin = 'prettierd',

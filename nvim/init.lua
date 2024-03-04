@@ -23,7 +23,6 @@ require('pack-config/surround')
 require('pack-config/mini-surround')
 require('pack-config/mason')
 require('pack-config/lsp')
-require('pack-config/nvim-cmp')
 require('pack-config/treesitter')
 require('pack-config/treesitter-context')
 require('pack-config/lsp-saga')
@@ -35,6 +34,11 @@ require('pack-config/luasnip')
 require('pack-config/mini-pairs')
 require('pack-config/whitespace')
 require('pack-config/nvim-colorizer')
+require('pack-config/tailwindcss-colorizer-cmp')
+require('pack-config/aerial')
+
+-- Add the complete last
+require('pack-config/nvim-cmp')
 
 -- Set color scheme
 vim.cmd([[colorscheme nightfly]])

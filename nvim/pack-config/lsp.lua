@@ -42,6 +42,12 @@ nvim_lsp.yamlls.setup {
   on_attach = on_attach
 }
 
+-- Tailwind
+--
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tailwindcss
+-- npm install -g @tailwindcss/language-server
+nvim_lsp.tailwindcss.setup {}
+
 -- JSON
 nvim_lsp.jsonls.setup {
   on_attach = on_attach,

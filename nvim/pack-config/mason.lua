@@ -11,6 +11,7 @@ require("mason-lspconfig").setup({
     -- "marksman",
     "prismals",
     "lua_ls",
+    "tailwindcss",
     "theme_check",
     "tsserver",
     "yamlls"

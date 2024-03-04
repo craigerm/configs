@@ -83,6 +83,11 @@ return require('packer').startup(function(use)
   -- New color theme
   use 'bluz71/vim-nightfly-colors'
 
+  -- Code outline
+  use 'stevearc/aerial.nvim'
+
   -- For CSS color highlighting, etc.
   use 'norcalli/nvim-colorizer.lua'
+
+  use 'roobert/tailwindcss-colorizer-cmp.nvim'
 end)
