@@ -21,3 +21,6 @@ map('n', 'Q', '<nop>', {})
 map('n', '<C-c>', "+y", {})
 map('n', '<leader>p', '"+p', {})
 map('n', '<leader>P', '"+P', {})
+
+-- Register stuff
+map('v', '<leader>p', '"_dP', {})
