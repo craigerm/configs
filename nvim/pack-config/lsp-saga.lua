@@ -19,7 +19,7 @@ end
 local opts = { silent = true }
 
 -- Finder/Hover info
-map('n', '<leader>h', '<cmd>Lspsaga lsp_finder<CR>', opts)
+map('n', '<leader>h', '<cmd>Lspsaga finder<CR>', opts)
 map('n', 'gd', '<cmd>Lspsaga peek_definition<CR>', opts)
 map('n', '<leader>g', '<cmd>Lspsaga goto_definition<CR>', opts)
 map('n', 'K', '<cmd>Lspsaga hover_doc<cr>', opts)
