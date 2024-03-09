@@ -4,9 +4,6 @@ return require('packer').startup(function(use)
 
   use 'nvim-lua/plenary.nvim'
 
-  -- Show status of file on first line
-  use 'nvim-treesitter/nvim-treesitter-context'
-
   -- File explorer
   use { 'nvim-tree/nvim-tree.lua',
     requires = { 'nvim-tree/nvim-web-devicons' },
