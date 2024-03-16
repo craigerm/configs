@@ -28,12 +28,13 @@ return require('packer').startup(function(use)
   }
 
   -- Misc Utils
-  use 'folke/zen-mode.nvim'
-  use { 'kylechui/nvim-surround', tag = '*' }
-  use 'echasnovski/mini.surround'
-  use 'windwp/nvim-autopairs'
-  use 'echasnovski/mini.pairs'
-  use 'tpope/vim-fugitive'
+  use("folke/zen-mode.nvim")
+  use({ "kylechui/nvim-surround", tag = "*" })
+  use("echasnovski/mini.surround")
+  use("windwp/nvim-autopairs")
+  use("echasnovski/mini.pairs")
+  use("tpope/vim-fugitive")
+  use({ "vuki656/package-info.nvim", requires = "MunifTanjim/nui.nvim" })
 
   -- Comments
   use 'terrortylor/nvim-comment'
