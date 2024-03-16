@@ -78,10 +78,7 @@ return require('packer').startup(function(use)
   use 'gpanders/editorconfig.nvim'
 
   -- New color theme
-  use 'bluz71/vim-nightfly-colors'
-
-  -- Code outline
-  use 'stevearc/aerial.nvim'
+  use("bluz71/vim-nightfly-colors")
 
   -- For CSS color highlighting, etc.
   use 'norcalli/nvim-colorizer.lua'

@@ -1,9 +1,13 @@
 local saga = require('lspsaga')
+
 local map = vim.api.nvim_set_keymap
 
 saga.setup({
   lightbulb = {
     virtual_text = false
+  },
+  outline = {
+    detail = false
   }
 })
 
