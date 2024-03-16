@@ -4,7 +4,7 @@
 alias l='ls -lAh'
 alias reload='source ~/.zshrc'
 alias c='clear'
-alias xx='exit'
+alias x='exit'
 
 # Editor aliases
 alias nvim='/Users/craig/code/packages/nvim/bin/nvim'
@@ -13,9 +13,7 @@ alias vi='nvim'
 alias vim='nvim'
 
 # Node/etc
-alias npm='pnpm'
-alias n='pnpm'
-alias pp='pnpm'
+alias pn='pnpm'
 
 # Elixir/Phoenix
 alias dp='iex -S mix phx.server'
