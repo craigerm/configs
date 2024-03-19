@@ -14,6 +14,7 @@ ts.setup {
     "javascript",
     "json",
     "lua",
+    "graphql",
     -- Both markdown packages are needed by lspsaga+treesitter to work
     "markdown",
     "markdown_inline",

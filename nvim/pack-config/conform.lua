@@ -20,6 +20,7 @@ conform.setup({
     json = { pbin },
     yaml = { pbin },
     scss = { pbin },
+    graphql = { pbin },
   },
 
   format_on_save = {
