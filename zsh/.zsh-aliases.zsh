@@ -7,7 +7,6 @@ alias c='clear'
 alias x='exit'
 
 # Editor aliases
-alias nvim='/Users/craig/code/packages/nvim/bin/nvim'
 alias v='nvim'
 alias vi='nvim'
 alias vim='nvim'

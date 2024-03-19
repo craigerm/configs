@@ -11,6 +11,7 @@
   ignorecase = false
   excludesfile = ~/.gitignore
   pager = delta
+  editor = nvim
 
 [color]
   ui = true

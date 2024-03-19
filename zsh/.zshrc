@@ -50,6 +50,8 @@ case ":$PATH:" in
 esac
 # pnpm end
 
+export PATH="$HOME/code/packages/nvim/bin:$PATH"
+
 # Testing new theme
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
