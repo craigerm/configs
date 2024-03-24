@@ -7,6 +7,7 @@ require("mason-lspconfig").setup({
     "html",
     "jsonls",
     "cssls",
+    "elixirls",
     -- "ruby_ls",
     -- "marksman",
     "prismals",
@@ -14,6 +15,6 @@ require("mason-lspconfig").setup({
     "tailwindcss",
     "theme_check",
     "tsserver",
-    "yamlls"
-  }
+    "yamlls",
+  },
 })

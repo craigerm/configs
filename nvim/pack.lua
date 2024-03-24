@@ -87,6 +87,12 @@ return require("packer").startup(function(use)
 
   -- For CSS color highlighting, etc.
   use("norcalli/nvim-colorizer.lua")
-
   use("roobert/tailwindcss-colorizer-cmp.nvim")
+
+  -- Elixir
+  use("elixir-tools/elixir-tools.nvim")
+  -- event = { "BufReadPre", "BufNewFile" },
+
+  -- Copilot
+  use("github/copilot.vim")
 end)

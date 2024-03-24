@@ -32,24 +32,30 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- TypeScript
-nvim_lsp.tsserver.setup {
+nvim_lsp.tsserver.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-}
+})
+
+-- Elixir
+nvim_lsp.elixirls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
 
 -- YAML
-nvim_lsp.yamlls.setup {
-  on_attach = on_attach
-}
+nvim_lsp.yamlls.setup({
+  on_attach = on_attach,
+})
 
 -- Tailwind
 --
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tailwindcss
 -- npm install -g @tailwindcss/language-server
-nvim_lsp.tailwindcss.setup {}
+nvim_lsp.tailwindcss.setup({})
 
 -- JSON
-nvim_lsp.jsonls.setup {
+nvim_lsp.jsonls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {

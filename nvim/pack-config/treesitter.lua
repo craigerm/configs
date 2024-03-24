@@ -1,9 +1,7 @@
-local status, ts = pcall(require, "nvim-treesitter.configs")
-if (not status) then return end
-
+local ts = require("nvim-treesitter.configs")
 local map = vim.api.nvim_set_keymap
 
-ts.setup {
+ts.setup({
   highlight = { enable = true },
   indent = { enable = true },
   ensure_installed = {
@@ -15,6 +13,10 @@ ts.setup {
     "json",
     "lua",
     "graphql",
+    "heex",
+    "eex",
+    "erlang",
+    "surface",
     -- Both markdown packages are needed by lspsaga+treesitter to work
     "markdown",
     "markdown_inline",
