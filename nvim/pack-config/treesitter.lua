@@ -1,6 +1,7 @@
 local ts = require("nvim-treesitter.configs")
 local map = vim.api.nvim_set_keymap
 
+---@diagnostic disable-next-line: missing-fields
 ts.setup({
   highlight = { enable = true },
   indent = { enable = true },
