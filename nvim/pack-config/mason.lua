@@ -7,7 +7,7 @@ require("mason-lspconfig").setup({
     "html",
     "jsonls",
     "cssls",
-    "elixirls",
+    -- "elixirls",
     -- "ruby_ls",
     -- "marksman",
     "prismals",

@@ -1,10 +1,11 @@
 local nvim_lsp = require("lspconfig")
-local windows = require('lspconfig.ui.windows')
+local windows = require("lspconfig.ui.windows")
 
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
+local root_pattern = nvim_lsp.util.root_pattern
 
-windows.default_options.border = 'single'
+windows.default_options.border = "single"
 
 local lsp_formatting = function(bufnr)
   vim.lsp.buf.format({
@@ -52,7 +53,15 @@ nvim_lsp.yamlls.setup({
 --
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tailwindcss
 -- npm install -g @tailwindcss/language-server
-nvim_lsp.tailwindcss.setup({})
+nvim_lsp.tailwindcss.setup({
+  init_options = {
+    userLanguages = {
+      elixir = "html-eex",
+      eelixir = "html-eex",
+      heex = "html-eex",
+    },
+  },
+})
 
 -- JSON
 nvim_lsp.jsonls.setup({
@@ -64,94 +73,98 @@ nvim_lsp.jsonls.setup({
       schemas = {
         {
           description = "Node NPM packages file",
-          fileMatch = { 'package.json' },
-          url = 'https://json.schemastore.org/package.json'
+          fileMatch = { "package.json" },
+          url = "https://json.schemastore.org/package.json",
         },
         {
-          description = 'TypeScript compiler configuration file',
-          fileMatch = { 'tsconfig.json', 'tsconfig.*.json' },
-          url = 'http://json.schemastore.org/tsconfig'
+          description = "TypeScript compiler configuration file",
+          fileMatch = { "tsconfig.json", "tsconfig.*.json" },
+          url = "http://json.schemastore.org/tsconfig",
         },
         {
-          description = 'Babel configuration',
-          fileMatch = { '.babelrc.json', '.babelrc', 'babel.config.json' },
-          url = 'http://json.schemastore.org/lerna'
+          description = "Babel configuration",
+          fileMatch = { ".babelrc.json", ".babelrc", "babel.config.json" },
+          url = "http://json.schemastore.org/lerna",
         },
         {
-          description = 'ESLint config',
-          fileMatch = { '.eslintrc.json', '.eslintrc' },
-          url = 'http://json.schemastore.org/eslintrc'
+          description = "ESLint config",
+          fileMatch = { ".eslintrc.json", ".eslintrc" },
+          url = "http://json.schemastore.org/eslintrc",
         },
         {
-          description = 'Prettier config',
-          fileMatch = { '.prettierrc', '.prettierrc.json', 'prettier.config.json' },
-          url = 'http://json.schemastore.org/prettierrc'
+          description = "Prettier config",
+          fileMatch = {
+            ".prettierrc",
+            ".prettierrc.json",
+            "prettier.config.json",
+          },
+          url = "http://json.schemastore.org/prettierrc",
         },
-      }
-    }
-  }
-}
+      },
+    },
+  },
+})
 
 -- Astro
 nvim_lsp.astro.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-});
+})
 
 vim.filetype.add({
   extension = {
-    astro = "astro"
-  }
+    astro = "astro",
+  },
 })
 
 -- CSS
-nvim_lsp.cssls.setup {
+nvim_lsp.cssls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-}
+})
 
 -- HTML
-nvim_lsp.html.setup {
+nvim_lsp.html.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-}
+})
 
 -- Lua
-nvim_lsp.lua_ls.setup {
+nvim_lsp.lua_ls.setup({
   on_attach = on_attach,
   settings = {
     Lua = {
       runtime = {
-        version = 'LuaJIT'
+        version = "LuaJIT",
       },
       diagnostics = {
-        globals = { 'vim' }
+        globals = { "vim" },
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file('', true),
+        library = vim.api.nvim_get_runtime_file("", true),
         checkThirdParty = false,
       },
       telemetry = {
-        enable = false
-      }
-    }
-  }
-}
+        enable = false,
+      },
+    },
+  },
+})
 
 -- Shopify (Theme Check)
-nvim_lsp.theme_check.setup {
-  on_attach = on_attach
-}
+nvim_lsp.theme_check.setup({
+  on_attach = on_attach,
+})
 
 -- Code navigation
-map('n', '<space>t', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-map('n', '<space>D', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-map('n', '<space>d', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+map("n", "<space>t", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
+map("n", "<space>D", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
+map("n", "<space>d", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
 
 -- Diagnostics
-map('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
-map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', opts)
-map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
-map('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<cr>', opts)
+map("n", "<space>e", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
+map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", opts)
+map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", opts)
+map("n", "<space>q", "<cmd>lua vim.diagnostic.setloclist()<cr>", opts)
