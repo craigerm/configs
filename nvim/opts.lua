@@ -1,22 +1,22 @@
 local opt = vim.opt
 
 -- Clipboard
-vim.opt.clipboard:append { 'unnamedplus' }
+vim.opt.clipboard:append({ "unnamedplus" })
 
 -- Context
 opt.number = true
 opt.relativenumber = true
-opt.scrolloff = 3
-opt.signcolumn = 'yes'
+opt.scrolloff = 0
+opt.signcolumn = "yes"
 opt.cursorline = true
-opt.cursorlineopt = 'screenline'
+opt.cursorlineopt = "screenline"
 
 -- Encodings
-opt.encoding = 'utf8'
-opt.fileencoding = 'utf8'
+opt.encoding = "utf8"
+opt.fileencoding = "utf8"
 
 -- Themes
-opt.syntax = 'ON'
+opt.syntax = "ON"
 opt.termguicolors = true
 
 -- Search
