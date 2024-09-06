@@ -5,11 +5,11 @@ ws.setup({
   -- trailing whitespace
   -- highlight = 'DiffDelete',
   -- highlight = 'ErrorMsg',
-  highlight = 'NvimInternalError',
+  highlight = "NvimInternalError",
 
   -- `ignored_filetypes` configures which filetypes to ignore when
   -- displaying trailing whitespace
-  ignored_filetypes = { 'TelescopePrompt', 'Trouble', 'lspinfo', 'help' },
+  ignored_filetypes = { "TelescopePrompt", "Trouble", "lspinfo", "help", "fzf" },
 
   -- `ignore_terminal` configures whether to ignore terminal buffers
   ignore_terminal = true,
