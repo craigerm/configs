@@ -4,6 +4,8 @@ return require("packer").startup(function(use)
 
   use("nvim-lua/plenary.nvim")
 
+  use("vim-test/vim-test")
+
   -- File explorer
   use({
     "nvim-tree/nvim-tree.lua",

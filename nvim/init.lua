@@ -37,6 +37,8 @@ require("pack-config/tailwindcss-colorizer-cmp")
 require("pack-config/package-info")
 require("pack-config/colors")
 require("pack-config/elixir-tools")
+require("pack-config/vim-test")
+require("pack-config/supermaven")
 
 -- Add the complete last
 require("pack-config/nvim-cmp")
