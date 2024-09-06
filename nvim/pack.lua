@@ -94,5 +94,6 @@ return require("packer").startup(function(use)
   -- event = { "BufReadPre", "BufNewFile" },
 
   -- Copilot
-  use("github/copilot.vim")
+  -- use("github/copilot.vim")
+  use("supermaven-inc/supermaven-nvim")
 end)
