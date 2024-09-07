@@ -69,7 +69,7 @@ return require("packer").startup(function(use)
   use("hrsh7th/cmp-buffer")
   use("hrsh7th/cmp-path")
   use("saadparwaiz1/cmp_luasnip")
-  use("glepnir/lspsaga.nvim") -- Nicer UIs
+  use("nvimdev/lspsaga.nvim") -- Nicer UIs
 
   -- Formatting, linting, etc.
   use("stevearc/conform.nvim")
