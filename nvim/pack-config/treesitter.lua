@@ -32,10 +32,10 @@ ts.setup({
   autotag = {
     enable = true,
   },
-}
+})
 
-local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
 
 -- Mappings
-map('n', '<F10>', ':TSHighlightCapturesUnderCursor<cr>', {})
+map("n", "<F10>", ":TSHighlightCapturesUnderCursor<cr>", {})

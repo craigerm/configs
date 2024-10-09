@@ -23,6 +23,7 @@ conform.setup({
     graphql = { pbin },
   },
 
+  -- log_level = vim.log.levels.DEBUG,
   format_on_save = {
     lsp_fallback = true,
     async = false,
