@@ -1,10 +1,17 @@
-vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
-
-local cmp = require('cmp')
+local cmp = require("cmp")
 -- local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-local lspkind = require 'lspkind'
+local lspkind = require("lspkind")
 local defaults = require("cmp.config.default")()
-local format_kinds = lspkind.cmp_format({ mode = 'symbol', max_width = 50 })
+local format_kinds = lspkind.cmp_format({ mode = "symbol", max_width = 50 })
+
+lspkind.init({
+  symbol_map = {
+    Supermaven = "",
+  },
+})
+
+vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
+vim.api.nvim_set_hl(0, "CmpItemKindSupermaven", { fg = "#6CC644" })
 
 cmp.setup({
   completion = {
@@ -13,7 +20,7 @@ cmp.setup({
 
   snippet = {
     expand = function(args)
-      require('luasnip').lsp_expand(args.body)
+      require("luasnip").lsp_expand(args.body)
     end,
   },
 
@@ -40,19 +47,20 @@ cmp.setup({
   }),
 
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-    { name = 'path' },
+    { name = "nvim_lsp" },
+    { name = "supermaven" },
+    { name = "luasnip" },
+    { name = "path" },
   }, {
-    { name = 'buffer' },
+    { name = "buffer" },
   }),
 
   formatting = {
     format = function(entry, item)
       format_kinds(entry, item)
       return require("tailwindcss-colorizer-cmp").formatter(entry, item)
-    end
+    end,
   },
 
-  sorting = defaults.sorting
+  sorting = defaults.sorting,
 })

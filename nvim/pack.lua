@@ -93,7 +93,6 @@ return require("packer").startup(function(use)
 
   -- Elixir
   use("elixir-tools/elixir-tools.nvim")
-  -- event = { "BufReadPre", "BufNewFile" },
 
   -- Copilot
   -- use("github/copilot.vim")
