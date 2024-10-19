@@ -6,7 +6,7 @@ vim.opt.clipboard:append({ "unnamedplus" })
 -- Context
 opt.number = true
 opt.relativenumber = true
-opt.scrolloff = 0
+opt.scrolloff = 2
 opt.signcolumn = "yes"
 opt.cursorline = true
 opt.cursorlineopt = "screenline"
