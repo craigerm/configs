@@ -20,7 +20,7 @@ for type, icon in pairs(signs) do
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
-local opts = { silent = true }
+local opts = { silent = true, noremap = true }
 
 -- Finder/Hover info
 map("n", "<leader>h", "<cmd>Lspsaga finder<CR>", opts)
@@ -38,6 +38,18 @@ map("n", "<leader>cf", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
 map("n", "<leader>cd", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts)
 map("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
 map("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
+
+vim.keymap.set("n", "[E", function()
+  require("lspsaga.diagnostic"):goto_next({
+    severity = vim.diagnostic.severity.ERROR,
+  })
+end, { silent = true, noremap = true })
+
+vim.keymap.set("n", "]E", function()
+  require("lspsaga.diagnostic"):goto_prev({
+    severity = vim.diagnostic.severity.ERROR,
+  })
+end, opts)
 
 -- Outline LSoutline is deprecated but new versions are not working correctly
 map("n", "<leader>o", "<cmd>Lspsaga outline<cr>", opts)
