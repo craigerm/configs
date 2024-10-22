@@ -61,3 +61,13 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 # Zsh built-in key bindings get applied after our .zshrc so this
 # allows the zsh key bindings to run after that so they work as expected.
 zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
+
+# bun completions
+[ -s "/Users/craig/.bun/_bun" ] && source "/Users/craig/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Rust!? no way.
+. "$HOME/.cargo/env"
