@@ -18,6 +18,7 @@ ts.setup({
     "eex",
     "erlang",
     "surface",
+    "typescript",
     -- Both markdown packages are needed by lspsaga+treesitter to work
     "markdown",
     "markdown_inline",
@@ -34,8 +35,8 @@ ts.setup({
   },
 })
 
-local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
+-- local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+-- parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
 
 -- Mappings
 map("n", "<F10>", ":TSHighlightCapturesUnderCursor<cr>", {})
