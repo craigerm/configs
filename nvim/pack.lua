@@ -58,6 +58,7 @@ return require("packer").startup(function(use)
   -- Syntax highlighting
   use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
   use({ "nvim-treesitter/playground", run = ":TSInstall query" })
+  use("nvim-treesitter/nvim-treesitter-textobjects")
 
   -- Highlight and remove trailing whitespace
   use("johnfrankmorgan/whitespace.nvim")
