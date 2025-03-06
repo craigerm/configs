@@ -22,6 +22,10 @@
   side-by-side = true
   features = "custom-theme"
 
+[push]
+  autoSetupRemote = true
+  default = current
+
 [merge]
   conflictstyle = diff3
 
