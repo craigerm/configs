@@ -11,6 +11,9 @@ require("fzf-lua").setup({
       delay = 300,
     },
   },
+  grep = {
+    cmd = "ag",
+  },
   keymap = {
     fzf = {
       -- fzf '--bind=' options
@@ -55,6 +58,7 @@ map(
   opts
 )
 
+map("n", "<leader>p", "<cmd>lua require('fzf-lua').live_grep()<CR>", opts)
 map("n", "<leader>s", "<cmd>lua require('fzf-lua').buffers()<CR>", opts)
 map("n", "<leader>e", "<cmd>lua require('fzf-lua').blines()<CR>", opts)
 map("n", "<leader>f", "<cmd>lua require('fzf-lua').lines()<CR>", opts)
