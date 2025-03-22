@@ -157,6 +157,10 @@ nvim_lsp.theme_check.setup({
   on_attach = on_attach,
 })
 
+nvim_lsp.shopify_theme_ls.setup({
+  on_attach = on_attach,
+})
+
 -- Code navigation
 map("n", "<space>t", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
 map("n", "<space>D", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)

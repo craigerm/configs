@@ -11,6 +11,7 @@ require("mason-lspconfig").setup({
     "prismals",
     "lua_ls",
     "tailwindcss",
+    "shopify_theme_ls",
     "theme_check",
     "ts_ls",
     "yamlls",
