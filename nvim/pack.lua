@@ -90,7 +90,7 @@ return require("packer").startup(function(use)
 
   -- For CSS color highlighting, etc.
   use("norcalli/nvim-colorizer.lua")
-  use("roobert/tailwindcss-colorizer-cmp.nvim")
+  use("luckasRanarison/tailwind-tools.nvim")
 
   -- Elixir
   use("elixir-tools/elixir-tools.nvim")
