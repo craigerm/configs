@@ -16,7 +16,7 @@ require("cmds")
 -- Plugin config specific
 require("pack-config/autopairs")
 require("pack-config/zen-mode")
-require("pack-config/nvim-comment")
+require("pack-config/comment")
 require("pack-config/nvim-tree")
 require("pack-config/fzf")
 require("pack-config/surround")
