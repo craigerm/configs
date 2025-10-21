@@ -48,3 +48,18 @@
   hunk-header-file-style = "#999999"
   hunk-header-style = file line-number syntax
   file-style = brightwhite
+
+[diff "lockb"]
+  textconv = bun
+  binary = true
+
+[rerere]
+  enabled = true
+
+[branch]
+  sort = committerdate
+  autoSetupRemote = true
+
+[fetch]
+  prune = true
+  prunetags = true
