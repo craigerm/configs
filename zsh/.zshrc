@@ -40,7 +40,7 @@ unsetopt correct_all
 set termguicolors
 autoload -U add-zsh-hook
 
-. $(brew --prefix asdf)/libexec/asdf.sh
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
 # pnpm
 export PNPM_HOME="/Users/craig/Library/pnpm"
