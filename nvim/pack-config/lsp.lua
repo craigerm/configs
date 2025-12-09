@@ -1,9 +1,7 @@
-local nvim_lsp = require("lspconfig")
 local windows = require("lspconfig.ui.windows")
 
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
-local root_pattern = nvim_lsp.util.root_pattern
 
 windows.default_options.border = "single"
 
@@ -33,19 +31,42 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- TypeScript
-nvim_lsp.ts_ls.setup({
+-- nvim_lsp.ts_ls.setup({
+vim.lsp.config("ts_ls", {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx",
+  },
+})
+
+-- Graphql
+vim.lsp.config("graphql", {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx",
+  },
+})
+
+-- Elixir
+vim.lsp.config("elixirls", {
   on_attach = on_attach,
   capabilities = capabilities,
 })
 
--- Elixir
-nvim_lsp.elixirls.setup({
-  -- on_attach = on_attach,
-  capabilities = capabilities,
-})
-
 -- YAML
-nvim_lsp.yamlls.setup({
+vim.lsp.config("yamlls", {
   on_attach = on_attach,
 })
 
@@ -53,18 +74,21 @@ nvim_lsp.yamlls.setup({
 --
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tailwindcss
 -- npm install -g @tailwindcss/language-server
-nvim_lsp.tailwindcss.setup({
-  init_options = {
-    userLanguages = {
-      elixir = "html-eex",
-      eelixir = "html-eex",
-      heex = "html-eex",
-    },
-  },
+vim.lsp.config("tailwindcss", {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  -- init_options = {
+  --   userLanguages = {
+  --     elixir = "html-eex",
+  --     eelixir = "html-eex",
+  --     heex = "html-eex",
+  --     liquid = "liquid",
+  --   },
+  -- },
 })
 
 -- JSON
-nvim_lsp.jsonls.setup({
+vim.lsp.config("jsonls", {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
@@ -106,7 +130,7 @@ nvim_lsp.jsonls.setup({
 })
 
 -- Astro
-nvim_lsp.astro.setup({
+vim.lsp.config("astro", {
   on_attach = on_attach,
   capabilities = capabilities,
 })
@@ -118,19 +142,19 @@ vim.filetype.add({
 })
 
 -- CSS
-nvim_lsp.cssls.setup({
+vim.lsp.config("cssls", {
   on_attach = on_attach,
   capabilities = capabilities,
 })
 
 -- HTML
-nvim_lsp.html.setup({
+vim.lsp.config("html", {
   on_attach = on_attach,
   capabilities = capabilities,
 })
 
 -- Lua
-nvim_lsp.lua_ls.setup({
+vim.lsp.config("lua_ls", {
   on_attach = on_attach,
   settings = {
     Lua = {
@@ -153,11 +177,11 @@ nvim_lsp.lua_ls.setup({
 })
 
 -- Shopify (Theme Check)
-nvim_lsp.theme_check.setup({
-  on_attach = on_attach,
+vim.lsp.config("theme_check", {
+  -- on_attach = on_attach,
 })
 
-nvim_lsp.shopify_theme_ls.setup({
+vim.lsp.config("shopify_theme_ls", {
   on_attach = on_attach,
 })
 
