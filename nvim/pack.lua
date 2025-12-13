@@ -98,4 +98,7 @@ return require("packer").startup(function(use)
   -- Copilot
   -- use("github/copilot.vim")
   use("supermaven-inc/supermaven-nvim")
+
+  use({ "folke/snacks.nvim" })
+  use({ "NickvanDyke/opencode.nvim", requires = "folke/snacks.nvim" })
 end)

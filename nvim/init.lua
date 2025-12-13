@@ -40,6 +40,8 @@ require("pack-config/colors")
 require("pack-config/elixir-tools")
 require("pack-config/vim-test")
 require("pack-config/supermaven")
+require("pack-config/snacks")
+require("pack-config/opencode")
 
 -- Add the complete last
 require("pack-config/nvim-cmp")

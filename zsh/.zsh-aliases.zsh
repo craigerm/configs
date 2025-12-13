@@ -53,3 +53,6 @@ alias co='git checkout'
 alias gl='git log --graph --pretty=format":%C(yellow)%h%C(bold magenta)%d%Creset %s %C(white) %an, %ar%Creset"'
 alias lg='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold magenta)<%an>%Creset" --abbrev-commit --date=relative'
 alias l='git log --pretty=format:"%C(yellow)%h%Creset - %s %C(magenta bold)(%cr by %an)"'
+
+# AI
+alias oc='opencode'
