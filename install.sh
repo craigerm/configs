@@ -29,6 +29,7 @@ linkfiles(){
 mkdir -p "$HOME/configs"
 mkdir -p "$HOME/.config/nvim/lua/pack-config"
 mkdir -p "$HOME/.config/lazygit"
+mkdir -p "$HOME/.config/ghostty"
 
 linkfiles "home-files" "$HOME"
 linkfiles "zsh" "$HOME"
@@ -44,6 +45,7 @@ linkfile "nvim/keys.lua" "$HOME/.config/nvim/lua"
 linkfile "nvim/pack.lua" "$HOME/.config/nvim/lua"
 linkfile "nvim/cmds.lua" "$HOME/.config/nvim/lua"
 
+linkfile "other/ghostty/config" "$HOME/.config/ghostty"
+
 # Link all pack config files
 linkfiles "nvim/pack-config" "$HOME/.config/nvim/lua/pack-config"
-

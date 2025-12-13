@@ -1,0 +1,10 @@
+# Themes
+# - Carbonfox
+# - Embark
+# - Github Dark Default
+# - Wombat
+# theme = Carbonfox
+theme = Github Dark Default
+font-size = 18
+font-family = Geist Mono
+macos-titlebar-style = tabs
