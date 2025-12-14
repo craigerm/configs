@@ -3,8 +3,12 @@
 # - Embark
 # - Github Dark Default
 # - Wombat
-# theme = Carbonfox
 theme = Github Dark Default
 font-size = 18
+
+# BerkeleyMono Nerd Font ??
 font-family = Geist Mono
+# font-feature = -calt, -liga, -dli
+
 macos-titlebar-style = tabs
+mouse-hide-while-typing = true
