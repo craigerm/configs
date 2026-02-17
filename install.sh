@@ -25,11 +25,47 @@ linkfiles(){
   find "$1" -type f | while read file; do linkfile $file $2; done
 }
 
+link_dotconfigs() {
+  local SRC_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/dot_config"
+  local DEST_BASE="$HOME/.config"
+
+  if [[ ! -d "$SRC_DIR" ]]; then
+    echo "No dot_config directory found at $SRC_DIR"
+    return 1
+  fi
+
+  find "$SRC_DIR" -type f | while read -r src_file; do
+    # Strip the source prefix to get relative path (e.g. yazi/theme.toml)
+    rel_path="${src_file#$SRC_DIR/}"
+
+    # Destination full path (~/.config/yazi/theme.toml)
+    dest_file="$DEST_BASE/$rel_path"
+    dest_dir="$(dirname "$dest_file")"
+
+    # Ensure destination directory exists
+    mkdir -p "$dest_dir"
+
+    # If already correct symlink → skip
+    if [[ -L "$dest_file" && "$(readlink "$dest_file")" == "$src_file" ]]; then
+      echo "✓ Already linked: $dest_file"
+      continue
+    fi
+
+    # If file exists but not correct symlink → backup
+    if [[ -e "$dest_file" && ! -L "$dest_file" ]]; then
+      echo "⚠️  Backing up existing file: $dest_file → ${dest_file}.bak"
+      #mv "$dest_file" "${dest_file}.bak"
+    fi
+
+    # Create symlink
+    ln -sf "$src_file" "$dest_file"
+    echo "→ Linked: $dest_file"
+  done
+}
+
 #Create configs directory
 mkdir -p "$HOME/configs"
 mkdir -p "$HOME/.config/nvim/lua/pack-config"
-mkdir -p "$HOME/.config/lazygit"
-mkdir -p "$HOME/.config/ghostty"
 
 linkfiles "home-files" "$HOME"
 linkfiles "zsh" "$HOME"
@@ -45,7 +81,7 @@ linkfile "nvim/keys.lua" "$HOME/.config/nvim/lua"
 linkfile "nvim/pack.lua" "$HOME/.config/nvim/lua"
 linkfile "nvim/cmds.lua" "$HOME/.config/nvim/lua"
 
-linkfile "other/ghostty/config" "$HOME/.config/ghostty"
+link_dotconfigs
 
 # Link all pack config files
 linkfiles "nvim/pack-config" "$HOME/.config/nvim/lua/pack-config"

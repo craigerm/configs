@@ -12,3 +12,5 @@ font-family = Geist Mono
 
 macos-titlebar-style = tabs
 mouse-hide-while-typing = true
+
+shell-integration = zsh
