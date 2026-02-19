@@ -93,7 +93,7 @@ return require("packer").startup(function(use)
   use("luckasRanarison/tailwind-tools.nvim")
 
   -- Elixir
-  use("elixir-tools/elixir-tools.nvim")
+  use({ "elixir-tools/elixir-tools.nvim", tag = "stable" })
 
   -- Copilot
   -- use("github/copilot.vim")

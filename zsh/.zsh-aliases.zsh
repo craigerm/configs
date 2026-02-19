@@ -5,6 +5,7 @@ alias l='ls -lAh'
 alias reload='source ~/.zshrc'
 alias c='clear'
 alias x='exit'
+alias e='yazi'
 
 # Editor aliases
 alias v='nvim'
@@ -32,8 +33,10 @@ alias g='lazygit'
 
 # Git commits
 alias pb='git push origin HEAD'
+alias pbb='git push backup HEAD'
 alias ca='git commit --amend --no-edit'
 alias cm='git commit -m'
+alias go='gh repo view -w'
 
 # Git changes
 alias f='git fetch'
@@ -55,4 +58,8 @@ alias lg='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %
 alias l='git log --pretty=format:"%C(yellow)%h%Creset - %s %C(magenta bold)(%cr by %an)"'
 
 # AI
-alias oc='opencode'
+alias cc=claude
+
+oc() {
+  OPENCODE_EXPERIMENTAL_PLAN_MODE=1 opencode --port=9876 "$@"
+}

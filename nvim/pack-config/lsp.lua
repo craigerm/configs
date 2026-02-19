@@ -47,9 +47,8 @@ vim.lsp.config("ts_ls", {
 
 -- Graphql
 vim.lsp.config("graphql", {
-  on_attach = on_attach,
-  capabilities = capabilities,
   filetypes = {
+    "graphql",
     "javascript",
     "javascriptreact",
     "javascript.jsx",
@@ -61,13 +60,13 @@ vim.lsp.config("graphql", {
 
 -- Elixir
 vim.lsp.config("elixirls", {
-  on_attach = on_attach,
+  -- on_attach = on_attach,
   capabilities = capabilities,
 })
 
 -- YAML
 vim.lsp.config("yamlls", {
-  on_attach = on_attach,
+  -- on_attach = on_attach,
 })
 
 -- Tailwind
@@ -75,7 +74,7 @@ vim.lsp.config("yamlls", {
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tailwindcss
 -- npm install -g @tailwindcss/language-server
 vim.lsp.config("tailwindcss", {
-  on_attach = on_attach,
+  -- on_attach = on_attach,
   capabilities = capabilities,
   -- init_options = {
   --   userLanguages = {
@@ -89,7 +88,7 @@ vim.lsp.config("tailwindcss", {
 
 -- JSON
 vim.lsp.config("jsonls", {
-  on_attach = on_attach,
+  -- on_attach = on_attach,
   capabilities = capabilities,
   settings = {
     json = {
@@ -131,7 +130,7 @@ vim.lsp.config("jsonls", {
 
 -- Astro
 vim.lsp.config("astro", {
-  on_attach = on_attach,
+  -- on_attach = on_attach,
   capabilities = capabilities,
 })
 
@@ -143,19 +142,19 @@ vim.filetype.add({
 
 -- CSS
 vim.lsp.config("cssls", {
-  on_attach = on_attach,
+  -- on_attach = on_attach,
   capabilities = capabilities,
 })
 
 -- HTML
 vim.lsp.config("html", {
-  on_attach = on_attach,
+  -- on_attach = on_attach,
   capabilities = capabilities,
 })
 
 -- Lua
 vim.lsp.config("lua_ls", {
-  on_attach = on_attach,
+  -- on_attach = on_attach,
   settings = {
     Lua = {
       runtime = {
@@ -182,7 +181,7 @@ vim.lsp.config("theme_check", {
 })
 
 vim.lsp.config("shopify_theme_ls", {
-  on_attach = on_attach,
+  -- on_attach = on_attach,
 })
 
 -- Code navigation
