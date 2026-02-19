@@ -6,7 +6,7 @@
   defaultBranch = main
 
 [core]
-	autocrlf = input
+  autocrlf = input
   fileMode = false
   ignorecase = false
   excludesfile = ~/.gitignore
@@ -34,7 +34,7 @@
   wsErrorHighlight = all
 
 [grep]
-	lineNumber = true
+  lineNumber = true
 
 [color "branch"]
   current = yellow bold
@@ -59,6 +59,7 @@
 [branch]
   sort = committerdate
   autoSetupRemote = true
+  autoSetupMerge = always
 
 [fetch]
   prune = true
