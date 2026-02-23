@@ -14,3 +14,8 @@ macos-titlebar-style = tabs
 mouse-hide-while-typing = true
 
 shell-integration = zsh
+
+# Better for splits
+split-divider-color = #252c3f
+window-padding-x = 8
+window-padding-y = 8
