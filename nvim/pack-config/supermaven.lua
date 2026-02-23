@@ -1,1 +1,3 @@
-require("supermaven-nvim").setup({})
+require("supermaven-nvim").setup({
+  ignore_filetypes = { markdown = true, markdown_inline = true },
+})

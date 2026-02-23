@@ -66,4 +66,10 @@ cmp.setup({
   },
 
   sorting = defaults.sorting,
+
+  cmp.setup.filetype({ "markdown", "mdx" }, {
+    completion = {
+      autocomplete = false,
+    },
+  }),
 })
