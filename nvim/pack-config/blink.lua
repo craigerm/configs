@@ -5,7 +5,7 @@ require("blink.cmp").setup({
   -- "enter"     -> Enter accepts
   -- "none"      -> configure everything yourself
   keymap = {
-    preset = "super-tab",
+    preset = "enter",
   },
 
   sources = {
