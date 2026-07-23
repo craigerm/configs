@@ -1,42 +1,23 @@
-local ts = require("nvim-treesitter.configs")
-local map = vim.api.nvim_set_keymap
-
----@diagnostic disable-next-line: missing-fields
-ts.setup({
-  highlight = { enable = true },
-  indent = { enable = true },
-  ensure_installed = {
-    "bash",
-    "css",
-    "elixir",
-    "html",
-    "javascript",
-    "json",
-    "lua",
-    "graphql",
-    "heex",
-    "eex",
-    "erlang",
-    "surface",
-    "typescript",
-    -- Both markdown packages are needed by lspsaga+treesitter to work
-    "markdown",
-    "markdown_inline",
-    "jsdoc",
-    "prisma",
-    "scss",
-    "toml",
-    "tsx",
-    "yaml",
-  },
-  autoinstall = true,
-  autotag = {
-    enable = true,
-  },
+require("nvim-treesitter").install({
+  "base",
+  "css",
+  "html",
+  "javascript",
+  "typescript",
+  "tsx",
+  "jsdoc",
+  "json",
+  "lua",
+  "graphql",
+  "markdown",
+  "markdown_inline",
+  "scss",
+  "toml",
+  "yaml",
+  "elixir",
+  "heex",
+  "eex"
 })
 
--- local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
--- parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
-
--- Mappings
-map("n", "<F10>", ":TSHighlightCapturesUnderCursor<cr>", {})
+-- Mappings (this needs migrated to latest treesitter version if possible)
+-- vim.api.nvim_set_keymap("n", "<F10>", ":TSHighlightCapturesUnderCursor<cr>", {})
