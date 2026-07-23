@@ -3,11 +3,11 @@ local cmp = require("cmp")
 local lspkind = require("lspkind")
 local defaults = require("cmp.config.default")()
 
-local twt = require("tailwind-tools.cmp")
+-- local twt = require("tailwind-tools.cmp")
 local format_kinds = lspkind.cmp_format({
   mode = "symbol",
   max_width = 50,
-  before = twt.lspkind_format,
+  -- before = twt.lspkind_format,
 })
 
 lspkind.init({

@@ -33,7 +33,7 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 -- TypeScript
 -- nvim_lsp.ts_ls.setup({
 vim.lsp.config("ts_ls", {
-  on_attach = on_attach,
+  -- on_attach = on_attach,
   capabilities = capabilities,
   filetypes = {
     "javascript",

@@ -10,6 +10,7 @@ opt.scrolloff = 2
 opt.signcolumn = "yes"
 opt.cursorline = true
 opt.cursorlineopt = "screenline"
+opt.laststatus = 3
 
 -- Encodings
 opt.encoding = "utf8"
@@ -40,6 +41,4 @@ opt.splitbelow = true
 -- Virtual lines
 opt.breakindent = true
 
-if vim.fn.has("nvim-0.10") == 1 then
-  opt.smoothscroll = true
-end
+opt.smoothscroll = true

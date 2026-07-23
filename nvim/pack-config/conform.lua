@@ -1,7 +1,5 @@
 local conform = require("conform")
-local util = require("conform.util")
-
-local pbin = "prettierd"
+local pbin = "prettier"
 
 conform.setup({
   format = {
@@ -19,7 +17,6 @@ conform.setup({
     markdown = { pbin },
     -- Liquid formatter doesn't seem to work with prettierd
     liquid = { "prettier" },
-    -- liquid = { pbin },
     css = { pbin },
     html = { pbin },
     json = { pbin },

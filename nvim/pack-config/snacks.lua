@@ -1,11 +1,7 @@
 local snacks = require("snacks")
 
 local function set_snacks_hl()
-  -- vim.api.nvim_set_hl(0, "MySnacksScope", { fg = 7503820 })
-  -- vim.api.nvim_set_hl(0, "MySnacksScope", { fg = 7442377 })
   vim.api.nvim_set_hl(0, "MySnacksScope", { fg = 7376584 })
-  -- vim.api.nvim_set_hl(0, "MySnacksScope", { fg = 980802 })
-  -- vim.api.nvim_set_hl(0, "MySnacksScope", { fg = 8037606 })
 end
 
 -- apply now (in case colorscheme is already set)
@@ -24,7 +20,6 @@ snacks.setup({
   scope = {},
   indent = {
     only_scope = true,
-    -- only_indent = true,
     animate = {
       enabled = false,
     },
