@@ -42,7 +42,13 @@ return require("packer").startup(function(use)
   use({ "vuki656/package-info.nvim", requires = "MunifTanjim/nui.nvim" })
 
   -- Comments
-  use("terrortylor/nvim-comment")
+  use("numToStr/Comment.nvim")
+  use({
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    config = function()
+      require("nvim-ts-context-commentstring").setup()
+    end,
+  })
 
   -- Lua Snippets
   use({
@@ -56,9 +62,9 @@ return require("packer").startup(function(use)
   use("neovim/nvim-lspconfig")
 
   -- Syntax highlighting
-  use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-  use({ "nvim-treesitter/playground", run = ":TSInstall query" })
-  use("nvim-treesitter/nvim-treesitter-textobjects")
+  use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", branch = "" })
+  -- use({ "nvim-treesitter/playground", run = ":TSInstall query" })
+  -- use("nvim-treesitter/nvim-treesitter-textobjects")
 
   -- Highlight and remove trailing whitespace
   use("johnfrankmorgan/whitespace.nvim")
