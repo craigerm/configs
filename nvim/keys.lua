@@ -27,3 +27,17 @@ map("v", "<leader>p", '"_dP', {})
 
 -- In terminal mode CTRL-O to normal mode so you can scroll, etc (usefull for vim.test)
 map("t", "<C-o>", "<C-\\><C-n>", { noremap = true, silent = true })
+
+-- Highlight under cursor
+vim.keymap.set("n", "<F5>", function()
+  local word = vim.fn.expand("<cword>")
+  vim.opt.hlsearch = true
+  vim.fn.setreg("/", "\\<" .. word .. "\\>")
+  vim.cmd("normal! nN") -- reset cursor position
+end, { desc = "Highlight word under cursor (no jump)" })
+
+-- Clear highlight under cursor
+vim.keymap.set("n", "<F6>", function()
+  vim.cmd("nohlsearch")
+  vim.opt.hlsearch = false
+end, { desc = "Clear search highlight" })
