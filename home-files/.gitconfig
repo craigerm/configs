@@ -27,11 +27,17 @@
   default = current
 
 [merge]
-  conflictstyle = diff3
+  conflictstyle = zdiff3
 
 [diff]
   colorMoved = default
   wsErrorHighlight = all
+
+[pager]
+  blame  = delta
+  diff   = delta
+  reflog = delta
+  show   = delta
 
 [grep]
   lineNumber = true
