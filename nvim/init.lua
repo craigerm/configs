@@ -43,7 +43,8 @@ require("pack-config/snacks")
 require("pack-config/opencode")
 
 -- Add the complete last
-require("pack-config/nvim-cmp")
+-- require("pack-config/nvim-cmp")
+require("pack-config/blink")
 
 -- Set color scheme
 vim.cmd([[colorscheme nightfly]])

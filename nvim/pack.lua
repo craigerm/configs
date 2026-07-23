@@ -78,6 +78,14 @@ return require("packer").startup(function(use)
   use("saadparwaiz1/cmp_luasnip")
   use("nvimdev/lspsaga.nvim") -- Nicer UIs
 
+  use({
+    "saghen/blink.cmp",
+    requires = { "saghen/blink.lib" },
+    run = function()
+      require("blink.cmp").build():pwait()
+    end,
+  })
+
   -- Formatting, linting, etc.
   use("stevearc/conform.nvim")
   use("mfussenegger/nvim-lint")
