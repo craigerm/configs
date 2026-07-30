@@ -45,6 +45,11 @@ vim.lsp.config("ts_ls", {
   },
 })
 
+-- Oxlint
+vim.lsp.config("oxlint", {
+  capabilities = capabilities,
+})
+
 -- Graphql
 vim.lsp.config("graphql", {
   filetypes = {
