@@ -19,4 +19,3 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Disable auto updates during brew install
 export HOMEBREW_NO_AUTO_UPDATE=1
-
