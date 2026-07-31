@@ -120,21 +120,20 @@ local function javascript_formatter(bufnr)
 end
 
 conform.setup({
-  format = {
+  default_format_opts = {
     timeout_ms = 3000,
-    async = false,
-    quiet = false,
+    lsp_format = "never",
   },
 
   formatters_by_ft = {
-    lua = "stylua",
+    lua = { "stylua" },
     javascript = javascript_formatter,
     typescript = javascript_formatter,
     javascriptreact = javascript_formatter,
     typescriptreact = javascript_formatter,
     markdown = javascript_formatter,
     -- Liquid formatter doesn't seem to work with prettierd (TODO: does oxfmt work?)
-    liquid = "prettier",
+    liquid = { "prettier" },
     css = javascript_formatter,
     html = javascript_formatter,
     json = javascript_formatter,
@@ -147,9 +146,6 @@ conform.setup({
 
   -- log_level = vim.log.levels.DEBUG,
   format_on_save = {
-    lsp_fallback = false,
-    -- lsp_format = "never",
-    async = false,
     timeout_ms = 2000,
   },
 })
