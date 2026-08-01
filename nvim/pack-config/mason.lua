@@ -1,6 +1,9 @@
 require("mason").setup()
 
 require("mason-lspconfig").setup({
+  automatic_enable = {
+    exclude = { "ts_ls" },
+  },
   ensure_installed = {
     "bashls",
     "eslint",
@@ -14,7 +17,6 @@ require("mason-lspconfig").setup({
     "tailwindcss",
     "shopify_theme_ls",
     -- "theme_check",
-    "ts_ls",
     "yamlls",
   },
 })

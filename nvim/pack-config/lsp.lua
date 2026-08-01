@@ -29,26 +29,70 @@ end
 --Enable (broadcasting) snippet capability for completion
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
 
--- TypeScript
--- nvim_lsp.ts_ls.setup({
-vim.lsp.config("ts_ls", {
-  -- on_attach = on_attach,
+-- TypeScript 7
+--
+-- Effect projects patch this executable with @effect/tsgo.
+-- Other projects use the standard native TypeScript 7 executable.
+vim.lsp.config("tsgo", {
   capabilities = capabilities,
-  filetypes = {
-    "javascript",
-    "javascriptreact",
-    "javascript.jsx",
-    "typescript",
-    "typescriptreact",
-    "typescript.tsx",
-  },
+
+  cmd = function(dispatchers, config)
+    local root_dir = assert(config.root_dir, "tsgo requires a project root")
+    local tsc = vim.fs.joinpath(root_dir, "node_modules", ".bin", "tsc")
+
+    assert(
+      vim.fn.executable(tsc) == 1,
+      "Project-local TypeScript executable not found: " .. tsc
+    )
+
+    local result = vim
+      .system({
+        tsc,
+        "--version",
+      }, {
+        text = true,
+      })
+      :wait()
+
+    local version = vim.trim(result.stdout or "")
+    local major = version:match("^Version%s+(%d+)")
+
+    assert(
+      result.code == 0 and major == "7",
+      "Expected project-local TypeScript 7, found: " .. version
+    )
+
+    return vim.lsp.rpc.start({
+      tsc,
+      "--lsp",
+      "--stdio",
+    }, dispatchers)
+  end,
 })
+vim.lsp.enable("tsgo")
+
+-- -- TypeScript < 7
+-- vim.lsp.config("ts_ls", {
+--   -- on_attach = on_attach,
+--   capabilities = capabilities,
+--   filetypes = {
+--     "javascript",
+--     "javascriptreact",
+--     "javascript.jsx",
+--     "typescript",
+--     "typescriptreact",
+--     "typescript.tsx",
+--   },
+-- })
 
 -- Oxlint
 vim.lsp.config("oxlint", {
   capabilities = capabilities,
 })
+
+vim.lsp.enable("oxlint")
 
 -- Graphql
 vim.lsp.config("graphql", {

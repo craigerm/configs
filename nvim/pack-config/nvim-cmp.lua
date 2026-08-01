@@ -61,9 +61,9 @@ cmp.setup({
     { name = "buffer" },
   }),
 
-  formatting = {
-    format = format_kinds,
-  },
+  -- formatting = {
+  --   format = format_kinds,
+  -- },
 
   sorting = defaults.sorting,
 
