@@ -125,6 +125,11 @@ vim.lsp.config("yamlls", {
 vim.lsp.config("tailwindcss", {
   -- on_attach = on_attach,
   capabilities = capabilities,
+  settings = {
+    tailwindCSS = {
+      classFunctions = { "cva", "cn", " clsx" },
+    },
+  },
   -- init_options = {
   --   userLanguages = {
   --     elixir = "html-eex",
